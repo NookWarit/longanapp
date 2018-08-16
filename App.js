@@ -3,6 +3,9 @@ import { StyleSheet, Text, View } from "react-native";
 import { MemoryRouter as Router, Route, Switch } from "react-router-native";
 import Home from "./app/components/Home";
 import { PacmanIndicator } from "react-native-indicators";
+import Page from "./app/components/page/Page";
+import {Provider} from 'react-redux';
+import Store from "./app/store";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,11 +27,13 @@ export default class App extends React.Component {
     return this.state.isLoading ? (
       <PacmanIndicator />
     ) : (
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-        </Switch>
-      </Router>
+      <Provider store={Store}>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Page} />
+          </Switch>
+        </Router>
+      </Provider>
     );
   }
 }

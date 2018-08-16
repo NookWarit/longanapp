@@ -13,55 +13,87 @@ import {
   Title,
   Right
 } from "native-base";
-import PropTypes from 'prop-types';
+import Drawer from 'react-native-drawer'
+import PropTypes from "prop-types";
+import ControlPanel from "../drawer/ControlPanel";
+import {connect} from 'react-redux';
+import { toggleDrawer } from "../../store/actions/app";
 
 class Master extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+// componentDidMount(){
+//     this._drawer.open()
+// }
+
   render() {
     return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>{this.props.title}</Title>
-          </Body>
-          <Right>
-            <Button transparent>
-              <Icon name="more" />
-            </Button>
-          </Right>
-        </Header>
-        <Content >{this.props.children}</Content>
-        <Footer>
-          <FooterTab>
-            <Button>
-              <Icon name="apps" />
-            </Button>
-            <Button>
-              <Icon name="camera" />
-            </Button>
-            <Button active>
-              <Icon active name="navigate" />
-            </Button>
-            <Button>
-              <Icon name="person" />
-            </Button>
-          </FooterTab>
-        </Footer>
-      </Container>
+      <Drawer
+       open = {this.props.drawer.isOpen}
+        type="overlay"
+        content={<ControlPanel />}
+        tapToClose={true}
+        openDrawerOffset={0.2} // 20% gap on the right side of drawer
+        panCloseMask={0.2}
+        closedDrawerOffset={-3}
+        onClose = {()=>this.props.toggleDrawer(false)}
+       
+        tweenHandler={ratio => ({
+          main: { opacity: (2 - ratio) / 2 }
+        })}
+      >
+        <Container>
+          <Header>
+            <Left>
+              <Button transparent onPress={()=>this.props.toggleDrawer(true)}>
+                <Icon name="menu" />
+              </Button>
+            </Left>
+            <Body>
+              <Title>{this.props.title}</Title>
+            </Body>
+            <Right>
+              <Button transparent>
+                <Icon name="more" />
+              </Button>
+            </Right>
+          </Header>
+          <Content>{this.props.children}</Content>
+          <Footer>
+            <FooterTab>
+              <Button>
+                <Icon name="apps" />
+              </Button>
+              <Button>
+                <Icon name="camera" />
+              </Button>
+              <Button active>
+                <Icon active name="navigate" />
+              </Button>
+              <Button>
+                <Icon name="person" />
+              </Button>
+            </FooterTab>
+          </Footer>
+        </Container>
+      </Drawer>
     );
   }
 }
 
-Master.defaultProps ={
-    title:"Longan"
-}
+Master.defaultProps = {
+  title: "Longan"
+};
 
-export default Master;
+const mapStateToProps = state => ({
+    app:state.app,
+    drawer: state.app.drawer
+})
+const mapDispatchToProps = dispatch => ({
+    toggleDrawer : data => dispatch (toggleDrawer(data))
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(Master);
