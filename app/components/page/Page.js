@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Master from "../layouts/Master";
 import { Container, Header, Tab, Tabs, TabHeading, Icon, Text } from 'native-base';
-
+import { StyleSheet } from 'react-native';
+import News from "./News";
+import Article from "./Article";
 
 class Page extends Component {
   constructor(props) {
@@ -11,26 +13,26 @@ class Page extends Component {
   render() {
     return (
       <Master>
-        <Tabs>
-          <Tab
+        <Tabs >
+          <Tab 
             heading={
-              <TabHeading>
-                <Icon name="document" />
-                <Text>News</Text>
+              <TabHeading style={styles.tabBackground}>
+                <Icon name="document" style={styles.Button}/>
+                <Text style={styles.Button}>News</Text>
               </TabHeading>
             }
           >
-            <Text>Tab1</Text>
+            <News/>
           </Tab>
           <Tab
             heading={
-              <TabHeading>
+              <TabHeading style={styles.tabBackground}>
                   <Icon name="folder" />
                 <Text>Article</Text>
               </TabHeading>
             }
           >
-            <Text>Tab2</Text>
+            <Article/>
           </Tab>
           
         </Tabs>
@@ -38,5 +40,13 @@ class Page extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  tabBackground:{
+    backgroundColor:"#e6fff9"
+  },
+  Button: {
+    color: "#000"
+  }
+});
 
 export default Page;
