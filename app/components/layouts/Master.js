@@ -57,7 +57,7 @@ class Master extends Component {
             </Body>
             <Right>
               <Button transparent>
-                <Icon name="more" />
+                <Icon name="contact" />
               </Button>
             </Right>
           </Header>
@@ -65,16 +65,19 @@ class Master extends Component {
           <Footer>
             <FooterTab>
               <Button>
-                <Icon name="apps" />
-              </Button>
-              <Button>
-                <Icon name="camera" />
+                <Icon name="home" />
               </Button>
               <Button active>
-                <Icon active name="navigate" />
+                <Icon active name="document" />
+              </Button>
+              <Button >
+                <Icon  name="alarm" />
               </Button>
               <Button>
-                <Icon name="person" />
+                <Icon name="notifications" />
+              </Button>
+              <Button>
+                <Icon name="settings" />
               </Button>
             </FooterTab>
           </Footer>
