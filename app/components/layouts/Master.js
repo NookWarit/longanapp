@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text } from "react-native";
+import { Text , StyleSheet} from "react-native";
 import {
   Container,
   Header,
@@ -46,7 +46,7 @@ class Master extends Component {
         })}
       >
         <Container>
-          <Header>
+          <Header style={styles.Background}>
             <Left>
               <Button transparent onPress={()=>this.props.toggleDrawer(true)}>
                 <Icon name="menu" />
@@ -62,7 +62,7 @@ class Master extends Component {
             </Right>
           </Header>
           <Content>{this.props.children}</Content>
-          <Footer>
+          <Footer style={styles.Background}>
             <FooterTab>
               <Button>
                 <Icon name="home" />
@@ -76,8 +76,8 @@ class Master extends Component {
               <Button>
                 <Icon name="notifications" />
               </Button>
-              <Button>
-                <Icon name="settings" />
+              <Button >
+                <Icon name="settings" style={styles.Button}/>
               </Button>
             </FooterTab>
           </Footer>
@@ -90,7 +90,26 @@ class Master extends Component {
 Master.defaultProps = {
   title: "Longan"
 };
-
+const styles = StyleSheet.create({
+  Background: {
+    backgroundColor: "#00e6b0"
+  },
+  drawerProfile:{
+    backgroundColor: "#99ffd6",
+    height: 170,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  Button:{
+    color: "#000"
+    
+  },
+  drawerButtonSignout:{
+    backgroundColor: "#001a14",
+    borderRadius:50
+  }
+});
 const mapStateToProps = state => ({
     app:state.app,
     drawer: state.app.drawer

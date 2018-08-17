@@ -2,7 +2,7 @@ import { TOGGLE_DRAWER } from "../actions/app";
 import update from "immutability-helper";
 
 const initialState = {
-  drawer: { isOpen: true }
+  drawer: { isOpen: false }
 };
 const AppReducer = (state = initialState, action) => {
   switch (action.type) {

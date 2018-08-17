@@ -119,21 +119,22 @@ const styles = StyleSheet.create({
   drawerBackground: {
     backgroundColor: "#e6fff5"
   },
-  drawerProfile:{
+  drawerProfile: {
     backgroundColor: "#99ffd6",
     height: 170,
     alignContent: "center",
     alignItems: "center",
     justifyContent: "center"
   },
-  drawerButton:{
-    backgroundColor: "#00cc99"
-    
+  drawerButton: {
+    backgroundColor: "#00cc99",
   },
-  drawerButtonSignout:{
+  drawerButtonSignout: {
     backgroundColor: "#001a14",
-    borderRadius:50
+    borderRadius: 50,
+    alignSelf: "center"
   }
 });
 
 export default ControlPanel;
+//ได้แล้วนะคะ ขอบคุณค่ะ
