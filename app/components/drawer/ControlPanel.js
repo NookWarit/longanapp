@@ -147,4 +147,3 @@ const styles = StyleSheet.create({
 });
 
 export default ControlPanel;
-//ได้แล้วนะคะ ขอบคุณค่ะ
