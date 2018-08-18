@@ -6,6 +6,7 @@ import { PacmanIndicator } from "react-native-indicators";
 import Page from "./app/components/page/Page";
 import {Provider} from 'react-redux';
 import Store from "./app/store";
+import { getArticles } from "./app/store/actions/article";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -23,6 +24,9 @@ export default class App extends React.Component {
     this.setState({ isLoading: false });
   }
 
+  componentDidMount() {
+    Store.dispatch(getArticles())
+  }
   render() {
     return this.state.isLoading ? (
       <PacmanIndicator />

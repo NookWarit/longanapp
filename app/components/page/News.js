@@ -11,7 +11,10 @@ import {
   Button,
   Icon,
   Left,
-  Body
+  Body,
+  Item,
+  Input,
+  Right
 } from "native-base";
 class News extends Component {
   constructor(props) {
@@ -22,11 +25,25 @@ class News extends Component {
   render() {
     return (
       <Container>
+        <Header searchBar rounded>
+          <Item>
+            <Icon name="ios-search" />
+            <Input placeholder="ค้นหา" />
+          </Item>
+          <Button transparent>
+          <Text>ค้นหา</Text>
+          </Button>
+        </Header>
         <Content>
           <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
-                <Thumbnail source={{ uri: "https://www.thairath.co.th/media/CiHZjUdJ5HPNXJ92GTKjuLKVgzWCMxxnHI.jpg" }} />
+                <Thumbnail
+                  source={{
+                    uri:
+                      "https://www.thairath.co.th/media/CiHZjUdJ5HPNXJ92GTKjuLKVgzWCMxxnHI.jpg"
+                  }}
+                />
                 <Body>
                   <Text>อินโดเตะถ่วงนำเข้าลำไยไทย</Text>
                   <Text note>April 15, 2016</Text>

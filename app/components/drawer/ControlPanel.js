@@ -26,7 +26,7 @@ class ControlPanel extends Component {
           <View style={styles.drawerProfile}>
             <Icon active name="contact" />
             <Button style={styles.drawerButtonSignout}>
-              <Text>Sign-Out</Text>
+              <Text>ออกจากระบบ</Text>
             </Button>
           </View>
           <Content>

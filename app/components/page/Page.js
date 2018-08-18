@@ -18,7 +18,7 @@ class Page extends Component {
             heading={
               <TabHeading style={styles.tabBackground}>
                 <Icon name="document" style={styles.Button}/>
-                <Text style={styles.Button}>News</Text>
+                <Text style={styles.Button}>ข่าวสาร</Text>
               </TabHeading>
             }
           >
@@ -28,7 +28,7 @@ class Page extends Component {
             heading={
               <TabHeading style={styles.tabBackground}>
                   <Icon name="folder" />
-                <Text>Article</Text>
+                <Text>บทความ</Text>
               </TabHeading>
             }
           >
