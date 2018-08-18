@@ -97,6 +97,16 @@ class ControlPanel extends Component {
               <ListItem icon>
                 <Left>
                   <Button style={styles.drawerButton}>
+                    <Icon active name="call" />
+                  </Button>
+                </Left>
+                <Body>
+                  <Text>ติดต่อเรา</Text>
+                </Body>
+              </ListItem>
+              <ListItem icon>
+                <Left>
+                  <Button style={styles.drawerButton}>
                     <Icon active name="switch" />
                   </Button>
                 </Left>
