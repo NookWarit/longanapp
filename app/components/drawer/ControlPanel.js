@@ -13,8 +13,14 @@ import {
   Switch,
   Button
 } from "native-base";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { toggleDrawer } from "../../store/actions/app";
 class ControlPanel extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
   constructor(props) {
     super(props);
     this.state = {};
@@ -44,7 +50,14 @@ class ControlPanel extends Component {
                   <Text>หน้าหลัก</Text>
                 </Body>
               </ListItem>
-              <ListItem icon>
+
+              <ListItem
+                icon
+                onPress={() => {
+                  this.context.router.history.push("/profile");
+                  this.props.toggleDrawer(false);
+                }}
+              >
                 <Left>
                   <Button style={styles.drawerButton}>
                     <Icon active name="contact" />
@@ -54,7 +67,11 @@ class ControlPanel extends Component {
                   <Text>ข้อมูลส่วนตัว</Text>
                 </Body>
               </ListItem>
-              <ListItem icon>
+              <ListItem icon
+              onPress={() => {
+                this.context.router.history.push("/page");
+                this.props.toggleDrawer(false);
+              }}>
                 <Left>
                   <Button style={styles.drawerButton}>
                     <Icon active name="document" />
@@ -137,7 +154,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   drawerButton: {
-    backgroundColor: "#00cc99",
+    backgroundColor: "#00cc99"
   },
   drawerButtonSignout: {
     backgroundColor: "#001a14",
@@ -145,5 +162,8 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   }
 });
+const mapDispatchToProps = dispatch => ({
+  toggleDrawer: data => dispatch(toggleDrawer(data))
+});
 
-export default ControlPanel;
+export default connect(null,mapDispatchToProps)(ControlPanel);

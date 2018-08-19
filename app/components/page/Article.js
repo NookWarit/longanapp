@@ -28,6 +28,18 @@ class Article extends Component {
   render() {
     return (
       <Content>
+       <Item>
+            <Icon name="ios-people" style={{ marginLeft: 5 }} />
+            <Input
+              returnKeyType="search"
+              onSubmitEditing={this.onSubmitButtonClickHandler}
+              onChangeText={this.onInputChangeHandler}
+              placeholder="กรอกคำค้น..."
+            />
+            <Button onPress={this.onSubmitButtonClickHandler} transparent>
+              <Icon name="search" />
+            </Button>
+          </Item>
         <List>
           {this.props.articles.map(article => (
             <ListItem thumbnail key={article.id}>

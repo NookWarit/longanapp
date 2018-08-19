@@ -18,17 +18,46 @@ import PropTypes from "prop-types";
 import ControlPanel from "../drawer/ControlPanel";
 import { connect } from "react-redux";
 import { toggleDrawer } from "../../store/actions/app";
+import { withRouter } from "react-router-native";
 
 class Master extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      footerMenu: [
+        {
+          id: 1,
+          icon: "home",
+          route: "/",
+          slug: "/"
+        },
+        {
+          id: 2,
+          icon: "document",
+          route: "/page",
+          slug: "/page"
+        },
+        {
+          id: 3,
+          icon: "alarm",
+          route: "/history",
+          slug: "history"
+        },
+        {
+          id: 4,
+          icon: "notifications",
+          route: "/notifications",
+          slug: "notifications"
+        },
+        {
+          id: 5,
+          icon: "settings",
+          route: "/settings",
+          slug: "settings"
+        }
+      ]
+    };
   }
-
-  // componentDidMount(){
-  //     this._drawer.open()
-  // }
-
   render() {
     return (
       <Drawer
@@ -63,21 +92,16 @@ class Master extends Component {
           <Content>{this.props.children}</Content>
           <Footer style={styles.Background}>
             <FooterTab>
-              <Button>
-                <Icon name="home" style={styles.Button} />
-              </Button>
-              <Button active>
-                <Icon active name="document" style={styles.Button} />
-              </Button>
-              <Button>
-                <Icon name="alarm" style={styles.Button} />
-              </Button>
-              <Button>
-                <Icon name="notifications" style={styles.Button} />
-              </Button>
-              <Button>
-                <Icon name="settings" style={styles.Button} />
-              </Button>
+              {this.state.footerMenu.map(item => (
+                <Button
+                  key={item.id}
+                  vertical
+                  active={this.props.location.pathname == item.slug}
+                  onPress={() => this.props.history.push(item.route)}
+                >
+                  <Icon name={item.icon} />
+                </Button>
+              ))}
             </FooterTab>
           </Footer>
         </Container>
@@ -105,7 +129,9 @@ const mapDispatchToProps = dispatch => ({
   toggleDrawer: data => dispatch(toggleDrawer(data))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Master);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Master)
+);

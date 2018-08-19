@@ -17,14 +17,14 @@ import {
 } from "native-base";
 import Master from "./layouts/Master";
 
-class Home extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
     return (
-      <Master title="หน้าแรก">
+      <Master title="โปรไฟล์">
         <Content padder>
           <Card>
             <CardItem header bordered>
@@ -33,11 +33,7 @@ class Home extends Component {
             <CardItem bordered>
               <Body>
                 <Text>
-                  NativeBase is a free and open source framework that enable
-                  developers to build
-                  high-quality mobile apps using React Native iOS and Android
-                  apps
-                  with a fusion of ES6.
+                  Profile
                 </Text>
               </Body>
             </CardItem>
@@ -52,4 +48,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Profile;

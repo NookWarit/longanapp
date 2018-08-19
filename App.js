@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { MemoryRouter as Router, Route, Switch } from "react-router-native";
 import Home from "./app/components/Home";
 import { PacmanIndicator } from "react-native-indicators";
@@ -7,6 +6,8 @@ import Page from "./app/components/page/Page";
 import {Provider} from 'react-redux';
 import Store from "./app/store";
 import { getArticles } from "./app/store/actions/article";
+import Profile from "./app/components/Profile";
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -34,7 +35,9 @@ export default class App extends React.Component {
       <Provider store={Store}>
         <Router>
           <Switch>
-            <Route exact path="/" component={Page} />
+            <Route exact path="/" component={Home} />
+            <Route path="/page" component={Page} />
+            <Route path="/profile" component={Profile} />
           </Switch>
         </Router>
       </Provider>
