@@ -83,11 +83,7 @@ class Master extends Component {
             <Body>
               <Title>{this.props.title}</Title>
             </Body>
-            <Right>
-              <Button transparent>
-                <Icon name="contact" style={styles.Button} />
-              </Button>
-            </Right>
+            <Right/>
           </Header>
           <Content>{this.props.children}</Content>
           <Footer style={styles.Background}>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text } from "react-native";
+import { Text, StyleSheet ,View} from "react-native";
 import {
   Container,
   Header,
@@ -27,29 +27,76 @@ class Home extends Component {
       <Master title="หน้าแรก">
         <Content padder>
           <Card>
-            <CardItem header bordered>
-              <Text>NativeBase</Text>
+            <CardItem header bordered style={styles.background}>
+              <Icon name="calculator" />
+              <Text>ระบบคำนวณ</Text>
             </CardItem>
             <CardItem bordered>
-              <Body>
-                <Text>
-                  NativeBase is a free and open source framework that enable
-                  developers to build
-                  high-quality mobile apps using React Native iOS and Android
-                  apps
-                  with a fusion of ES6.
-                </Text>
+              <Body style={styles.block}>
+                  <Button transparent full style={styles.button}>
+                    <Text style={styles.text}>ปริมาณสัดส่วนปุ๋ย</Text>
+                  </Button>
+                  <Button transparent full style={styles.button}>
+                    <Text style={styles.text}>ปริมาณธาตุอาหารในดิน</Text>
+                  </Button>
+                  <Button transparent full style={styles.button}>
+                    <Text style={styles.text}>ปริมาณน้ำที่ต้องการ</Text>
+                  </Button>
               </Body>
             </CardItem>
-            <CardItem footer bordered>
-              <Text>GeekyAnts</Text>
+          </Card>
+          <Card>
+            <CardItem header bordered style={styles.background}>
+              <Icon name="videocam" />
+              <Text>แบบตัวอย่าง</Text>
+            </CardItem>
+            <CardItem bordered>
+              <Body style={styles.block}>
+                  <Button transparent full style={styles.button}>
+                    <Text style={styles.text}>วิธีวัดขนาดต้นลำไย</Text>
+                  </Button>
+                  <Button transparent full style={styles.button}>
+                    <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
+                  </Button>
+                  <Button transparent full style={styles.button}>
+                    <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
+                  </Button>
+                  <Button transparent full style={styles.button}>
+                    <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
+                  </Button>
+                  
+              </Body>
             </CardItem>
           </Card>
         </Content>
-
       </Master>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  background:{
+    backgroundColor: "#00e6b0"
+  },
+  block: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: 'center',
+    
+    
+  },
+  button:{
+    borderColor: "red",
+    borderWidth: 1,
+    width: 100,
+    height: 100,
+    alignSelf: "center",
+    margin: 4,
+  },
+  text:{
+    textAlign:"center"
+  }
+});
 
 export default Home;

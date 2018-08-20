@@ -1,84 +1,79 @@
 import React, { Component } from "react";
-import { Image } from "react-native";
 import {
-  Container,
-  Header,
   Content,
-  Card,
-  CardItem,
   Thumbnail,
   Text,
   Button,
   Icon,
   Left,
   Body,
+  Right,
   Item,
   Input,
-  Right
+  List,
+  ListItem
 } from "native-base";
+import { connect } from "react-redux";
+
 class News extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
   render() {
     return (
-      <Container>
-        <Header searchBar rounded>
-          <Item>
-            <Icon name="ios-search" />
-            <Input placeholder="ค้นหา" />
-          </Item>
-          <Button transparent>
-          <Text>ค้นหา</Text>
+      <Content>
+        <Item>
+          <Icon name="ios-people" style={{ marginLeft: 5 }} />
+          <Input
+            returnKeyType="search"
+            onSubmitEditing={this.onSubmitButtonClickHandler}
+            onChangeText={this.onInputChangeHandler}
+            placeholder="กรอกคำค้น..."
+          />
+          <Button onPress={this.onSubmitButtonClickHandler} transparent>
+            <Icon name="search" />
           </Button>
-        </Header>
-        <Content>
-          <Card style={{ flex: 0 }}>
-            <CardItem>
+        </Item>
+        <List>
+          {this.props.newss.map(news => (
+            <ListItem thumbnail key={news.id}>
               <Left>
                 <Thumbnail
-                  source={{
-                    uri:
-                      "https://www.thairath.co.th/media/CiHZjUdJ5HPNXJ92GTKjuLKVgzWCMxxnHI.jpg"
-                  }}
+                  square
+                  source={{ uri:"http://10.65.10.24/longanapp/api/news/image/"+news.image}}
+                  //style={{ width: 64, height: 64, resizeMode:'contain'}}
                 />
-                <Body>
-                  <Text>อินโดเตะถ่วงนำเข้าลำไยไทย</Text>
-                  <Text note>April 15, 2016</Text>
-                </Body>
               </Left>
-            </CardItem>
-            <CardItem>
               <Body>
-                <Image
-                  source={{
-                    uri:
-                      "https://www.thairath.co.th/media/CiHZjUdJ5HPNXJ92GTKjuLKVgzWCMxxnHI.jpg"
-                  }}
-                  style={{ height: 200, width: 200, flex: 1 }}
-                />
-                <Text>
-                  ผู้สื่อข่าวรายงานจากกระทรวงพาณิชย์ถึงกรณีที่กระทรวงเกษตรของอินโดนีเซียได้ออกระเบียบพืชสวนฉบับใหม่
-                  โดยยกเลิกการกำหนดช่วงเวลานำเข้าพืชสวนมายังอินโดนีเซี
-                  อ่านข่าวต่อได้ที่: https://www.thairath.co.th/content/1344745
+                <Text>เรื่อง {news.title_th}</Text>
+                <Text note numberOfLines={1}>
+                  {news.detail_th}
                 </Text>
               </Body>
-            </CardItem>
-            <CardItem>
-              <Left>
-                <Button transparent textStyle={{ color: "#87838B" }}>
-                  <Icon name="logo-github" />
-                  <Text>1,926 stars</Text>
+              <Right>
+                <Button transparent onPress={() => {
+                this.context.router.history.push("/DetailArticle");
+                this.props.toggleDrawer(false);
+              }}>
+                  <Text>View</Text>
                 </Button>
-              </Left>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
+              </Right>
+            </ListItem>
+          ))}
+        </List>
+      </Content>
     );
   }
 }
+const mapStateToProps = state => ({
+  newss: state.news.newss
+});
+const mapDispatchToProps = dispatch => ({
+  toggleNews: data => dispatch(toggleNews(data))
+});
 
-export default News;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(News);

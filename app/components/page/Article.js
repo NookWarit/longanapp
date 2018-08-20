@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import { Image } from "react-native";
 import {
-  Container,
-  Header,
   Content,
-  Card,
-  CardItem,
   Thumbnail,
   Text,
   Button,
@@ -28,36 +23,38 @@ class Article extends Component {
   render() {
     return (
       <Content>
-       <Item>
-            <Icon name="ios-people" style={{ marginLeft: 5 }} />
-            <Input
-              returnKeyType="search"
-              onSubmitEditing={this.onSubmitButtonClickHandler}
-              onChangeText={this.onInputChangeHandler}
-              placeholder="กรอกคำค้น..."
-            />
-            <Button onPress={this.onSubmitButtonClickHandler} transparent>
-              <Icon name="search" />
-            </Button>
-          </Item>
+        <Item>
+          <Icon name="ios-people" style={{ marginLeft: 5 }} />
+          <Input
+            returnKeyType="search"
+            onSubmitEditing={this.onSubmitButtonClickHandler}
+            onChangeText={this.onInputChangeHandler}
+            placeholder="กรอกคำค้น..."
+          />
+          <Button onPress={this.onSubmitButtonClickHandler} transparent>
+            <Icon name="search" />
+          </Button>
+        </Item>
         <List>
           {this.props.articles.map(article => (
             <ListItem thumbnail key={article.id}>
               <Left>
                 <Thumbnail
                   square
-                  source={{ uri: article.image }}
+                  source={{ uri:"http://10.65.10.24/longanapp/api/article/image/"+article.image}}
                   //style={{ width: 64, height: 64, resizeMode:'contain'}}
                 />
               </Left>
               <Body>
-                <Text>เรื่อง {article.title}</Text>
+                <Text>เรื่อง {article.title_th}</Text>
                 <Text note numberOfLines={1}>
-                  {article.detail}
+                  {article.detail_th}
                 </Text>
               </Body>
               <Right>
-                <Button transparent>
+                <Button transparent onPress={() => {
+                this.context.router.history.push("/DetailArticle");
+              }}>
                   <Text>View</Text>
                 </Button>
               </Right>

@@ -40,7 +40,10 @@ class ControlPanel extends Component {
               <ListItem itemDivider>
                 <Text>เมนู</Text>
               </ListItem>
-              <ListItem icon>
+              <ListItem icon onPress={() => {
+                this.context.router.history.push("/");
+                this.props.toggleDrawer(false);
+              }}>
                 <Left>
                   <Button style={styles.drawerButton}>
                     <Icon active name="home" />

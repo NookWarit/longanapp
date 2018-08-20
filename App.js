@@ -7,6 +7,7 @@ import {Provider} from 'react-redux';
 import Store from "./app/store";
 import { getArticles } from "./app/store/actions/article";
 import Profile from "./app/components/Profile";
+import { getNewss } from "./app/store/actions/news";
 
 
 export default class App extends React.Component {
@@ -26,7 +27,8 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    Store.dispatch(getArticles())
+    Store.dispatch(getArticles()),
+    Store.dispatch(getNewss())
   }
   render() {
     return this.state.isLoading ? (
