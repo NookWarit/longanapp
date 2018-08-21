@@ -40,6 +40,7 @@ class Home extends Component {
                     <Text style={styles.text}>ปริมาณธาตุอาหารในดิน</Text>
                   </Button>
                   <Button transparent full style={styles.button}>
+                  <Icon name="water" />
                     <Text style={styles.text}>ปริมาณน้ำที่ต้องการ</Text>
                   </Button>
               </Body>
@@ -61,10 +62,6 @@ class Home extends Component {
                   <Button transparent full style={styles.button}>
                     <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
                   </Button>
-                  <Button transparent full style={styles.button}>
-                    <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
-                  </Button>
-                  
               </Body>
             </CardItem>
           </Card>

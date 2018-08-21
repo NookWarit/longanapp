@@ -84,7 +84,11 @@ class ControlPanel extends Component {
                   <Text>ข่าวสาร-บทความ</Text>
                 </Body>
               </ListItem>
-              <ListItem icon>
+              <ListItem icon
+              onPress={() => {
+                this.context.router.history.push("/chat");
+                this.props.toggleDrawer(false);
+              }}>
                 <Left>
                   <Button style={styles.drawerButton}>
                     <Icon active name="chatboxes" />
@@ -94,7 +98,11 @@ class ControlPanel extends Component {
                   <Text>ถาม-ตอบ</Text>
                 </Body>
               </ListItem>
-              <ListItem icon>
+              <ListItem icon
+              onPress={() => {
+                this.context.router.history.push("/info");
+                this.props.toggleDrawer(false);
+              }}>
                 <Left>
                   <Button style={styles.drawerButton}>
                     <Icon active name="information-circle" />
@@ -104,7 +112,11 @@ class ControlPanel extends Component {
                   <Text>เกี่ยวกับโปรแกรม</Text>
                 </Body>
               </ListItem>
-              <ListItem icon>
+              <ListItem icon
+              onPress={() => {
+                this.context.router.history.push("/settings");
+                this.props.toggleDrawer(false);
+              }}>
                 <Left>
                   <Button style={styles.drawerButton}>
                     <Icon active name="settings" />
@@ -114,7 +126,11 @@ class ControlPanel extends Component {
                   <Text>การตั้งค่า</Text>
                 </Body>
               </ListItem>
-              <ListItem icon>
+              <ListItem icon
+              onPress={() => {
+                this.context.router.history.push("/contact");
+                this.props.toggleDrawer(false);
+              }}>
                 <Left>
                   <Button style={styles.drawerButton}>
                     <Icon active name="call" />

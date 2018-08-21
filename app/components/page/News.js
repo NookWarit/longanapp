@@ -41,7 +41,7 @@ class News extends Component {
               <Left>
                 <Thumbnail
                   square
-                  source={{ uri:"http://10.65.10.24/longanapp/api/news/image/"+news.image}}
+                  source={{ uri:"http://10.105.6.169/longanapp/api/news/image/"+news.image}}
                   //style={{ width: 64, height: 64, resizeMode:'contain'}}
                 />
               </Left>

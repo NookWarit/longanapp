@@ -10,6 +10,7 @@ import Profile from "./app/components/Profile";
 import { getNewss } from "./app/store/actions/news";
 import Calendars from "./app/components/Calendar";
 import Settings from "./app/components/Settings";
+import Chat from "./app/components/Chat";
 
 
 export default class App extends React.Component {
@@ -44,6 +45,7 @@ export default class App extends React.Component {
             <Route path="/profile" component={Profile} />
             <Route path="/calendar" component={Calendars} />
             <Route path="/settings" component={Settings} />
+            <Route path="/chat" component={Chat} />
           </Switch>
         </Router>
       </Provider>

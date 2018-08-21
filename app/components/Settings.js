@@ -25,41 +25,28 @@ class Settings extends Component {
           <ListItem icon>
             <Left>
               <Button style={{ backgroundColor: "#FF9501" }}>
-                <Icon active name="plane" />
+                <Icon active name="options" />
               </Button>
             </Left>
             <Body>
-              <Text>Airplane Mode</Text>
+              <Text>เปลี่ยนภาษา</Text>
             </Body>
             <Right>
-              <Switch value={false} />
-            </Right>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Button style={{ backgroundColor: "#007AFF" }}>
-                <Icon active name="wifi" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Wi-Fi</Text>
-            </Body>
-            <Right>
-              <Text>GeekyAnts</Text>
+            <Text>ภาษาไทย</Text>
               <Icon active name="arrow-forward" />
             </Right>
           </ListItem>
           <ListItem icon>
             <Left>
               <Button style={{ backgroundColor: "#007AFF" }}>
-                <Icon active name="bluetooth" />
+                <Icon active name="phone-portrait" />
               </Button>
             </Left>
             <Body>
-              <Text>Bluetooth</Text>
+              <Text>เปลี่ยนธีม</Text>
             </Body>
             <Right>
-              <Text>On</Text>
+              <Text>เขียว</Text>
               <Icon active name="arrow-forward" />
             </Right>
           </ListItem>
