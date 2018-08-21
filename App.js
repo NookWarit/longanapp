@@ -8,6 +8,8 @@ import Store from "./app/store";
 import { getArticles } from "./app/store/actions/article";
 import Profile from "./app/components/Profile";
 import { getNewss } from "./app/store/actions/news";
+import Calendars from "./app/components/Calendar";
+import Settings from "./app/components/Settings";
 
 
 export default class App extends React.Component {
@@ -40,6 +42,8 @@ export default class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/page" component={Page} />
             <Route path="/profile" component={Profile} />
+            <Route path="/calendar" component={Calendars} />
+            <Route path="/settings" component={Settings} />
           </Switch>
         </Router>
       </Provider>

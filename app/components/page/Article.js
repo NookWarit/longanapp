@@ -41,7 +41,7 @@ class Article extends Component {
               <Left>
                 <Thumbnail
                   square
-                  source={{ uri:"http://10.65.10.24/longanapp/api/article/image/"+article.image}}
+                  source={{ uri: article+"/image/"+article.image}}
                   //style={{ width: 64, height: 64, resizeMode:'contain'}}
                 />
               </Left>

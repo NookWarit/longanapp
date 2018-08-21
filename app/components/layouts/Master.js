@@ -46,14 +46,14 @@ class Master extends Component {
         {
           id: 4,
           icon: "notifications",
-          route: "/notifications",
-          slug: "notifications"
+          route: "/calendar",
+          slug: "/calendar"
         },
         {
           id: 5,
           icon: "settings",
           route: "/settings",
-          slug: "settings"
+          slug: "/settings"
         }
       ]
     };
