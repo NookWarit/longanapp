@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Text, StyleSheet ,View} from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 import {
-  Container,
+  Thumbnail,
   Header,
   Content,
   Footer,
@@ -33,16 +33,30 @@ class Home extends Component {
             </CardItem>
             <CardItem bordered>
               <Body style={styles.block}>
-                  <Button transparent full style={styles.button}>
-                    <Text style={styles.text}>ปริมาณสัดส่วนปุ๋ย</Text>
-                  </Button>
-                  <Button transparent full style={styles.button}>
-                    <Text style={styles.text}>ปริมาณธาตุอาหารในดิน</Text>
-                  </Button>
-                  <Button transparent full style={styles.button}>
-                  <Icon name="water" />
-                    <Text style={styles.text}>ปริมาณน้ำที่ต้องการ</Text>
-                  </Button>
+                <Button transparent full style={styles.button}>
+                  <Thumbnail
+                    square
+                    small
+                    source={require("../assets/images/fertilizer.png")}
+                  />
+                  <Text style={styles.text}>ปริมาณสัดส่วนปุ๋ย</Text>
+                </Button>
+                <Button transparent full style={styles.button}>
+                <Thumbnail
+                    square
+                    small
+                    source={require("../assets/images/grass.png")}
+                  />
+                  <Text style={styles.text}>ปริมาณธาตุอาหารในดิน</Text>
+                </Button>
+                <Button transparent full style={styles.button}>
+                <Thumbnail
+                    square
+                    small
+                    source={require("../assets/images/water2.png")}
+                  />
+                  <Text style={styles.text}>ปริมาณน้ำที่ต้องการ</Text>
+                </Button>
               </Body>
             </CardItem>
           </Card>
@@ -53,15 +67,15 @@ class Home extends Component {
             </CardItem>
             <CardItem bordered>
               <Body style={styles.block}>
-                  <Button transparent full style={styles.button}>
-                    <Text style={styles.text}>วิธีวัดขนาดต้นลำไย</Text>
-                  </Button>
-                  <Button transparent full style={styles.button}>
-                    <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
-                  </Button>
-                  <Button transparent full style={styles.button}>
-                    <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
-                  </Button>
+                <Button transparent full style={styles.button}>
+                  <Text style={styles.text}>วิธีวัดขนาดต้นลำไย</Text>
+                </Button>
+                <Button transparent full style={styles.button}>
+                  <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
+                </Button>
+                <Button transparent full style={styles.button}>
+                  <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
+                </Button>
               </Body>
             </CardItem>
           </Card>
@@ -72,18 +86,16 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-  background:{
+  background: {
     backgroundColor: "#00e6b0"
   },
   block: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: 'center',
-    
-    
+    alignItems: "center"
   },
-  button:{
+  button: {
     borderColor: "red",
     borderWidth: 1,
     width: 100,
@@ -91,8 +103,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: 4,
   },
-  text:{
-    textAlign:"center"
+  text: {
+    textAlign: "center"
   }
 });
 

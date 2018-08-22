@@ -23,7 +23,7 @@ class Chat extends Component {
     }
     render() {
         return (
-        <Master>
+        <Master title="การสนทนา">
             <Content padder>
           <Card>
             <CardItem header bordered>
