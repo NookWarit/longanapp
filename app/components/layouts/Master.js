@@ -41,7 +41,7 @@ class Master extends Component {
           id: 3,
           icon: "alarm",
           route: "/history",
-          slug: "history"
+          slug: "/history"
         },
         {
           id: 4,

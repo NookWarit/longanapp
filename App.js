@@ -13,6 +13,7 @@ import Settings from "./app/components/Settings";
 import Chat from "./app/components/Chat";
 import Info from "./app/components/Info";
 import Contact from "./app/components/Contact";
+import History from "./app/components/History";
 
 
 export default class App extends React.Component {
@@ -50,6 +51,7 @@ export default class App extends React.Component {
             <Route path="/chat" component={Chat} />
             <Route path="/info" component={Info} />
             <Route path="/contact" component={Contact} />
+            <Route path="/history" component={History} />
           </Switch>
         </Router>
       </Provider>
