@@ -30,7 +30,10 @@ class ControlPanel extends Component {
       <Content style={styles.drawerBackground}>
         <View style={styles.drawerProfile}>
           <Icon active name="contact" />
-          <Button style={styles.drawerButtonSignout}>
+          <Button style={styles.drawerButtonSignout}
+          onPress={() => {
+            this.context.router.history.push("/login");
+            this.props.toggleDrawer(false);}}>
             <Text>ออกจากระบบ</Text>
           </Button>
         </View>

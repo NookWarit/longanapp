@@ -14,6 +14,7 @@ import {
   ListItem
 } from "native-base";
 import { connect } from "react-redux";
+import config from "../../config"
 
 class News extends Component {
   constructor(props) {
@@ -41,7 +42,8 @@ class News extends Component {
               <Left>
                 <Thumbnail
                   square
-                  source={{ uri:"http://10.105.6.169/longanapp/api/news/image/"+news.image}}
+                  source={{ uri:`${config.api}/api/news/image/${news.image}`}}
+                  
                   //style={{ width: 64, height: 64, resizeMode:'contain'}}
                 />
               </Left>

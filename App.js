@@ -14,6 +14,7 @@ import Chat from "./app/components/Chat";
 import Info from "./app/components/Info";
 import Contact from "./app/components/Contact";
 import History from "./app/components/History";
+import Login from "./app/components/Login";
 
 
 export default class App extends React.Component {
@@ -52,6 +53,7 @@ export default class App extends React.Component {
             <Route path="/info" component={Info} />
             <Route path="/contact" component={Contact} />
             <Route path="/history" component={History} />
+            <Route path="/login" component={Login} />
           </Switch>
         </Router>
       </Provider>
