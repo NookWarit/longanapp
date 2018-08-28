@@ -14,8 +14,14 @@ import {
   ListItem
 } from "native-base";
 import { connect } from "react-redux";
+import config from "../../config";
+import { setWebview } from "../../store/actions/app";
+import PropTypes from "prop-types";
 
 class Article extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
   constructor(props) {
     super(props);
     this.state = {};
@@ -41,7 +47,7 @@ class Article extends Component {
               <Left>
                 <Thumbnail
                   square
-                  source={{ uri: "http://10.105.6.169/longanapp/api/article/image/"+article.image}}
+                  source={{ uri: `${config.server.api}/api/article/image/${article.image}`}}
                   //style={{ width: 64, height: 64, resizeMode:'contain'}}
                 />
               </Left>
@@ -53,7 +59,11 @@ class Article extends Component {
               </Body>
               <Right>
                 <Button transparent onPress={() => {
-                this.context.router.history.push("/DetailArticle");
+                  this.props.setWebview({
+                    title: "google",
+                    url: "https://google.co.th"
+                  })
+                  this.context.router.history.push("/detailarticle");
               }}>
                   <Text>View</Text>
                 </Button>
@@ -69,7 +79,8 @@ const mapStateToProps = state => ({
   articles: state.article.articles
 });
 const mapDispatchToProps = dispatch => ({
-  toggleArticle: data => dispatch(toggleArticle(data))
+  toggleArticle: data => dispatch(toggleArticle(data)),
+  setWebview: data => dispatch(setWebview(data))
 });
 
 export default connect(

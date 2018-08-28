@@ -16,6 +16,7 @@ import Contact from "./app/components/Contact";
 import History from "./app/components/History";
 import Login from "./app/components/Login";
 import Signup from "./app/components/Signup";
+import DetailArticle from "./app/components/page/DetailArticle"
 
 
 export default class App extends React.Component {
@@ -42,6 +43,7 @@ export default class App extends React.Component {
     return this.state.isLoading ? (
       <PacmanIndicator />
     ) : (
+      
       <Provider store={Store}>
         <Router>
           <Switch>
@@ -56,6 +58,7 @@ export default class App extends React.Component {
             <Route path="/history" component={History} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/detailarticle" component={DetailArticle} />
           </Switch>
         </Router>
       </Provider>

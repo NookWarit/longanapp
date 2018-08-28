@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
+import { Col, Row, Grid } from "react-native-easy-grid";
 import {
   Thumbnail,
   Header,
@@ -31,34 +32,70 @@ class Home extends Component {
               <Icon name="calculator" />
               <Text>ระบบคำนวณ</Text>
             </CardItem>
-            <CardItem bordered>
-              <Body style={styles.block}>
-                <Button transparent full style={styles.button}>
-                  <Thumbnail
-                    square
-                    small
-                    source={require("../assets/images/fertilizer.png")}
-                  />
-                  <Text style={styles.text}>ปริมาณสัดส่วนปุ๋ย</Text>
-                </Button>
-                <Button transparent full style={styles.button}>
-                <Thumbnail
-                    square
-                    small
-                    source={require("../assets/images/grass.png")}
-                  />
-                  <Text style={styles.text}>ปริมาณธาตุอาหารในดิน</Text>
-                </Button>
-                <Button transparent full style={styles.button}>
-                <Thumbnail
-                    square
-                    small
-                    source={require("../assets/images/water2.png")}
-                  />
-                  <Text style={styles.text}>ปริมาณน้ำที่ต้องการ</Text>
-                </Button>
-              </Body>
+            <CardItem>
+              <Grid>
+                <Row>
+                  <Col
+                    style={{
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignContent: "center",
+                      alignItems: "center",
+                      borderColor: "red",
+                      borderWidth: 1,
+                      padding: 10
+                    }}
+                    onPress={() => alert("สวัสดี ปุ๋ย")}
+                  >
+                    <Thumbnail
+                      square
+                      small
+                      source={require("../assets/images/fertilizer.png")}
+                    />
+                    <Text style={styles.text}>ปริมาณสัดส่วนปุ๋ย</Text>
+                  </Col>
+                  <Col
+                    style={{
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignContent: "center",
+                      alignItems: "center",
+                      borderWidth: 1,
+                      padding: 10
+                    }}
+                    onPress={() => alert("สวัสดี ดิน")}
+                  >
+                    <Thumbnail
+                      square
+                      small
+                      source={require("../assets/images/grass.png")}
+                    />
+                    <Text style={styles.text}>ปริมาณธาตุอาหารในดิน</Text>
+                  </Col>
+                  <Col
+                    style={{
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignContent: "center",
+                      alignItems: "center",
+                      borderColor: "red",
+                      borderWidth: 1,
+                      padding: 10
+                    }}
+                    onPress={() => alert("สวัสดี น้ำ")}
+                  >
+                    <Thumbnail
+                      square
+                      small
+                      source={require("../assets/images/water2.png")}
+                    />
+                    <Text style={styles.text}>ปริมาณน้ำที่ต้องการ</Text>
+                  </Col>
+                </Row>
+              </Grid>
             </CardItem>
+
+           
           </Card>
           <Card>
             <CardItem header bordered style={styles.background}>
@@ -101,7 +138,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     alignSelf: "center",
-    margin: 4,
+    margin: 4
   },
   text: {
     textAlign: "center"

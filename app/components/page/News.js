@@ -42,7 +42,7 @@ class News extends Component {
               <Left>
                 <Thumbnail
                   square
-                  source={{ uri:`${config.api}/api/news/image/${news.image}`}}
+                  source={{ uri: `${config.server.api}/api/news/image/${news.image}`}}
                   
                   //style={{ width: 64, height: 64, resizeMode:'contain'}}
                 />
@@ -56,7 +56,7 @@ class News extends Component {
               <Right>
                 <Button transparent onPress={() => {
                 this.context.router.history.push("/DetailArticle");
-                this.props.toggleDrawer(false);
+                
               }}>
                   <Text>View</Text>
                 </Button>

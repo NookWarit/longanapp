@@ -16,7 +16,7 @@ import {
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { toggleDrawer } from "../../store/actions/app";
+import { toggleDrawer, toggleWater } from "../../store/actions/app";
 class ControlPanel extends Component {
   static contextTypes = {
     router: PropTypes.object
@@ -30,10 +30,13 @@ class ControlPanel extends Component {
       <Content style={styles.drawerBackground}>
         <View style={styles.drawerProfile}>
           <Icon active name="contact" />
-          <Button style={styles.drawerButtonSignout}
-          onPress={() => {
-            this.context.router.history.push("/login");
-            this.props.toggleDrawer(false);}}>
+          <Button
+            style={styles.drawerButtonSignout}
+            onPress={() => {
+              this.context.router.history.push("/login");
+              this.props.toggleDrawer(false);
+            }}
+          >
             <Text>ออกจากระบบ</Text>
           </Button>
         </View>
@@ -117,7 +120,12 @@ class ControlPanel extends Component {
               <Text>เปิด-ปิดระบบน้ำ</Text>
             </Body>
             <Right>
-              <Switch value={false} />
+              <Switch
+                value={this.props.water.isOn}
+                onValueChange={() =>
+                  this.props.toggleWater(!this.props.water.isOn)
+                }
+              />
             </Right>
           </ListItem>
           <ListItem
@@ -194,11 +202,15 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   }
 });
+const mapStateToProps = state => ({
+  water: state.app.water
+});
 const mapDispatchToProps = dispatch => ({
-  toggleDrawer: data => dispatch(toggleDrawer(data))
+  toggleDrawer: data => dispatch(toggleDrawer(data)),
+  toggleWater: data => dispatch(toggleWater(data))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ControlPanel);

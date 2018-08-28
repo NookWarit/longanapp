@@ -3,7 +3,7 @@ import { WebView } from "react-native";
 import { connect } from "react-redux";
 import Master from "../layouts/Master"
 
-class DetailArticle extends React.Component {
+class DetailNews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ class DetailArticle extends React.Component {
     postMessage(document.documentElement.scrollHeight);
   `;
     return (
-      <Master pageTitle="รายละเอียดบทความ" isBack>
+      <Master pageTitle="รายละเอียดข่าว" isBack>
         <WebView
           source={{
             uri: this.props.webView.url
@@ -49,4 +49,4 @@ const mapDispatchToProps = dispatch => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DetailArticle);
+)(DetailNews);
