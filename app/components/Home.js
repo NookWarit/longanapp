@@ -3,16 +3,8 @@ import { Text, StyleSheet, View } from "react-native";
 import { Col, Row, Grid } from "react-native-easy-grid";
 import {
   Thumbnail,
-  Header,
   Content,
-  Footer,
-  FooterTab,
-  Button,
   Icon,
-  Left,
-  Body,
-  Title,
-  Right,
   Card,
   CardItem
 } from "native-base";
@@ -35,18 +27,7 @@ class Home extends Component {
             <CardItem>
               <Grid>
                 <Row>
-                  <Col
-                    style={{
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignContent: "center",
-                      alignItems: "center",
-                      borderColor: "red",
-                      borderWidth: 1,
-                      padding: 10
-                    }}
-                    onPress={() => alert("สวัสดี ปุ๋ย")}
-                  >
+                  <Col style={styles.block} >
                     <Thumbnail
                       square
                       small
@@ -55,14 +36,7 @@ class Home extends Component {
                     <Text style={styles.text}>ปริมาณสัดส่วนปุ๋ย</Text>
                   </Col>
                   <Col
-                    style={{
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignContent: "center",
-                      alignItems: "center",
-                      borderWidth: 1,
-                      padding: 10
-                    }}
+                    style={styles.block}
                     onPress={() => alert("สวัสดี ดิน")}
                   >
                     <Thumbnail
@@ -73,15 +47,7 @@ class Home extends Component {
                     <Text style={styles.text}>ปริมาณธาตุอาหารในดิน</Text>
                   </Col>
                   <Col
-                    style={{
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignContent: "center",
-                      alignItems: "center",
-                      borderColor: "red",
-                      borderWidth: 1,
-                      padding: 10
-                    }}
+                    style={styles.block}
                     onPress={() => alert("สวัสดี น้ำ")}
                   >
                     <Thumbnail
@@ -94,8 +60,6 @@ class Home extends Component {
                 </Row>
               </Grid>
             </CardItem>
-
-           
           </Card>
           <Card>
             <CardItem header bordered style={styles.background}>
@@ -103,17 +67,21 @@ class Home extends Component {
               <Text>แบบตัวอย่าง</Text>
             </CardItem>
             <CardItem bordered>
-              <Body style={styles.block}>
-                <Button transparent full style={styles.button}>
-                  <Text style={styles.text}>วิธีวัดขนาดต้นลำไย</Text>
-                </Button>
-                <Button transparent full style={styles.button}>
-                  <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
-                </Button>
-                <Button transparent full style={styles.button}>
-                  <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
-                </Button>
-              </Body>
+            <Grid>
+                <Row>
+                  <Col style={styles.block} onPress={() => alert("สวัสดี ปุ๋ย")}>
+                    <Icon name ="film"/>
+                    <Text style={styles.text}>วิธีวัดขนาดต้นลำไย</Text>
+                  </Col>
+                  <Col
+                    style={styles.block}
+                    onPress={() => alert("สวัสดี ดิน")}
+                  >
+                    <Icon name ="film"/>
+                    <Text style={styles.text}>วิธีวัดขนาดธาตุอาหารในดิน</Text>
+                  </Col>
+                  </Row>
+              </Grid>
             </CardItem>
           </Card>
         </Content>
@@ -127,10 +95,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#00e6b0"
   },
   block: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
+    flexDirection: "column",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+    borderColor: "white",
+    borderWidth: 1,
+    padding: 10
   },
   button: {
     borderColor: "red",

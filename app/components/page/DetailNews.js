@@ -7,7 +7,7 @@ class DetailNews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: 300
+      height: 520
     };
   }
 

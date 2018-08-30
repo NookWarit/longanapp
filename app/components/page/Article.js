@@ -52,16 +52,14 @@ class Article extends Component {
                 />
               </Left>
               <Body>
-                <Text>เรื่อง {article.title_th}</Text>
-                <Text note numberOfLines={1}>
-                  {article.detail_th}
-                </Text>
+                <Text>{article.title_th}</Text>
+                
               </Body>
               <Right>
                 <Button transparent onPress={() => {
                   this.props.setWebview({
                     title: "google",
-                    url: "https://google.co.th"
+                    url:`${config.server.api}/info/article/${article.id}`
                   })
                   this.context.router.history.push("/detailarticle");
               }}>

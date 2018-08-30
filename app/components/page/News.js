@@ -14,9 +14,14 @@ import {
   ListItem
 } from "native-base";
 import { connect } from "react-redux";
-import config from "../../config"
+import config from "../../config";
+import { setWebview } from "../../store/actions/app";
+import PropTypes from "prop-types";
 
 class News extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
   constructor(props) {
     super(props);
     this.state = {};
@@ -48,16 +53,16 @@ class News extends Component {
                 />
               </Left>
               <Body>
-                <Text>เรื่อง {news.title_th}</Text>
-                <Text note numberOfLines={1}>
-                  {news.detail_th}
-                </Text>
+                <Text>{news.title_th}</Text>
               </Body>
               <Right>
                 <Button transparent onPress={() => {
-                this.context.router.history.push("/DetailArticle");
-                
-              }}>
+                this.props.setWebview({
+                  title:'',
+                  url:`${config.server.api}/info/news/${news.id}`
+                })
+                this.context.router.history.push("/detailnews");
+            }}>
                   <Text>View</Text>
                 </Button>
               </Right>
@@ -72,7 +77,8 @@ const mapStateToProps = state => ({
   newss: state.news.newss
 });
 const mapDispatchToProps = dispatch => ({
-  toggleNews: data => dispatch(toggleNews(data))
+  toggleNews: data => dispatch(toggleNews(data)),
+  setWebview: data => dispatch(setWebview(data))
 });
 
 export default connect(

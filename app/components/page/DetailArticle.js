@@ -7,7 +7,7 @@ class DetailArticle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: 300
+      height: 550
     };
   }
 
@@ -24,7 +24,7 @@ class DetailArticle extends React.Component {
     postMessage(document.documentElement.scrollHeight);
   `;
     return (
-      <Master pageTitle="รายละเอียดบทความ" isBack>
+      <Master title="รายละเอียดบทความ" >
         <WebView
           source={{
             uri: this.props.webView.url

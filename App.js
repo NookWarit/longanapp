@@ -16,7 +16,8 @@ import Contact from "./app/components/Contact";
 import History from "./app/components/History";
 import Login from "./app/components/Login";
 import Signup from "./app/components/Signup";
-import DetailArticle from "./app/components/page/DetailArticle"
+import DetailArticle from "./app/components/page/DetailArticle";
+import DetailNews from "./app/components/page/DetailNews";
 
 
 export default class App extends React.Component {
@@ -59,6 +60,7 @@ export default class App extends React.Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/detailarticle" component={DetailArticle} />
+            <Route path="/detailnews" component={DetailNews} />
           </Switch>
         </Router>
       </Provider>

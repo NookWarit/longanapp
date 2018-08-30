@@ -1,13 +1,14 @@
 import Axios from "axios";
-
-export const SET_WEBVIEW = 'SET_WEBVIEW'
-
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER'
-
+export const SET_WEBVIEW = 'SET_WEBVIEW'
 export const TOGGLE_WATER ='TOGGLE_WATER'
 
 export const toggleDrawer = data => ({
     type:TOGGLE_DRAWER,
+    payload:data
+})
+export const setWebview = data => ({
+    type:SET_WEBVIEW,
     payload:data
 })
 export const toggleWater = data => async dispatch =>{
@@ -22,7 +23,3 @@ const setWaterStatus = data => ({
     payload:data
 })
 
-export const setWebview = data => ({
-    type:SET_WEBVIEW,
-    payload:data
-})
