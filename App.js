@@ -41,7 +41,7 @@ export default class App extends React.Component {
     //await AsyncStorage.clear();
     let user = JSON.parse(await AsyncStorage.getItem("user"));
     if (user) {
-      Storage.dispatch(setUser(user));
+      Store.dispatch(setUser(user));
     }
     Store.dispatch(getAllArticles()), Store.dispatch(getAllNews());
   }

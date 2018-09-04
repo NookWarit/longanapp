@@ -15,7 +15,13 @@ import {
   styles
 } from "native-base";
 import Master from "./layouts/Master";
+// import PropTypes from "prop-types";
+// import { connect } from "react-redux";
+// import { toggleDrawer, toggleWater } from "../../store/actions/app";
 class Settings extends Component {
+  // static contextTypes = {
+  //   router: PropTypes.object
+  // };
   constructor(props) {
     super(props);
     this.state = {};
@@ -23,72 +29,79 @@ class Settings extends Component {
   render() {
     return (
       <Master title="การตั้งค่า">
-          
-          <ListItem icon>
-            <Left>
-              <Button style={{ backgroundColor: "#007AFF" }}>
-                <Icon active name="phone-portrait" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>เปลี่ยนธีม</Text>
-            </Body>
-            <Right>
-              <Text>เขียว</Text>
-              <Icon active name="arrow-forward" />
-            </Right>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Button >
-                <Icon active name="switch" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>เปิด-ปิดระบบน้ำ</Text>
-            </Body>
-            <Right>
-              <Switch
-                // value={this.props.water.isOn}
-                // onValueChange={() =>
-                //   this.props.toggleWater(!this.props.water.isOn)
-                // }
-              />
-            </Right>
-          </ListItem>
-          <ListItem
-            icon
-            // onPress={() => {
-            //   this.context.router.history.push("/contact");
-            // }}
-          >
-            <Left>
-              <Button >
-                <Icon active name="call" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>ติดต่อเรา</Text>
-            </Body>
-          </ListItem>
-          <ListItem
-            icon
-            // onPress={() => {
-            //   this.context.router.history.push("/info");
-            // }}
-          >
-            <Left>
-              <Button >
-                <Icon active name="information-circle" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>เกี่ยวกับโปรแกรม</Text>
-            </Body>
-          </ListItem>
+        <ListItem icon>
+          <Left>
+            <Button style={{ backgroundColor: "#007AFF" }}>
+              <Icon active name="phone-portrait" />
+            </Button>
+          </Left>
+          <Body>
+            <Text>เปลี่ยนธีม</Text>
+          </Body>
+          <Right>
+            <Text>เขียว</Text>
+            <Icon active name="arrow-forward" />
+          </Right>
+        </ListItem>
+        <ListItem icon>
+          <Left>
+            <Button>
+              <Icon active name="switch" />
+            </Button>
+          </Left>
+          <Body>
+            <Text>เปิด-ปิดระบบน้ำ</Text>
+          </Body>
+          <Right>
+            <Switch
+              // value={this.props.water.isOn}
+              // onValueChange={() =>
+              //   this.props.toggleWater(!this.props.water.isOn)
+              // }
+            />
+          </Right>
+        </ListItem>
+        <ListItem
+          icon
+          // onPress={() => {
+          //   this.context.router.history.push("/contact");
+          // }}
+        >
+          <Left>
+            <Button>
+              <Icon active name="call" />
+            </Button>
+          </Left>
+          <Body>
+            <Text>ติดต่อเรา</Text>
+          </Body>
+        </ListItem>
+        <ListItem
+          icon
+          // onPress={() => {
+          //   this.context.router.history.push("/info");
+          // }}
+        >
+          <Left>
+            <Button>
+              <Icon active name="information-circle" />
+            </Button>
+          </Left>
+          <Body>
+            <Text>เกี่ยวกับโปรแกรม</Text>
+          </Body>
+        </ListItem>
       </Master>
     );
   }
 }
+// const mapStateToProps = state => ({
+//   user: state.user.user,
+//   water: state.app.water
+// });
+// const mapDispatchToProps = dispatch => ({
+//   toggleDrawer: data => dispatch(toggleDrawer(data)),
+//   toggleWater: data => dispatch(toggleWater(data))
+// });
 
 export default Settings;

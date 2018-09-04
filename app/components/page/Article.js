@@ -58,7 +58,7 @@ class Article extends Component {
               <Right>
                 <Button transparent onPress={() => {
                   this.props.setWebview({
-                    url:`${config.server.api}/info/article/${article.id}`
+                    url:`${config.server.api}/info/article/${article.article_id}`
                   })
                   this.context.router.history.push("/detailarticle");
               }}>

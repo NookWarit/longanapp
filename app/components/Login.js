@@ -31,6 +31,13 @@ class Login extends Component {
       this.context.router.history.push("/");
     }
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.user != nextProps.user) {
+      this.context.router.history.push("/");
+      
+    }
+    return true;
+  }
   onChangeTextHandler(text, param) {
     let oldInput = this.state.input;
     oldInput[param] = text;

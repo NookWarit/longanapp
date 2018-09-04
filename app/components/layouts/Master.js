@@ -70,9 +70,10 @@ class Master extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-   if (!nextProps.user && this.context.router.location != "/login") {
+   if (!nextProps.user  && this.props.location.pathname !== "/login") {
      this.context.router.history.push("/login");
     }
+    return true;
   }
 
   render() {
