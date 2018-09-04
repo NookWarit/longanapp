@@ -3,11 +3,11 @@ import { MemoryRouter as Router, Route, Switch } from "react-router-native";
 import Home from "./app/components/Home";
 import { PacmanIndicator } from "react-native-indicators";
 import Page from "./app/components/page/Page";
-import {Provider} from 'react-redux';
+import { Provider } from "react-redux";
 import Store from "./app/store";
-import { getArticles } from "./app/store/actions/article";
+import { getAllArticles } from "./app/store/actions/article";
 import Profile from "./app/components/Profile";
-import { getNewss } from "./app/store/actions/news";
+import { getAllNews } from "./app/store/actions/news";
 import Calendars from "./app/components/Calendar";
 import Settings from "./app/components/Settings";
 import Chat from "./app/components/Chat";
@@ -18,7 +18,8 @@ import Login from "./app/components/Login";
 import Signup from "./app/components/Signup";
 import DetailArticle from "./app/components/page/DetailArticle";
 import DetailNews from "./app/components/page/DetailNews";
-
+import { setUser } from "./app/store/actions/user";
+import { AsyncStorage } from "react-native";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -36,15 +37,18 @@ export default class App extends React.Component {
     this.setState({ isLoading: false });
   }
 
-  componentDidMount() {
-    Store.dispatch(getArticles()),
-    Store.dispatch(getNewss())
+  async componentDidMount() {
+    //await AsyncStorage.clear();
+    let user = JSON.parse(await AsyncStorage.getItem("user"));
+    if (user) {
+      Storage.dispatch(setUser(user));
+    }
+    Store.dispatch(getAllArticles()), Store.dispatch(getAllNews());
   }
   render() {
     return this.state.isLoading ? (
       <PacmanIndicator />
     ) : (
-      
       <Provider store={Store}>
         <Router>
           <Switch>

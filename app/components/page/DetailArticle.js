@@ -24,7 +24,7 @@ class DetailArticle extends React.Component {
     postMessage(document.documentElement.scrollHeight);
   `;
     return (
-      <Master title="รายละเอียดบทความ" >
+      <Master title="รายละเอียดบทความ" isBack>
         <WebView
           source={{
             uri: this.props.webView.url

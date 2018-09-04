@@ -42,8 +42,8 @@ class Article extends Component {
           </Button>
         </Item>
         <List>
-          {this.props.articles.map(article => (
-            <ListItem thumbnail key={article.id}>
+          {this.props.articles.map((article,index) => (
+            <ListItem thumbnail key={index}>
               <Left>
                 <Thumbnail
                   square
@@ -52,13 +52,12 @@ class Article extends Component {
                 />
               </Left>
               <Body>
-                <Text>{article.title_th}</Text>
+                <Text>{article.title}</Text>
                 
               </Body>
               <Right>
                 <Button transparent onPress={() => {
                   this.props.setWebview({
-                    title: "google",
                     url:`${config.server.api}/info/article/${article.id}`
                   })
                   this.context.router.history.push("/detailarticle");

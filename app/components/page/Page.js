@@ -1,52 +1,70 @@
 import React, { Component } from "react";
 import Master from "../layouts/Master";
-import { Container, Header, Tab, Tabs, TabHeading, Icon, Text } from 'native-base';
-import { StyleSheet } from 'react-native';
+import {
+  Container,
+  Header,
+  Tab,
+  Tabs,
+  TabHeading,
+  Icon,
+  Text
+} from "native-base";
+import { StyleSheet } from "react-native";
 import News from "./News";
 import Article from "./Article";
+import { connect } from "react-redux";
+import { setActiveTabs } from "../../store/actions/app";
 
 class Page extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
   render() {
     return (
       <Master>
-        <Tabs >
-          <Tab 
+        <Tabs>
+          <Tab
             heading={
               <TabHeading style={styles.tabBackground}>
-                <Icon name="document" style={styles.Button}/>
+                <Icon name="document" style={styles.Button} />
                 <Text style={styles.Button}>ข่าวสาร</Text>
               </TabHeading>
             }
           >
-            <News/>
+            <News />
           </Tab>
           <Tab
             heading={
               <TabHeading style={styles.tabBackground}>
-                  <Icon name="folder" />
+                <Icon name="folder" />
                 <Text>บทความ</Text>
               </TabHeading>
             }
           >
-            <Article/>
+            <Article />
           </Tab>
-          
         </Tabs>
-        </Master>
+      </Master>
     );
   }
 }
 const styles = StyleSheet.create({
-  tabBackground:{
-    backgroundColor:"#e6fff9"
+  tabBackground: {
+    backgroundColor: "#e6fff9"
   },
   Button: {
     color: "#000"
   }
 });
 
-export default Page;
+const mapStateToProps = state => ({
+  activeTab: state.app.activeTab
+});
+
+const mapDispatchToProps = dispatch => ({
+  setActiveTabs: data => dispatch(setActiveTabs(data))
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Page);

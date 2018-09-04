@@ -27,7 +27,8 @@ class Home extends Component {
             <CardItem>
               <Grid>
                 <Row>
-                  <Col style={styles.block} >
+                  <Col style={styles.block} 
+                   onPress={() => alert("สวัสดี ดิน")}>
                     <Thumbnail
                       square
                       small
@@ -78,7 +79,7 @@ class Home extends Component {
                     onPress={() => alert("สวัสดี ดิน")}
                   >
                     <Icon name ="film"/>
-                    <Text style={styles.text}>วิธีวัดขนาดธาตุอาหารในดิน</Text>
+                    <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
                   </Col>
                   </Row>
               </Grid>
@@ -99,9 +100,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    borderColor: "white",
-    borderWidth: 1,
-    padding: 10
+    borderColor: "#00e6b0",
+    borderWidth: 0.3,
+    padding: 10,
   },
   button: {
     borderColor: "red",

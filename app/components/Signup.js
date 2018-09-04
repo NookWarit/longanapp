@@ -7,8 +7,12 @@ import {
   Input,
   Icon,
   Button,
-  Text
+  Text,
+  Left
 } from "native-base";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +21,13 @@ class Signup extends Component {
   render() {
     return (
       <Container>
-        <Header />
+        <Header>
+          <Left>
+            <Button transparent onPress={() => this.props.history.goBack()}>
+              <Icon name="arrow-round-back" />
+            </Button>
+          </Left>
+        </Header>
         <Content>
           <Item regular>
             <Icon active name="person" />
@@ -39,9 +49,7 @@ class Signup extends Component {
             <Icon active name="pin" />
             <Input placeholder="ที่อยู่" />
           </Item>
-          <Button light>
-            <Text> ล็อคอิน </Text>
-          </Button>
+
           <Button
             block
             info
@@ -56,5 +64,15 @@ class Signup extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  //articles: state.article.articles
+});
+const mapDispatchToProps = dispatch => ({
+  // toggleArticle: data => dispatch(toggleArticle(data)),
+  // setWebview: data => dispatch(setWebview(data))
+});
 
-export default Signup;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Signup);

@@ -123,7 +123,10 @@ class ControlPanel extends Component {
               <Switch
                 value={this.props.water.isOn}
                 onValueChange={() =>
-                  this.props.toggleWater(!this.props.water.isOn)
+                  this.props.toggleWater({
+                    status: !this.props.water.isOn,
+                    userId: this.props.user.id
+                  })
                 }
               />
             </Right>
@@ -203,6 +206,7 @@ const styles = StyleSheet.create({
   }
 });
 const mapStateToProps = state => ({
+  user: state.user.user,
   water: state.app.water
 });
 const mapDispatchToProps = dispatch => ({

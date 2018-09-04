@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 import config from "../../config";
 import { setWebview } from "../../store/actions/app";
 import PropTypes from "prop-types";
+import { findNewsByKeyword } from "../../store/actions/news";
 
 class News extends Component {
   static contextTypes = {
@@ -24,7 +25,13 @@ class News extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      keyword:''
+    };
+  }
+  onChangeTextHandler(text) {
+    
+    this.setState({ keyword: text });
   }
   render() {
     return (
@@ -33,33 +40,33 @@ class News extends Component {
           <Icon name="ios-people" style={{ marginLeft: 5 }} />
           <Input
             returnKeyType="search"
-            onSubmitEditing={this.onSubmitButtonClickHandler}
+            onSubmitEditing={() => this.props.findNewsByKeyword(this.state.keyword)}
             onChangeText={this.onInputChangeHandler}
             placeholder="กรอกคำค้น..."
+            value={this.state.keyword}
           />
-          <Button onPress={this.onSubmitButtonClickHandler} transparent>
+          <Button onPress={() => this.props.findNewsByKeyword(this.state.keyword)} transparent>
             <Icon name="search" />
           </Button>
         </Item>
         <List>
-          {this.props.newss.map(news => (
-            <ListItem thumbnail key={news.id}>
+          {this.props.news.map((n,index) => (
+            <ListItem thumbnail key={index}>
               <Left>
                 <Thumbnail
                   square
-                  source={{ uri: `${config.server.api}/api/news/image/${news.image}`}}
+                  source={{ uri: `${config.server.api}/api/news/image/${n.image}`}}
                   
                   //style={{ width: 64, height: 64, resizeMode:'contain'}}
                 />
               </Left>
               <Body>
-                <Text>{news.title_th}</Text>
+                <Text>{n.title}</Text>
               </Body>
               <Right>
                 <Button transparent onPress={() => {
                 this.props.setWebview({
-                  title:'',
-                  url:`${config.server.api}/info/news/${news.id}`
+                  url:`${config.server.api}/info/news/${n.id}`
                 })
                 this.context.router.history.push("/detailnews");
             }}>
@@ -74,11 +81,12 @@ class News extends Component {
   }
 }
 const mapStateToProps = state => ({
-  newss: state.news.newss
+  news: state.news.news
 });
 const mapDispatchToProps = dispatch => ({
   toggleNews: data => dispatch(toggleNews(data)),
-  setWebview: data => dispatch(setWebview(data))
+  setWebview: data => dispatch(setWebview(data)),
+  findNewsByKeyword: data => dispatch(findNewsByKeyword(data))
 });
 
 export default connect(

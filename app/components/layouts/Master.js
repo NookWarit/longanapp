@@ -21,6 +21,9 @@ import { toggleDrawer } from "../../store/actions/app";
 import { withRouter } from "react-router-native";
 
 class Master extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -58,6 +61,20 @@ class Master extends Component {
       ]
     };
   }
+
+  componentDidMount() {
+    console.log(this.props.user);
+    if (!this.props.user && this.context.router.location != "/login") {
+     this.context.router.history.push("/login");
+   }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+   if (!nextProps.user && this.context.router.location != "/login") {
+     this.context.router.history.push("/login");
+    }
+  }
+
   render() {
     return (
       <Drawer
@@ -76,14 +93,23 @@ class Master extends Component {
         <Container>
           <Header style={styles.Background}>
             <Left>
-              <Button transparent onPress={() => this.props.toggleDrawer(true)}>
-                <Icon name="menu" style={styles.Button} />
-              </Button>
+              {this.props.isBack ? (
+                <Button transparent onPress={() => this.props.history.goBack()}>
+                  <Icon name="arrow-round-back" />
+                </Button>
+              ) : (
+                <Button
+                  transparent
+                  onPress={() => this.props.toggleDrawer(true)}
+                >
+                  <Icon name="menu" style={styles.Button} />
+                </Button>
+              )}
             </Left>
             <Body>
               <Title>{this.props.title}</Title>
             </Body>
-            <Right/>
+            <Right />
           </Header>
           <Content>{this.props.children}</Content>
           <Footer style={styles.Background}>
@@ -119,7 +145,8 @@ const styles = StyleSheet.create({
 });
 const mapStateToProps = state => ({
   app: state.app,
-  drawer: state.app.drawer
+  drawer: state.app.drawer,
+  user: state.user.user
 });
 const mapDispatchToProps = dispatch => ({
   toggleDrawer: data => dispatch(toggleDrawer(data))

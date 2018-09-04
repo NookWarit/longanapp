@@ -11,7 +11,8 @@ import {
   Body,
   Right,
   Switch,
-  Button
+  Button,
+  styles
 } from "native-base";
 import Master from "./layouts/Master";
 class Settings extends Component {
@@ -22,20 +23,7 @@ class Settings extends Component {
   render() {
     return (
       <Master title="การตั้งค่า">
-          <ListItem icon>
-            <Left>
-              <Button style={{ backgroundColor: "#FF9501" }}>
-                <Icon active name="options" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>เปลี่ยนภาษา</Text>
-            </Body>
-            <Right>
-            <Text>ภาษาไทย</Text>
-              <Icon active name="arrow-forward" />
-            </Right>
-          </ListItem>
+          
           <ListItem icon>
             <Left>
               <Button style={{ backgroundColor: "#007AFF" }}>
@@ -49,6 +37,54 @@ class Settings extends Component {
               <Text>เขียว</Text>
               <Icon active name="arrow-forward" />
             </Right>
+          </ListItem>
+          <ListItem icon>
+            <Left>
+              <Button >
+                <Icon active name="switch" />
+              </Button>
+            </Left>
+            <Body>
+              <Text>เปิด-ปิดระบบน้ำ</Text>
+            </Body>
+            <Right>
+              <Switch
+                // value={this.props.water.isOn}
+                // onValueChange={() =>
+                //   this.props.toggleWater(!this.props.water.isOn)
+                // }
+              />
+            </Right>
+          </ListItem>
+          <ListItem
+            icon
+            // onPress={() => {
+            //   this.context.router.history.push("/contact");
+            // }}
+          >
+            <Left>
+              <Button >
+                <Icon active name="call" />
+              </Button>
+            </Left>
+            <Body>
+              <Text>ติดต่อเรา</Text>
+            </Body>
+          </ListItem>
+          <ListItem
+            icon
+            // onPress={() => {
+            //   this.context.router.history.push("/info");
+            // }}
+          >
+            <Left>
+              <Button >
+                <Icon active name="information-circle" />
+              </Button>
+            </Left>
+            <Body>
+              <Text>เกี่ยวกับโปรแกรม</Text>
+            </Body>
           </ListItem>
       </Master>
     );
