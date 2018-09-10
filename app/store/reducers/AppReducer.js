@@ -17,7 +17,8 @@ const initialState = {
     title: ""
   },
   water: {
-    isOn: false
+    isOn: false,
+    user_id:{},
   },
   activeTab: 0
 };
@@ -34,8 +35,7 @@ const AppReducer = (state = initialState, action) => {
     case SET_WEBVIEW:
       return update(state, { webView: { $set: action.payload } });
     case TOGGLE_WATER:
-      return update(state, {
-        water: { isOn: { $set: action.payload } }
+      return update(state, { water:  { $set: action.payload } 
       });
     case SET_ACTIVE_TAB:
       return update(state, { activeTab: { $set: action.payload } });

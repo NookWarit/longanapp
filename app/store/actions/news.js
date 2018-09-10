@@ -11,10 +11,14 @@ export const findNewsByKeyword = keyword => async dispatch => {
   let findnews = await Axios.post(`${config.server.api}/api/news`,{
     title: keyword
   });
-  dispatch(setAllNews(findnews.data));
+  dispatch(setNews(findnews.data));
 };
 
 const setAllNews = data => ({
   type: SET_ALL_NEWS,
+  payload: data
+})
+const setNews = data => ({
+  type: SET_NEWS,
   payload: data
 })

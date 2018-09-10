@@ -25,6 +25,11 @@ class ControlPanel extends Component {
     super(props);
     this.state = {};
   }
+  componentDidMount() {
+    //console.log(this.props.toggleWater);
+   
+  }
+
   render() {
     return (
       <Content style={styles.drawerBackground}>
@@ -116,7 +121,7 @@ class ControlPanel extends Component {
                 <Icon active name="switch" />
               </Button>
             </Left>
-            <Body>
+            <Body> 
               <Text>เปิด-ปิดระบบน้ำ</Text>
             </Body>
             <Right>
@@ -125,7 +130,7 @@ class ControlPanel extends Component {
                 onValueChange={() =>
                   this.props.toggleWater({
                     status: !this.props.water.isOn,
-                    userId: this.props.user.id
+                    user_id: this.props.user.user_id
                   })
                 }
               />

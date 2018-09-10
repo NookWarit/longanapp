@@ -16,7 +16,7 @@ export const setWebview = data => ({
 export const toggleWater = data => async dispatch => {
   let waterStatus = await Axios.post(`${config.server.api}/api/iot`, {
     status: data.status,
-    userId: data.userId
+    user_id: data.user_id
   });
   dispatch(setWaterStatus(waterStatus.data));
 };
@@ -30,7 +30,7 @@ export const setActiveTabs = data => ({
   payload: data
 });
 
-const setWaterStatus = data => ({
+export const setWaterStatus = data => ({
   type: TOGGLE_WATER,
   payload: data
 });

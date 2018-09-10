@@ -20,7 +20,7 @@ class Info extends Component {
             </CardItem>
             <CardItem bordered>
             <Body>
-            <Text>โปรแกรมแอปพลิเคชันสำหรับเกษตรผู้ผลิตลำไย</Text>
+            <Text>โปรแกรมแอปพลิเคชันสำหรับเกษตรกรผู้ผลิตลำไย</Text>
             <Text>เวอร์ชั่น 1.0</Text>
             <Text>โดย</Text>
             <Text>นายภูบดี  รินแก้ว [Backend Programmer]</Text>

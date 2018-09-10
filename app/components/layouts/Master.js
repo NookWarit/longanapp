@@ -63,7 +63,7 @@ class Master extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.user);
+    //console.log(this.props.user);
     if (!this.props.user && this.context.router.location != "/login") {
      this.context.router.history.push("/login");
    }
