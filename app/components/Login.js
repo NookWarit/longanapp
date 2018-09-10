@@ -7,12 +7,15 @@ import {
   Input,
   Icon,
   Button,
-  Text
+  Text,
+  ListItem,
+  Thumbnail
 } from "native-base";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../store/actions/user";
 import update from "immutability-helper";
+import { Grid, Row } from "react-native-easy-grid";
 class Login extends Component {
   static contextTypes = {
     router: PropTypes.object
@@ -34,7 +37,6 @@ class Login extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.user != nextProps.user) {
       this.context.router.history.push("/");
-      
     }
     return true;
   }
@@ -47,12 +49,18 @@ class Login extends Component {
   render() {
     return (
       <Container>
-        <Header />
-        <Content>
+        <Grid>
+          <Row style={{alignSelf:"center"}}>
+        <Thumbnail
+              source={require("../assets/images/logo_longan.png")}
+             style={{alignSelf:"center",width:200,height:300,resizeMode:"contain"}}/>
+        </Row>
+        <Row>
+        <Content style={{paddingTop:10,}}>
           <Item regular>
             <Icon active name="person" />
             <Input
-              placeholder="ชื่อผู้ใช้"
+              placeholder="ชื่อผู้ใช้ หรือ อีเมลล์"
               keyboardType="email-address"
               onChangeText={text => this.onChangeTextHandler(text, "email")}
               value={this.state.input.email}
@@ -67,28 +75,33 @@ class Login extends Component {
               value={this.state.input.password}
             />
           </Item>
-          <Button
-            light
-            onPress={() => {
-              this.props.login(this.state.input);
-            }}
-          >
-            <Text> ล็อคอิน </Text>
-          </Button>
-          <Button
-            block
-            info
-            onPress={() => {
-              this.context.router.history.push("/signup");
-            }}
-          >
-            <Text> ลงทะเบียนสมาชิก </Text>
-          </Button>
+          <ListItem last style={{alignSelf:"center"}}>
+            <Button
+              light
+              onPress={() => {
+                this.props.login(this.state.input);
+              }}
+            >
+              <Text> ล็อคอิน </Text>
+            </Button>
+            <Button
+            
+              block
+              info
+              onPress={() => {
+                this.context.router.history.push("/signup");
+              }}
+            >
+              <Text> ลงทะเบียนสมาชิก </Text>
+            </Button>
+          </ListItem>
 
           {this.props.hasError ? (
             <Text style={{ color: "red" }}>{this.props.hasError}</Text>
           ) : null}
         </Content>
+        </Row>
+        </Grid>
       </Container>
     );
   }

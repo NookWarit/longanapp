@@ -14,11 +14,12 @@ import {
   Card,
   CardItem,
   Item,
-  Image
+  Image,
+  Thumbnail
 } from "native-base";
 import Master from "./layouts/Master";
 import { connect } from "react-redux";
-//import config from "../../config";
+import config from "../config";
 import PropTypes from "prop-types";
 
 class Profile extends Component {
@@ -42,11 +43,11 @@ class Profile extends Component {
               <Body>
                 <List>
                   <ListItem>
-                    {/* <Thumbnail
+                    <Thumbnail large
                   square
-                  source={{ uri: `${config.server.api}/api/article/image/${article.image}`}}
+                  source={{ uri: `${config.server.api}/api/user/image/${this.props.user.image}`}}
                   //style={{ width: 64, height: 64, resizeMode:'contain'}}
-                /> */}
+                />
                   </ListItem>
                   <ListItem>
                   <Text>ชื่อ </Text>
