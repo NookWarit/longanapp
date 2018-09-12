@@ -8,7 +8,7 @@ import { hasError } from "./app";
 export const login = data => async dispatch => {
   let { email, password } = data;
   if (!email || !password) {
-    let message = "มึงจะไม่กรอกอะไรสักหน่อยเหรอ";
+    let message = "กรุณากรอกข้อมูลให้ครบ !";
     dispatch(hasError(message));
     return false;
   }

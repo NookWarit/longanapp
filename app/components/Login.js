@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../store/actions/user";
 import update from "immutability-helper";
-import { Grid, Row } from "react-native-easy-grid";
+import { Grid, Row, Col } from "react-native-easy-grid";
 class Login extends Component {
   static contextTypes = {
     router: PropTypes.object
@@ -76,17 +76,18 @@ class Login extends Component {
             />
           </Item>
           <ListItem last style={{alignSelf:"center"}}>
+           <Col>
             <Button
-              light
+              bordered 
               onPress={() => {
                 this.props.login(this.state.input);
               }}
             >
               <Text> ล็อคอิน </Text>
             </Button>
+            </Col>
+            <Col>
             <Button
-            
-              block
               info
               onPress={() => {
                 this.context.router.history.push("/signup");
@@ -94,6 +95,7 @@ class Login extends Component {
             >
               <Text> ลงทะเบียนสมาชิก </Text>
             </Button>
+            </Col>
           </ListItem>
 
           {this.props.hasError ? (

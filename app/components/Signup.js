@@ -8,7 +8,8 @@ import {
   Icon,
   Button,
   Text,
-  Left
+  Left,
+  Form
 } from "native-base";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -16,12 +17,13 @@ import PropTypes from "prop-types";
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
   render() {
     return (
       <Container>
-        <Header>
+        <Header> 
           <Left>
             <Button transparent onPress={() => this.props.history.goBack()}>
               <Icon name="arrow-round-back" />
@@ -29,17 +31,22 @@ class Signup extends Component {
           </Left>
         </Header>
         <Content>
+          <Form>
           <Item regular>
             <Icon active name="person" />
             <Input placeholder="ชื่อผู้ใช้" />
           </Item>
           <Item regular>
-            <Icon active name="lock" />
-            <Input placeholder="รหัสผ่าน" />
+            <Icon active name="person" />
+            <Input placeholder="นามสกุล" />
           </Item>
           <Item regular>
             <Icon active name="mail" />
             <Input placeholder="อีเมลล์" />
+          </Item>
+          <Item regular>
+            <Icon active name="lock" />
+            <Input placeholder="รหัสผ่าน" />
           </Item>
           <Item regular>
             <Icon active name="call" />
@@ -49,7 +56,8 @@ class Signup extends Component {
             <Icon active name="pin" />
             <Input placeholder="ที่อยู่" />
           </Item>
-
+          
+          
           <Button
             block
             info
@@ -59,6 +67,7 @@ class Signup extends Component {
           >
             <Text> สร้างบัญชี </Text>
           </Button>
+          </Form>
         </Content>
       </Container>
     );

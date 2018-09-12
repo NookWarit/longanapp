@@ -25,12 +25,14 @@ class ControlPanel extends Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() {
-    //console.log(this.props.toggleWater);
-   
-  }
+  // _handleLogOut = () = {
+  // AsyncStorage.clear(),
+  // alert('คุณได้ออกจากระบบแล้ว');
+  // }
 
   render() {
+    // console.log(this.props.water.isOn);
+    // console.log(this.props.user.user_id);
     return (
       <Content style={styles.drawerBackground}>
         <View style={styles.drawerProfile}>
