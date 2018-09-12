@@ -13,10 +13,11 @@ import {
   Switch,
   Button
 } from "native-base";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity, AsyncStorage } from "react-native";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { toggleDrawer, toggleWater } from "../../store/actions/app";
+import { setUser } from "../../store/actions/user";
 class ControlPanel extends Component {
   static contextTypes = {
     router: PropTypes.object
@@ -24,11 +25,15 @@ class ControlPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this._handleLogOut = this._handleLogOut.bind(this);
   }
-  // _handleLogOut = () = {
-  // AsyncStorage.clear(),
-  // alert('คุณได้ออกจากระบบแล้ว');
-  // }
+
+  async _handleLogOut() {
+    await AsyncStorage.clear();
+    this.props.setUser(null);
+    alert("คุณได้ออกจากระบบแล้ว");
+
+  }
 
   render() {
     // console.log(this.props.water.isOn);
@@ -40,8 +45,7 @@ class ControlPanel extends Component {
           <Button
             style={styles.drawerButtonSignout}
             onPress={() => {
-              this.context.router.history.push("/login");
-              this.props.toggleDrawer(false);
+              this._handleLogOut();
             }}
           >
             <Text>ออกจากระบบ</Text>
@@ -123,7 +127,7 @@ class ControlPanel extends Component {
                 <Icon active name="switch" />
               </Button>
             </Left>
-            <Body> 
+            <Body>
               <Text>เปิด-ปิดระบบน้ำ</Text>
             </Body>
             <Right>
@@ -218,7 +222,8 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   toggleDrawer: data => dispatch(toggleDrawer(data)),
-  toggleWater: data => dispatch(toggleWater(data))
+  toggleWater: data => dispatch(toggleWater(data)),
+  setUser: data => dispatch(setUser(data))
 });
 
 export default connect(
