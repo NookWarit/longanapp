@@ -35,14 +35,14 @@ export const signup = data => async dispatch =>{
   }
   try {
     let user = await Axios.post(`${config.server.api}/api/user/signup`,data);
+    //console.log(user.data.id)
     if (user.data.id){
       await AsyncStorage.setItem("user", JSON.stringify(user.data));
-    dispatch(setUser(user.data));
+     //dispatch(setUser(user.data));
     }
     else{
-      let message = "server ผิดพลาด ไม่มีหน้านี้";
+      let message = "สมัครเรียบร้อยแล้ว";
     dispatch(hasError(message));
-
     }
     
   }catch (error){

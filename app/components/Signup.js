@@ -81,12 +81,12 @@ class Signup extends Component {
         </Header>
         <Content>
           <Form>
-            <Item>
+            <Item style={{alignSelf:'center'}}>
               <TouchableOpacity onPress={this._pickImage}>
                 <Thumbnail
-                  large
-                  square
+                  large square
                   source={{ uri: this.state.input.image }}
+                  style={{width:100,height:100}}
                 />
               </TouchableOpacity>
             </Item>
