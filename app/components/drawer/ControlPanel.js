@@ -32,12 +32,9 @@ class ControlPanel extends Component {
     await AsyncStorage.clear();
     this.props.setUser(null);
     alert("คุณได้ออกจากระบบแล้ว");
-
   }
 
   render() {
-    // console.log(this.props.water.isOn);
-    // console.log(this.props.user.user_id);
     return (
       <Content style={styles.drawerBackground}>
         <View style={styles.drawerProfile}>
@@ -132,10 +129,10 @@ class ControlPanel extends Component {
             </Body>
             <Right>
               <Switch
-                value={this.props.water.isOn}
+                value={this.props.water.status}
                 onValueChange={() =>
                   this.props.toggleWater({
-                    status: !this.props.water.isOn,
+                    status: !this.props.water.status,
                     user_id: this.props.user.user_id
                   })
                 }

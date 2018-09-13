@@ -17,8 +17,8 @@ const initialState = {
     title: ""
   },
   water: {
-    isOn: false,
-    user_id:{},
+    status: false,
+    user_id:{}
   },
   activeTab: 0
 };

@@ -16,10 +16,10 @@ export const setWebview = data => ({
 });
 export const toggleWater = data => async dispatch => {
   let waterStatus = await Axios.post(`${config.server.api}/api/iot`, {
-    status: data.status,
+    status: JSON.stringify(data.status),
     user_id: data.user_id
   });
-  dispatch(setWaterStatus(waterStatus.data));
+  dispatch(setWaterStatus({ status: JSON.parse(waterStatus.data.status) }));
 };
 
 export const hasError = data => ({
