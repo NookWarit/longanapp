@@ -15,13 +15,14 @@ import {
   styles
 } from "native-base";
 import Master from "./layouts/Master";
-// import PropTypes from "prop-types";
-// import { connect } from "react-redux";
-// import { toggleDrawer, toggleWater } from "../../store/actions/app";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { toggleWater } from "../store/actions/app";
+import { setUser } from "../store/actions/user";
 class Settings extends Component {
-  // static contextTypes = {
-  //   router: PropTypes.object
-  // };
+  static contextTypes = {
+    router: PropTypes.object
+  };
   constructor(props) {
     super(props);
     this.state = {};
@@ -54,18 +55,21 @@ class Settings extends Component {
           </Body>
           <Right>
             <Switch
-              // value={this.props.water.isOn}
-              // onValueChange={() =>
-              //   this.props.toggleWater(!this.props.water.isOn)
-              // }
+              value={this.props.water.status}
+              onValueChange={() =>
+                this.props.toggleWater({
+                  status: !this.props.water.status,
+                  user_id: this.props.user.user_id
+                })
+              }
             />
           </Right>
         </ListItem>
         <ListItem
           icon
-          // onPress={() => {
-          //   this.context.router.history.push("/contact");
-          // }}
+          onPress={() => {
+            this.context.router.history.push("/contact");
+          }}
         >
           <Left>
             <Button>
@@ -78,9 +82,9 @@ class Settings extends Component {
         </ListItem>
         <ListItem
           icon
-          // onPress={() => {
-          //   this.context.router.history.push("/info");
-          // }}
+          onPress={() => {
+            this.context.router.history.push("/info");
+          }}
         >
           <Left>
             <Button>
@@ -95,13 +99,13 @@ class Settings extends Component {
     );
   }
 }
-// const mapStateToProps = state => ({
-//   user: state.user.user,
-//   water: state.app.water
-// });
-// const mapDispatchToProps = dispatch => ({
-//   toggleDrawer: data => dispatch(toggleDrawer(data)),
-//   toggleWater: data => dispatch(toggleWater(data))
-// });
+const mapStateToProps = state => ({
+  user: state.user.user,
+  water: state.app.water
+});
+const mapDispatchToProps = dispatch => ({
+  toggleWater: data => dispatch(toggleWater(data)),
+  setUser: data => dispatch(setUser(data))
+});
 
-export default Settings;
+export default connect(mapStateToProps,mapDispatchToProps)(Settings);

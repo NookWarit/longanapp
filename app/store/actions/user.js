@@ -51,6 +51,33 @@ export const signup = data => async dispatch =>{
     console.log(error);
   }
 }
+
+export const update = data => async dispatch =>{
+  let { id ,name ,lastname ,email ,password ,image ,tel ,address ,district ,province} = data;
+  if (!id||!name || !lastname || !email || !password || !image || !tel || !address || !district || !province){
+    let message = "กรุณากรอกข้อมูลให้ครบ !";
+    dispatch(hasError(message));
+    return false;
+  }
+  try {
+    let user = await Axios.post(`${config.server.api}/api/user/update`,data);
+    console.log(user)
+    if (user.data.id){
+      await AsyncStorage.setItem("user", JSON.stringify(user.data));
+     //dispatch(setUser(user.data));
+    }
+    else{
+      dispatch(setUser(user.data));
+      let message = "แก้ไขเรียบร้อยแล้ว";
+    dispatch(hasError(message));
+    }
+    
+  }catch (error){
+    let message = "ข้อมูลไม่ถูกต้อง";
+    dispatch(hasError(message));
+    console.log(error);
+  }
+}
 export const setUser = data => ({
   type: SET_USER,
   payload: data

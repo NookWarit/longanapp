@@ -20,6 +20,7 @@ import DetailArticle from "./app/components/page/DetailArticle";
 import DetailNews from "./app/components/page/DetailNews";
 import { setUser } from "./app/store/actions/user";
 import { AsyncStorage } from "react-native";
+import DetailMedia from "./app/components/DetailMedia";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -65,6 +66,7 @@ export default class App extends React.Component {
             <Route path="/signup" component={Signup} />
             <Route path="/detailarticle" component={DetailArticle} />
             <Route path="/detailnews" component={DetailNews} />
+            <Route path="/detailmedia" component={DetailMedia} />
           </Switch>
         </Router>
       </Provider>

@@ -118,7 +118,7 @@ class ControlPanel extends Component {
             </Body>
           </ListItem>
 
-          <ListItem icon>
+          {/* <ListItem icon>
             <Left>
               <Button style={styles.drawerButton}>
                 <Icon active name="switch" />
@@ -170,7 +170,7 @@ class ControlPanel extends Component {
             <Body>
               <Text>เกี่ยวกับโปรแกรม</Text>
             </Body>
-          </ListItem>
+          </ListItem> */}
           <ListItem
             icon
             onPress={() => {

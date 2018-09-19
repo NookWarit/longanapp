@@ -107,6 +107,10 @@ class Signup extends Component {
               <Input placeholder="รหัสผ่าน" value={this.state.input.password} onChangeText={(text)=>this.onTextChangeHandler(text,"password")}/>
             </Item>
             <Item regular>
+              <Icon active name="lock" />
+              <Input placeholder="ยืนยันรหัสผ่าน" value={this.state.input.password} onChangeText={(text)=>this.onTextChangeHandler(text,"password")}/>
+            </Item>
+            <Item regular>
               <Icon active name="call" />
               <Input placeholder="โทรศัพท์" value={this.state.input.tel} onChangeText={(text)=>this.onTextChangeHandler(text,"tel")}/>
             </Item>

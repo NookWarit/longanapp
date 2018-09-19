@@ -3,8 +3,8 @@ import { Text, StyleSheet, View } from "react-native";
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Thumbnail, Content, Icon, Card, CardItem,Button } from "native-base";
 import { connect } from "react-redux";
-// import config from "../../config";
-// import { setWebview } from "../../store/actions/app";
+import config from "../config";
+import { setWebview } from "../store/actions/app";
 import PropTypes from "prop-types";
 import Master from "./layouts/Master";
 
@@ -36,7 +36,7 @@ class Home extends Component {
                     />
                     <Text style={styles.text}>ปริมาณสัดส่วนปุ๋ย</Text>
                   </Col>
-                  <Col>
+                  {/* <Col>
                     <Button
                       style={styles.block}
                       // onPress={() => {
@@ -50,7 +50,7 @@ class Home extends Component {
                     >
                       <Text>View</Text>
                     </Button>
-                  </Col>
+                  </Col> */}
                 </Row>
               </Grid>
             </CardItem>
@@ -65,14 +65,24 @@ class Home extends Component {
                 <Row>
                   <Col
                     style={styles.block}
-                    onPress={() => alert("สวัสดี ปุ๋ย")}
+                    onPress={() => {
+                      this.props.setWebview({
+                        url:`${config.server.api}/info/media/001`
+                      })
+                      this.context.router.history.push("/detailmedia");
+                  }}
                   >
                     <Icon name="film" />
-                    <Text style={styles.text}>วิธีวัดขนาดต้นลำไย</Text>
+                    <Text style={styles.text}>ตรวจหาค่าในดิน</Text>
                   </Col>
-                  <Col style={styles.block} onPress={() => alert("สวัสดี ดิน")}>
+                  <Col style={styles.block} onPress={() => {
+                      this.props.setWebview({
+                        url:`${config.server.api}/info/media/003`
+                      })
+                      this.context.router.history.push("/detailmedia");
+                  }}>
                     <Icon name="film" />
-                    <Text style={styles.text}>วิธีวัดธาตุอาหารในดิน</Text>
+                    <Text style={styles.text}>เทคนิคการตัดแต่งกิ่ง</Text>
                   </Col>
                 </Row>
               </Grid>
@@ -86,7 +96,7 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: "#00e6b0"
+    backgroundColor: "#00cf9e"
   },
   block: {
     flexDirection: "column",

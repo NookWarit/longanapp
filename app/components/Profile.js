@@ -23,6 +23,7 @@ import Master from "./layouts/Master";
 import { connect } from "react-redux";
 import config from "../config";
 import PropTypes from "prop-types";
+import { update } from "../store/actions/user";
 
 class Profile extends Component {
   static contextTypes = {
@@ -35,6 +36,11 @@ class Profile extends Component {
       showModal: false
     };
     this.onEditBtnPress = this.onEditBtnPress.bind(this);
+  }
+  onTextChangeHandler(text, field){
+    let oldInput = this.state.input;
+    oldInput[field] = text;
+    this.setState({ input:oldInput });
   }
 
   onEditBtnPress() {
@@ -151,7 +157,7 @@ class Profile extends Component {
                   block
                   info
                   onPress={() => {
-                    this.props.signup(this.state.input);
+                    this.props.update(this.state.input);
                   }}
                 >
                   <Text> แก้ไขข้อมูล </Text>
@@ -184,11 +190,7 @@ class Profile extends Component {
                     <Thumbnail
                       large
                       square
-                      source={{
-                        uri: `${config.server.api}/api/user/image/${
-                          this.props.user.image
-                        }`
-                      }}
+                      source={{ uri: this.props.user.image }}
                       //style={{ width: 64, height: 64, resizeMode:'contain'}}
                     />
                   </ListItem>
@@ -243,8 +245,7 @@ const mapStateToProps = state => ({
   user: state.user.user
 });
 const mapDispatchToProps = dispatch => ({
-  // toggleArticle: data => dispatch(toggleArticle(data)),
-  // setWebview: data => dispatch(setWebview(data))
+  update: data => dispatch(update(data))
 });
 
 export default connect(
