@@ -41,7 +41,7 @@ class News extends Component {
           <Input
             returnKeyType="search"
             onSubmitEditing={() => this.props.findNewsByKeyword(this.state.keyword)}
-            onChangeText={this.onInputChangeHandler}
+            onChangeText={(text)=>this.onChangeTextHandler(text)}
             placeholder="กรอกคำค้น..."
             value={this.state.keyword}
           />
