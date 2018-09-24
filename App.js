@@ -21,6 +21,7 @@ import DetailNews from "./app/components/page/DetailNews";
 import { setUser } from "./app/store/actions/user";
 import { AsyncStorage } from "react-native";
 import DetailMedia from "./app/components/DetailMedia";
+import calculate from "./app/components/Calculate";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -67,6 +68,7 @@ export default class App extends React.Component {
             <Route path="/detailarticle" component={DetailArticle} />
             <Route path="/detailnews" component={DetailNews} />
             <Route path="/detailmedia" component={DetailMedia} />
+            <Route path="/calculate" component={calculate} />
           </Switch>
         </Router>
       </Provider>

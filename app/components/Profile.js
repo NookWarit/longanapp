@@ -158,6 +158,7 @@ class Profile extends Component {
                   info
                   onPress={() => {
                     this.props.update(this.state.input);
+                    this.setState({ showModal: false });
                   }}
                 >
                   <Text> แก้ไขข้อมูล </Text>

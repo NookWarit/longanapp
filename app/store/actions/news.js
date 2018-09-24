@@ -11,7 +11,7 @@ export const findNewsByKeyword = keyword => async dispatch => {
   let findnews = await Axios.post(`${config.server.api}/api/news`,{
     title: keyword
   });
-  dispatch(setNews(findnews.data));
+  dispatch(setAllNews(findnews.data));
 };
 
 const setAllNews = data => ({

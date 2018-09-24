@@ -65,13 +65,13 @@ class Master extends Component {
   componentDidMount() {
     //console.log(this.props.user);
     if (!this.props.user && this.context.router.location != "/login") {
-     this.context.router.history.push("/login");
-   }
+      this.context.router.history.push("/login");
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-   if (!nextProps.user  && this.props.location.pathname !== "/login") {
-     this.context.router.history.push("/login");
+    if (!nextProps.user && this.props.location.pathname !== "/login") {
+      this.context.router.history.push("/login");
     }
     return true;
   }
@@ -113,20 +113,24 @@ class Master extends Component {
             <Right />
           </Header>
           <Content>{this.props.children}</Content>
-          <Footer style={styles.Background}>
-            <FooterTab>
-              {this.state.footerMenu.map(item => (
-                <Button
-                  key={item.id}
-                  vertical
-                  active={this.props.location.pathname == item.slug}
-                  onPress={() => this.props.history.push(item.route)}
-                >
-                  <Icon name={item.icon} />
-                </Button>
-              ))}
-            </FooterTab>
-          </Footer>
+          {this.props.hideFooter ? (
+            undefined
+          ) : (
+            <Footer style={styles.Background}>
+              <FooterTab>
+                {this.state.footerMenu.map(item => (
+                  <Button
+                    key={item.id}
+                    vertical
+                    active={this.props.location.pathname == item.slug}
+                    onPress={() => this.props.history.push(item.route)}
+                  >
+                    <Icon name={item.icon} />
+                  </Button>
+                ))}
+              </FooterTab>
+            </Footer>
+          )}
         </Container>
       </Drawer>
     );

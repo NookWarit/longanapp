@@ -28,7 +28,7 @@ class Home extends Component {
             <CardItem>
               <Grid>
                 <Row>
-                  <Col style={styles.block} onPress={() => alert("สวัสดี ดิน")}>
+                  <Col style={styles.block} onPress={() => this.context.router.history.push("/calculate")}>
                     <Thumbnail
                       square
                       small
@@ -36,21 +36,14 @@ class Home extends Component {
                     />
                     <Text style={styles.text}>ปริมาณสัดส่วนปุ๋ย</Text>
                   </Col>
-                  {/* <Col>
-                    <Button
-                      style={styles.block}
-                      // onPress={() => {
-                      //   this.props.setWebview({
-                      //     url: `${config.server.api}/api/media/${
-                      //       media.media  
-                      //     }`
-                      //   });
-                      //   this.context.router.history.push("/detailmedia");
-                      // }}
-                    >
-                      <Text>View</Text>
-                    </Button>
-                  </Col> */}
+                  <Col style={styles.block} onPress={() => this.context.router.history.push("/calculate")}>
+                    <Thumbnail
+                      square
+                      small
+                      source={require("../assets/images/grass.png")}
+                    />
+                    <Text style={styles.text}>ธาตุอาหารในดิน</Text>
+                  </Col>
                 </Row>
               </Grid>
             </CardItem>

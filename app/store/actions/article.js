@@ -7,9 +7,11 @@ export const getAllArticles = () => async dispatch => {
   let articles = await Axios.get(`${config.server.api}/api/article`);
   dispatch(setAllArticles(articles.data));
 };
-export const getArticles = () => async dispatch => {
-  let articles = await Axios.get(`${config.server.api}/api/article`);
-  dispatch(setArticles(articles.data));
+export const findArticleByKeyword = keyword => async dispatch => {
+  let findarticle = await Axios.post(`${config.server.api}/api/article`,{
+    title: keyword
+  });
+  dispatch(setNews(findarticle.data));
 };
 
 
