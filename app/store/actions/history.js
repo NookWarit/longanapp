@@ -2,8 +2,9 @@ import Axios from "axios";
 import config from "../../config";
 export const SET_ALL_HISTORY = "SET_ALL_HISTORY";
 import { AsyncStorage } from "react-native";
+import { hasError } from "./app";
 //server (axios)
-export const setAllHistory = () => async dispatch => {
+export const getAllHistory = () => async dispatch => {
   try {
     let user = JSON.parse(await AsyncStorage.getItem("user"));
     //console.log(user);
@@ -18,7 +19,7 @@ export const setAllHistory = () => async dispatch => {
   }
 };
 
-export const setAllHistory = data => ({
+const setAllHistory = data => ({
   type: SET_ALL_HISTORY,
   payload: data
 });

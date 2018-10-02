@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="08ce9c2f-c449-4f9a-8855-84fa1ce7ea6d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/App.js" afterPath="$PROJECT_DIR$/App.js" />
-      <change beforePath="$PROJECT_DIR$/app/components/Chat.js" afterPath="$PROJECT_DIR$/app/components/Chat.js" />
-      <change beforePath="$PROJECT_DIR$/app/components/page/Article.js" afterPath="$PROJECT_DIR$/app/components/page/Article.js" />
-      <change beforePath="$PROJECT_DIR$/app/components/page/News.js" afterPath="$PROJECT_DIR$/app/components/page/News.js" />
-      <change beforePath="$PROJECT_DIR$/app/components/page/Page.js" afterPath="$PROJECT_DIR$/app/components/page/Page.js" />
-      <change beforePath="$PROJECT_DIR$/app/store/actions/article.js" afterPath="$PROJECT_DIR$/app/store/actions/article.js" />
-      <change beforePath="$PROJECT_DIR$/app/store/actions/news.js" afterPath="$PROJECT_DIR$/app/store/actions/news.js" />
+      <change beforePath="$PROJECT_DIR$/app/store/reducers/RootReducer.js" afterPath="$PROJECT_DIR$/app/store/reducers/RootReducer.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,8 +45,8 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>

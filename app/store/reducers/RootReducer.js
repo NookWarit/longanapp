@@ -5,6 +5,7 @@ import NewsReducer from "./NewsReducer";
 import UserReducer from "./UserReducer";
 import ChatReducer from "./ChatReducer";
 import HistoryReducer from "./HistoryReducer";
+import MediaReducer from "./MediaReducer";
 
 const RootReducer = combineReducers({
   app: AppReducer,
@@ -12,6 +13,7 @@ const RootReducer = combineReducers({
   news: NewsReducer,
   user: UserReducer,
   chat: ChatReducer,
-  history: HistoryReducer
+  history: HistoryReducer,
+  media: MediaReducer
 });
 export default RootReducer;

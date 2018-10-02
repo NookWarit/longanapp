@@ -23,6 +23,7 @@ import { AsyncStorage } from "react-native";
 import DetailMedia from "./app/components/DetailMedia";
 import calculate from "./app/components/Calculate";
 import soil from "./app/components/Soil";
+import { getAllMedia } from "./app/store/actions/media";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -46,7 +47,9 @@ export default class App extends React.Component {
     if (user) {
       Store.dispatch(setUser(user));
     }
-    Store.dispatch(getAllArticles()), Store.dispatch(getAllNews());
+    Store.dispatch(getAllArticles())
+    Store.dispatch(getAllNews())
+    Store.dispatch(getAllMedia())
   }
   render() {
     return this.state.isLoading ? (

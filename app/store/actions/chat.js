@@ -2,6 +2,7 @@ import Axios from "axios";
 import config from "../../config";
 export const SET_ALL_CHAT = "SET_ALL_CHAT";
 import { AsyncStorage } from "react-native";
+import { hasError } from "./app";
 
 //server (axios)
 export const getAllChat = () => async dispatch => {
@@ -12,7 +13,13 @@ export const getAllChat = () => async dispatch => {
       `${config.server.api}/api/messenger/${user.user_id}`
     );
     //console.log(chat);
-    dispatch(setAllChat(chat.data));
+    if(chat.data){
+      dispatch(setAllChat(chat.data));
+    }else{
+
+    dispatch(setAllChat([]));
+    }
+    
   } catch (error) {
     let message = "มีไหน";
     dispatch(hasError(message));

@@ -54,6 +54,12 @@ class Chat extends Component {
     this.props.getAllChat();
     this.getMessage();
     //this.scrollToBottom();
+    let oldInput = this.state.input;
+    oldInput["username"] =
+      this.props.user.name + " " + this.props.user.lastname;
+    oldInput["room_id"] = this.props.user.user_id;
+
+    this.setState({ input: oldInput });
   }
 
   getMessage() {
@@ -68,10 +74,6 @@ class Chat extends Component {
   onChangeTextHandler(text) {
     let oldInput = this.state.input;
     oldInput["message"] = text;
-    oldInput["username"] =
-      this.props.user.name + " " + this.props.user.lastname;
-    oldInput["room_id"] = this.props.user.user_id;
-
     this.setState({ input: oldInput });
   }
   renderDate = date => {
