@@ -36,13 +36,21 @@ class Home extends Component {
                     />
                     <Text style={styles.text}>ปริมาณสัดส่วนปุ๋ย</Text>
                   </Col>
-                  <Col style={styles.block} onPress={() => this.context.router.history.push("/calculate")}>
+                  <Col style={styles.block} onPress={() => this.context.router.history.push("/soil")}>
                     <Thumbnail
                       square
                       small
                       source={require("../assets/images/grass.png")}
                     />
-                    <Text style={styles.text}>ธาตุอาหารในดิน</Text>
+                    <Text style={styles.text}>วิเคราะห์ดิน</Text>
+                  </Col>
+                  <Col style={styles.block} onPress={() => this.context.router.history.push("/soil")}>
+                    <Thumbnail
+                      square
+                      small
+                      source={require("../assets/images/water1.png")}
+                    />
+                    <Text style={styles.text}>วิเคราะห์น้ำ</Text>
                   </Col>
                 </Row>
               </Grid>

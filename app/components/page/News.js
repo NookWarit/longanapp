@@ -30,7 +30,6 @@ class News extends Component {
     };
   }
   onChangeTextHandler(text) {
-    
     this.setState({ keyword: text });
   }
   render() {

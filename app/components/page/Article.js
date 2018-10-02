@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 import config from "../../config";
 import { setWebview } from "../../store/actions/app";
 import PropTypes from "prop-types";
+import { findArticleByKeyword } from "../../store/actions/article";
 
 class Article extends Component {
   static contextTypes = {
@@ -24,7 +25,12 @@ class Article extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      keyword:''
+    };
+  }
+  onChangeTextHandler(text) {
+    this.setState({ keyword: text });
   }
   render() {
     return (
@@ -33,11 +39,12 @@ class Article extends Component {
           <Icon name="ios-people" style={{ marginLeft: 5 }} />
           <Input
             returnKeyType="search"
-            onSubmitEditing={this.onSubmitButtonClickHandler}
-            onChangeText={this.onInputChangeHandler}
+            onSubmitEditing={()=>this.props.findArticleByKeyword(this.state.keyword)}
+            onChangeText={(text)=> this.onChangeTextHandler(text)}
             placeholder="กรอกคำค้น..."
+            value={this.state.keyword}
           />
-          <Button onPress={this.onSubmitButtonClickHandler} transparent>
+          <Button onPress={() => this.props.findArticleByKeyword(this.state.keyword)} transparent>
             <Icon name="search" />
           </Button>
         </Item>
@@ -77,7 +84,8 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   toggleArticle: data => dispatch(toggleArticle(data)),
-  setWebview: data => dispatch(setWebview(data))
+  setWebview: data => dispatch(setWebview(data)),
+  findArticleByKeyword: data => dispatch(findArticleByKeyword(data))
 });
 
 export default connect(

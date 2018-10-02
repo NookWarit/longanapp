@@ -10,6 +10,9 @@ export const login = data => async dispatch => {
   if (!email || !password) {
     let message = "กรุณากรอกข้อมูลให้ครบ !";
     dispatch(hasError(message));
+    setTimeout(() => {
+      dispatch(hasError(""));
+    }, 3000);
     return false;
   }
   try {
@@ -23,7 +26,9 @@ export const login = data => async dispatch => {
     //AsyncStorage.removeItem("user");
     let message = "อีเมล์ หรือ รหัสผ่านไม่ถูกต้อง";
     dispatch(hasError(message));
-    console.log(error);
+    setTimeout(() => {
+      dispatch(hasError(""));
+    }, 3000);
   }
 };
 export const signup = data => async dispatch => {

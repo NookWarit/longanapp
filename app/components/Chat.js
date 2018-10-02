@@ -19,7 +19,10 @@ import {
   Button,
   Header,
   Left,
-  Icon
+  Icon,
+  Title,
+  Body,
+  Right
 } from "native-base";
 import { connect } from "react-redux";
 import { getAllChat, sentChat } from "../store/actions/chat";
@@ -41,15 +44,22 @@ class Chat extends Component {
     };
     this.getMessage = this.getMessage.bind(this);
   }
+  // scrollToBottom = () => {
+  //   this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  // };
+  // componentDidUpdate() {
+  //   this.scrollToBottom();
+  // }
   componentDidMount() {
     this.props.getAllChat();
     this.getMessage();
+    //this.scrollToBottom();
   }
 
   getMessage() {
     setInterval(() => {
       this.props.getAllChat();
-    }, 5000);
+    }, 10000);
   }
 
   componentWillUnmount() {
@@ -59,7 +69,7 @@ class Chat extends Component {
     let oldInput = this.state.input;
     oldInput["message"] = text;
     oldInput["username"] =
-    this.props.user.name + " " + this.props.user.lastname;
+      this.props.user.name + " " + this.props.user.lastname;
     oldInput["room_id"] = this.props.user.user_id;
 
     this.setState({ input: oldInput });
@@ -79,6 +89,10 @@ class Chat extends Component {
               <Icon name="arrow-round-back" />
             </Button>
           </Left>
+          <Body>
+            <Title>การสนทนา</Title>
+          </Body>
+          <Right />
         </Header>
         <Content>
           <FlatList
@@ -88,17 +102,20 @@ class Chat extends Component {
               return item.msg_id;
             }}
             renderItem={message => {
-              console.log(item);
               const item = message.item;
               let inMessage = item.type != "User";
               let itemStyle = inMessage ? styles.itemIn : styles.itemOut;
               return (
                 <View style={[styles.item, itemStyle]}>
-                  {!inMessage && this.renderDate(item.date)}
+                  {!inMessage && this.renderDate(item.create_time)}
                   <View style={[styles.balloon]}>
                     <Text>{item.message}</Text>
                   </View>
-                  {inMessage && this.renderDate(item.date)}
+                  {inMessage && this.renderDate(item.create_time)}
+                  {/* ref=
+                  {el => {
+                    this.messagesEnd = el;
+                  }} */}
                 </View>
               );
             }}
@@ -147,9 +164,9 @@ class Chat extends Component {
   }
 }
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1
-  // },
+  container: {
+    flex: 1
+  },
   list: {
     paddingHorizontal: 17
   },

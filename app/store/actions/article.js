@@ -11,14 +11,9 @@ export const findArticleByKeyword = keyword => async dispatch => {
   let findarticle = await Axios.post(`${config.server.api}/api/article`,{
     title: keyword
   });
-  dispatch(setNews(findarticle.data));
+  dispatch(setAllArticles(findarticle.data));
 };
 
-
-const setArticles = data => ({
-  type: SET_ARTICLES,
-  payload: data
-});
 const setAllArticles = data => ({
   type: SET_ALL_ARTICLES,
   payload: data

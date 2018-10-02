@@ -7,11 +7,11 @@ import { AsyncStorage } from "react-native";
 export const getAllChat = () => async dispatch => {
   try {
     let user = JSON.parse(await AsyncStorage.getItem("user"));
-    console.log(user);
+    //console.log(user);
     let chat = await Axios.get(
       `${config.server.api}/api/messenger/${user.user_id}`
     );
-    console.log(chat);
+    //console.log(chat);
     dispatch(setAllChat(chat.data));
   } catch (error) {
     let message = "มีไหน";

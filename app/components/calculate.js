@@ -4,12 +4,13 @@ import {
   Item,
   Icon,
   Input,
-  DatePicker,
+  //DatePicker,
   Text,
   Picker,
   Button
 } from "native-base";
 import Master from "./layouts/Master";
+import DatePicker from "react-native-datepicker";
 
 class calculate extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class calculate extends Component {
     this.state = {
       selected1: undefined,
       selected2: undefined,
-      selected3: undefined
+      date: ""
     };
     //this.state = {chosenDate: new Date()};
     //this.setDate = this.setDate.bind(this);
@@ -35,11 +36,6 @@ class calculate extends Component {
       selected2: value
     });
   }
-  onValueChange3(value: string) {
-    this.setState({
-      selected3: value
-    });
-  }
   render() {
     return (
       <Master title="คำนวณปุ๋ย" isBack>
@@ -54,40 +50,31 @@ class calculate extends Component {
             />
           </Item>
           <Item>
-            {/* <DatePicker
-            defaultDate={new Date(2018, 4, 4)}
-            minimumDate={new Date(2018, 1, 1)}
-            maximumDate={new Date(2018, 12, 31)}
-            locale={"en"}
-            timeZoneOffsetInMinutes={undefined}
-            modalTransparent={false}
-            animationType={"fade"}
-            androidMode={"default"}
-            placeHolderText="Select date"
-            textStyle={{ color: "green" }}
-            placeHolderTextStyle={{ color: "#d3d3d3" }}
-            onDateChange={this.setDate}
-            />
-            <Text>
-              Date: {this.state.chosenDate.toString().substr(4, 12)}
-            </Text> */}
             <Text> ระยะเวลาที่จะเก็บเกี่ยว :</Text>
-            <Picker
-              mode="dropdown"
-              iosIcon={<Icon name="ios-arrow-down-outline" />}
-              style={{ width: undefined }}
-              placeholder="เดือน"
-              placeholderStyle={{ color: "#bfc6ea" }}
-              placeholderIconColor="#007aff"
-              selectedValue={this.state.selected1}
-              onValueChange={this.onValueChange1.bind(this)}
-            >
-              <Picker.Item label="มกราคม" value="key0" />
-              <Picker.Item label="กุมภาพันธ์" value="key1" />
-              <Picker.Item label="มีนาคม" value="key2" />
-              <Picker.Item label="เมษายน" value="key3" />
-              <Picker.Item label="พฤษภาคม" value="key4" />
-            </Picker>
+            <DatePicker
+              style={{ width: 200 }}
+              date={this.state.date}
+              mode="date"
+              placeholder="เลือกวันที่"
+              format="YYYY-MM-DD"
+              confirmBtnText="ยืนยัน"
+              cancelBtnText="ยกเลิก"
+              customStyles={{
+                dateIcon: {
+                  position: "absolute",
+                  left: 0,
+                  top: 4,
+                  marginLeft: 0
+                },
+                dateInput: {
+                  marginLeft: 36
+                }
+                // ... You can check the source to find the other keys.
+              }}
+              onDateChange={date => {
+                this.setState({ date: date });
+              }}
+            />
           </Item>
           <Item>
             <Text> ขนาดทรงพุ่ม :</Text>
@@ -98,8 +85,8 @@ class calculate extends Component {
               //placeholder="เดือน"
               placeholderStyle={{ color: "#bfc6ea" }}
               placeholderIconColor="#007aff"
-              selectedValue={this.state.selected2}
-              onValueChange={this.onValueChange2.bind(this)}
+              selectedValue={this.state.selected1}
+              onValueChange={this.onValueChange1.bind(this)}
             >
               <Picker.Item label="1" value="key1" />
               <Picker.Item label="2" value="key2" />
@@ -120,23 +107,26 @@ class calculate extends Component {
             />
           </Item>
           <Item>
-            <Text> สัดส่วนที่ต้องการใส่ปุ๋ยช่วงที่ 2 :</Text>
+            <Text> สัดส่วนที่ต้องการใส่ปุ๋ยช่วงที่ติดผล :</Text>
             <Picker
               mode="dropdown"
               iosIcon={<Icon name="ios-arrow-down-outline" />}
               style={{ width: undefined }}
-              placeholder="ติดดอก - เก็บเกี่ยว"
+              placeholder="ครั้ง"
               placeholderStyle={{ color: "#bfc6ea" }}
               placeholderIconColor="#007aff"
-              selectedValue={this.state.selected3}
-              onValueChange={this.onValueChange3.bind(this)}
+              selectedValue={this.state.selected2}
+              onValueChange={this.onValueChange2.bind(this)}
             >
               <Picker.Item label="3" value="key3" />
               <Picker.Item label="4" value="key4" />
               <Picker.Item label="5" value="key5" />
             </Picker>
           </Item>
-          <Button onPress={() => alert("รอแปร้บบบบบ")} style={{alignSelf:"center",padding:5,margin:10}}>
+          <Button
+            style={{ alignSelf: "center", padding: 5, margin: 10 }}
+            onPress={() => alert("รอแปร้บบบบบ")}
+          >
             <Text>คำนวณ</Text>
           </Button>
         </Form>

@@ -18,7 +18,3 @@ const setAllNews = data => ({
   type: SET_ALL_NEWS,
   payload: data
 })
-const setNews = data => ({
-  type: SET_NEWS,
-  payload: data
-})
