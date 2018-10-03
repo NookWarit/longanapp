@@ -19,11 +19,9 @@ const initialState = {
   },
   water: {
     status: false,
-    user_id:{}
+    user_id: {}
   },
-  activeTab: 0,
-  value:''
-  
+  activeTab: 0
 };
 const AppReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -38,12 +36,13 @@ const AppReducer = (state = initialState, action) => {
     case SET_WEBVIEW:
       return update(state, { webView: { $set: action.payload } });
     case TOGGLE_WATER:
-      return update(state, { water:  { $set: action.payload } 
+      return update(state, {
+        water: { $set: action.payload }
       });
     case SET_ACTIVE_TAB:
       return update(state, { activeTab: { $set: action.payload } });
     // case SET_SOIl:
-    //   return update(state, { value:  { $set: action.payload } 
+    //   return update(state, { value:  { $set: action.payload }
     //   });
     default:
       return state;

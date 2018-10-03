@@ -24,6 +24,7 @@ import DetailMedia from "./app/components/DetailMedia";
 import calculate from "./app/components/Calculate";
 import soil from "./app/components/Soil";
 import { getAllMedia } from "./app/store/actions/media";
+import { getAllNotification } from "./app/store/actions/notification";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -50,6 +51,7 @@ export default class App extends React.Component {
     Store.dispatch(getAllArticles())
     Store.dispatch(getAllNews())
     Store.dispatch(getAllMedia())
+    Store.dispatch(getAllNotification())
   }
   render() {
     return this.state.isLoading ? (

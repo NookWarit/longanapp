@@ -3,6 +3,14 @@ import { Dimensions } from "react-native";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import Master from "./layouts/Master";
 const { height, width } = Dimensions.get("window");
+import { connect } from "react-redux";
+import { getAllNotification } from "../store/actions/notification";
+
+const arrayToObject = array =>
+  array.reduce((obj, item) => {
+    obj[item.date] = item;
+    return obj;
+  }, {});
 
 class Calendars extends Component {
   constructor(props) {
@@ -10,9 +18,13 @@ class Calendars extends Component {
     this.state = {};
   }
   render() {
+    const notification = this.props.notification.map(item => ({
+      [item.date]: { selected: true, marked: true, selectedColor: "blue" }
+    }));
+    
     return (
       <Master title="การแจ้งเตือน">
-        <Calendar
+        <CalendarList
           // Initially visible month. Default = Date()
           //current={}
           // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
@@ -28,7 +40,7 @@ class Calendars extends Component {
             console.log("selected day", day);
           }}
           // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-          monthFormat={"yyyy MM"}
+          //monthFormat={""}
           // Handler which gets executed when visible month changes in calendar. Default = undefined
           onMonthChange={month => {
             console.log("month changed", month);
@@ -41,21 +53,33 @@ class Calendars extends Component {
           hideExtraDays={true}
           // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
           // day from another month that is visible in calendar page. Default = false
-          disableMonthChange={true}
+          disableMonthChange={false}
           // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
           firstDay={1}
           // Hide day names. Default = false
-          hideDayNames={true}
+          //hideDayNames={true}
           // Show week numbers to the left. Default = false
-          showWeekNumbers={true}
+          //showWeekNumbers={true}
           // Handler which gets executed when press arrow icon left. It receive a callback can go back month
           onPressArrowLeft={substractMonth => substractMonth()}
           // Handler which gets executed when press arrow icon left. It receive a callback can go next month
           onPressArrowRight={addMonth => addMonth()}
+          //markedDates={}
+          horizontal={true}
         />
       </Master>
     );
   }
 }
-
-export default Calendars;
+const mapStateToProps = state => ({
+  user: state.user.user,
+  hasError: state.app.hasError.message,
+  notification: state.notification.notification
+});
+const mapDispatchToProps = dispatch => ({
+  getAllNotification: data => dispatch(getAllNotification(data))
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Calendars);
