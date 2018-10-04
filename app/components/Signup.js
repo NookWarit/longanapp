@@ -81,7 +81,7 @@ class Signup extends Component {
         </Header>
         <Content>
           <Form>
-            <Item style={{alignSelf:'center'}}>
+            {/* <Item style={{alignSelf:'center'}}>
               <TouchableOpacity onPress={this._pickImage}>
                 <Thumbnail
                   large square
@@ -89,7 +89,7 @@ class Signup extends Component {
                   style={{width:100,height:100}}
                 />
               </TouchableOpacity>
-            </Item>
+            </Item> */}
             <Item regular>
               <Icon active name="person" />
               <Input placeholder="ชื่อผู้ใช้" value={this.state.input.name} onChangeText={(text)=>this.onTextChangeHandler(text,"name")} />
@@ -147,8 +147,7 @@ const mapStateToProps = state => ({
   hasError: state.app.hasError.message
 });
 const mapDispatchToProps = dispatch => ({
-   signup: data => dispatch(signup(data)),
-  // setWebview: data => dispatch(setWebview(data))
+   signup: data => dispatch(signup(data))
 });
 
 export default connect(

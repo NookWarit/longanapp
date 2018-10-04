@@ -24,6 +24,8 @@ import { connect } from "react-redux";
 import config from "../config";
 import PropTypes from "prop-types";
 import { update } from "../store/actions/user";
+import { Dimensions } from "react-native";
+const { height, width } = Dimensions.get("window");
 
 class Profile extends Component {
   static contextTypes = {
@@ -70,7 +72,7 @@ class Profile extends Component {
         >
           <Content>
             <Form>
-              <Item>
+              {/* <Item>
                 <TouchableOpacity onPress={this._pickImage}>
                   <Thumbnail
                     large
@@ -78,7 +80,7 @@ class Profile extends Component {
                     source={{ uri: this.state.input.image }}
                   />
                 </TouchableOpacity>
-              </Item>
+              </Item> */}
               <Item regular>
                 <Icon active name="person" />
                 <Input
@@ -184,17 +186,17 @@ class Profile extends Component {
             <CardItem header bordered style={{ justifyContent: "center" }}>
               <Text>ข้อมูลส่วนตัว</Text>
             </CardItem>
-            <CardItem bordered>
+            <CardItem bordered >
               <Body>
-                <List>
-                  <ListItem>
+                <List style={{ justifyContent: "center" }}>
+                  {/* <ListItem>
                     <Thumbnail
                       large
                       square
                       source={{ uri: this.props.user.image }}
                       //style={{ width: 64, height: 64, resizeMode:'contain'}}
                     />
-                  </ListItem>
+                  </ListItem> */}
                   <ListItem>
                     <Text>ชื่อ </Text>
                     <Text>{this.props.user.name} </Text>

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { Col, Row, Grid } from "react-native-easy-grid";
-import { Thumbnail, Content, Icon, Card, CardItem,Button } from "native-base";
+import { Thumbnail, Content, Icon, Card, CardItem, Button, List, ListItem, Left, Body, Right } from "native-base";
 import { connect } from "react-redux";
 import config from "../config";
 import { setWebview } from "../store/actions/app";
 import PropTypes from "prop-types";
 import Master from "./layouts/Master";
+import { getAllMedia } from "../store/actions/media";
 
 class Home extends Component {
   static contextTypes = {
@@ -28,7 +29,12 @@ class Home extends Component {
             <CardItem>
               <Grid>
                 <Row>
-                  <Col style={styles.block} onPress={() => this.context.router.history.push("/calculate")}>
+                  <Col
+                    style={styles.block}
+                    onPress={() =>
+                      this.context.router.history.push("/calculate")
+                    }
+                  >
                     <Thumbnail
                       square
                       small
@@ -36,7 +42,10 @@ class Home extends Component {
                     />
                     <Text style={styles.text}>ปริมาณสัดส่วนปุ๋ย</Text>
                   </Col>
-                  <Col style={styles.block} onPress={() => this.context.router.history.push("/soil")}>
+                  <Col
+                    style={styles.block}
+                    onPress={() => this.context.router.history.push("/soil")}
+                  >
                     <Thumbnail
                       square
                       small
@@ -44,7 +53,10 @@ class Home extends Component {
                     />
                     <Text style={styles.text}>วิเคราะห์ดิน</Text>
                   </Col>
-                  <Col style={styles.block} onPress={() => this.context.router.history.push("/soil")}>
+                  <Col
+                    style={styles.block}
+                    onPress={() => this.context.router.history.push("/soil")}
+                  >
                     <Thumbnail
                       square
                       small
@@ -64,27 +76,41 @@ class Home extends Component {
             <CardItem bordered>
               <Grid>
                 <Row>
-                  <Col
-                    style={styles.block}
-                    onPress={() => {
-                      this.props.setWebview({
-                        url:`${config.server.api}/info/media/001`
-                      })
-                      this.context.router.history.push("/detailmedia");
-                  }}
-                  >
-                    <Icon name="film" />
-                    <Text style={styles.text}>ตรวจหาค่าในดิน</Text>
-                  </Col>
-                  <Col style={styles.block} onPress={() => {
-                      this.props.setWebview({
-                        url:`${config.server.api}/info/media/003`
-                      })
-                      this.context.router.history.push("/detailmedia");
-                  }}>
-                    <Icon name="film" />
-                    <Text style={styles.text}>เทคนิคการตัดแต่งกิ่ง</Text>
-                  </Col>
+                  <List>
+                    {this.props.media.map(
+                      (media, index) => (
+                        console.log(media),
+                        (
+                          <ListItem thumbnail key={index}>
+                            <Left>
+                              <Icon name="film" />
+                            </Left>
+                            <Body>
+                              <Text>{media.title}</Text>
+                              <Text note>Doing what you like will always keep you happy . .</Text>
+                            </Body>
+                            <Right>
+                              <Button
+                                transparent
+                                onPress={() => {
+                                  this.props.setWebview({
+                                    url: `${config.server.api}/info/media/${
+                                      media.media_id
+                                    }`
+                                  });
+                                  this.context.router.history.push(
+                                    "/detailmedia"
+                                  );
+                                }}
+                              >
+                                <Text>View</Text>
+                              </Button>
+                            </Right>
+                          </ListItem>
+                        )
+                      )
+                    )}
+                  </List>
                 </Row>
               </Grid>
             </CardItem>
@@ -119,10 +145,10 @@ const styles = StyleSheet.create({
   }
 });
 const mapStateToProps = state => ({
-  // articles: state.article.articles
+  media: state.media.media
 });
 const mapDispatchToProps = dispatch => ({
-  // toggleArticle: data => dispatch(toggleArticle(data)),
+  getAllMedia: data => dispatch(getAllMedia(data)),
   setWebview: data => dispatch(setWebview(data))
 });
 

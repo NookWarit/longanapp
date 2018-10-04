@@ -1,24 +1,21 @@
 import React, { Component } from "react";
-import {
-  Form,
-  Item,
-  Icon,
-  Input,
-  //DatePicker,
-  Text,
-  Picker,
-  Button
-} from "native-base";
+import { Form, Item, Icon, Input, Text, Picker, Button } from "native-base";
 import Master from "./layouts/Master";
 import DatePicker from "react-native-datepicker";
+import {connect} from "react-redux";
 
 class calculate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected1: undefined,
-      selected2: undefined,
-      date: ""
+      //selected1: undefined,
+      date: "",
+      input: {
+        place: "",
+        harvestday: "",
+        size: "",
+        expected: ""
+      }
     };
     //this.state = {chosenDate: new Date()};
     //this.setDate = this.setDate.bind(this);
@@ -31,11 +28,6 @@ class calculate extends Component {
       selected1: value
     });
   }
-  onValueChange2(value: string) {
-    this.setState({
-      selected2: value
-    });
-  }
   render() {
     return (
       <Master title="คำนวณปุ๋ย" isBack>
@@ -45,7 +37,7 @@ class calculate extends Component {
             <Text> สถานที่ :</Text>
             <Input
               placeholder="สถานที่"
-              //   value={this.state.input.name}
+              value={this.state.input.place}
               //   onChangeText={text => this.onTextChangeHandler(text, "name")}
             />
           </Item>
@@ -72,7 +64,7 @@ class calculate extends Component {
                 // ... You can check the source to find the other keys.
               }}
               onDateChange={date => {
-                this.setState({ date: date });
+                this.setState({ date: harvestday });
               }}
             />
           </Item>
@@ -85,7 +77,7 @@ class calculate extends Component {
               //placeholder="เดือน"
               placeholderStyle={{ color: "#bfc6ea" }}
               placeholderIconColor="#007aff"
-              selectedValue={this.state.selected1}
+              selectedValue={this.state.size}
               onValueChange={this.onValueChange1.bind(this)}
             >
               <Picker.Item label="1" value="key1" />
@@ -102,26 +94,9 @@ class calculate extends Component {
             <Text> ผลผลิตโดยเฉลี่ยปีก่อน :</Text>
             <Input
               placeholder="กิโลกรัมต่อต้น"
-              //   value={this.state.input.name}
+              value={this.state.input.expected}
               //   onChangeText={text => this.onTextChangeHandler(text, "name")}
             />
-          </Item>
-          <Item>
-            <Text> สัดส่วนที่ต้องการใส่ปุ๋ยช่วงที่ติดผล :</Text>
-            <Picker
-              mode="dropdown"
-              iosIcon={<Icon name="ios-arrow-down-outline" />}
-              style={{ width: undefined }}
-              placeholder="ครั้ง"
-              placeholderStyle={{ color: "#bfc6ea" }}
-              placeholderIconColor="#007aff"
-              selectedValue={this.state.selected2}
-              onValueChange={this.onValueChange2.bind(this)}
-            >
-              <Picker.Item label="3" value="key3" />
-              <Picker.Item label="4" value="key4" />
-              <Picker.Item label="5" value="key5" />
-            </Picker>
           </Item>
           <Button
             style={{ alignSelf: "center", padding: 5, margin: 10 }}
@@ -134,5 +109,9 @@ class calculate extends Component {
     );
   }
 }
-
-export default calculate;
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(calculate);
