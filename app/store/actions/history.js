@@ -13,8 +13,11 @@ export const getAllHistory = () => async dispatch => {
     );
     dispatch(setAllHistory(history.data));
   } catch (error) {
-    let message = "มีไหน";
+    let message = "ประวัติมีไหน";
     dispatch(hasError(message));
+    setTimeout(() => {
+      dispatch(hasError(""));
+    }, 3000);
     //console.log(error);
   }
 };

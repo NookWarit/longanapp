@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View ,TouchableOpacity } from "react-native";
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Thumbnail, Content, Icon, Card, CardItem, Button, List, ListItem, Left, Body, Right } from "native-base";
 import { connect } from "react-redux";
@@ -8,6 +8,8 @@ import { setWebview } from "../store/actions/app";
 import PropTypes from "prop-types";
 import Master from "./layouts/Master";
 import { getAllMedia } from "../store/actions/media";
+import { Dimensions } from "react-native";
+const { height, width } = Dimensions.get("window");
 
 class Home extends Component {
   static contextTypes = {
@@ -53,17 +55,6 @@ class Home extends Component {
                     />
                     <Text style={styles.text}>วิเคราะห์ดิน</Text>
                   </Col>
-                  <Col
-                    style={styles.block}
-                    onPress={() => this.context.router.history.push("/soil")}
-                  >
-                    <Thumbnail
-                      square
-                      small
-                      source={require("../assets/images/water1.png")}
-                    />
-                    <Text style={styles.text}>วิเคราะห์น้ำ</Text>
-                  </Col>
                 </Row>
               </Grid>
             </CardItem>
@@ -79,18 +70,14 @@ class Home extends Component {
                   <List>
                     {this.props.media.map(
                       (media, index) => (
-                        console.log(media),
                         (
-                          <ListItem thumbnail key={index}>
+                          console.log(media),
+                          <ListItem avatar key={index} >
                             <Left>
                               <Icon name="film" />
                             </Left>
-                            <Body>
-                              <Text>{media.title}</Text>
-                              <Text note>Doing what you like will always keep you happy . .</Text>
-                            </Body>
                             <Right>
-                              <Button
+                              <TouchableOpacity
                                 transparent
                                 onPress={() => {
                                   this.props.setWebview({
@@ -103,8 +90,8 @@ class Home extends Component {
                                   );
                                 }}
                               >
-                                <Text>View</Text>
-                              </Button>
+                              <Text>{media.title}</Text>
+                              </TouchableOpacity>
                             </Right>
                           </ListItem>
                         )

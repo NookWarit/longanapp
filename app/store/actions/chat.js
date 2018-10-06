@@ -23,7 +23,9 @@ export const getAllChat = () => async dispatch => {
   } catch (error) {
     let message = "มีไหน";
     dispatch(hasError(message));
-    //console.log(error);
+    setTimeout(() => {
+      dispatch(hasError(""));
+    }, 3000);
   }
 };
 export const sentChat = data => async dispatch => {

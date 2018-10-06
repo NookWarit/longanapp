@@ -38,7 +38,7 @@ class ControlPanel extends Component {
     return (
       <Content style={styles.drawerBackground}>
         <View style={styles.drawerProfile}>
-          <Icon active name="contact" />
+          {/* <Icon active name="contact" /> */}
           <Button
             style={styles.drawerButtonSignout}
             onPress={() => {
@@ -117,60 +117,6 @@ class ControlPanel extends Component {
               <Text>ถาม-ตอบ</Text>
             </Body>
           </ListItem>
-
-          {/* <ListItem icon>
-            <Left>
-              <Button style={styles.drawerButton}>
-                <Icon active name="switch" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>เปิด-ปิดระบบน้ำ</Text>
-            </Body>
-            <Right>
-              <Switch
-                value={this.props.water.status}
-                onValueChange={() =>
-                  this.props.toggleWater({
-                    status: !this.props.water.status,
-                    user_id: this.props.user.user_id
-                  })
-                }
-              />
-            </Right>
-          </ListItem>
-          <ListItem
-            icon
-            onPress={() => {
-              this.context.router.history.push("/contact");
-              this.props.toggleDrawer(false);
-            }}
-          >
-            <Left>
-              <Button style={styles.drawerButton}>
-                <Icon active name="call" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>ติดต่อเรา</Text>
-            </Body>
-          </ListItem>
-          <ListItem
-            icon
-            onPress={() => {
-              this.context.router.history.push("/info");
-              this.props.toggleDrawer(false);
-            }}
-          >
-            <Left>
-              <Button style={styles.drawerButton}>
-                <Icon active name="information-circle" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>เกี่ยวกับโปรแกรม</Text>
-            </Body>
-          </ListItem> */}
           <ListItem
             icon
             onPress={() => {
@@ -214,12 +160,10 @@ const styles = StyleSheet.create({
   }
 });
 const mapStateToProps = state => ({
-  user: state.user.user,
-  water: state.app.water
+  user: state.user.user
 });
 const mapDispatchToProps = dispatch => ({
   toggleDrawer: data => dispatch(toggleDrawer(data)),
-  toggleWater: data => dispatch(toggleWater(data)),
   setUser: data => dispatch(setUser(data))
 });
 

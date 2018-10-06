@@ -3,8 +3,7 @@ import {
   SET_WEBVIEW,
   TOGGLE_WATER,
   HAS_ERROR,
-  SET_ACTIVE_TAB,
-  SET_SOIl
+  SET_ACTIVE_TAB
 } from "../actions/app";
 import update from "immutability-helper";
 
@@ -41,9 +40,6 @@ const AppReducer = (state = initialState, action) => {
       });
     case SET_ACTIVE_TAB:
       return update(state, { activeTab: { $set: action.payload } });
-    // case SET_SOIl:
-    //   return update(state, { value:  { $set: action.payload }
-    //   });
     default:
       return state;
   }

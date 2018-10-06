@@ -17,7 +17,11 @@ import {
   Image,
   Thumbnail,
   Form,
-  Input
+  Input,
+  Container,
+  Header,
+  H1,
+  H3
 } from "native-base";
 import Master from "./layouts/Master";
 import { connect } from "react-redux";
@@ -39,10 +43,10 @@ class Profile extends Component {
     };
     this.onEditBtnPress = this.onEditBtnPress.bind(this);
   }
-  onTextChangeHandler(text, field){
+  onTextChangeHandler(text, field) {
     let oldInput = this.state.input;
     oldInput[field] = text;
-    this.setState({ input:oldInput });
+    this.setState({ input: oldInput });
   }
 
   onEditBtnPress() {
@@ -70,9 +74,28 @@ class Profile extends Component {
           transparent={false}
           visible={this.state.showModal}
         >
-          <Content>
-            <Form>
-              {/* <Item>
+          <Container>
+            <Header>
+              <Left>
+                <Button
+                  transparent
+                  onPress={() => {
+                    this.setState({ showModal: false });
+                  }}
+                >
+                  <Icon name="arrow-round-back" />
+                </Button>
+              </Left>
+              <Body>
+                <Text style={{fontStyle : "normal" }}>
+                  แก้ไขข้อมูลส่วนตัว
+                </Text>
+              </Body>
+              <Right />
+            </Header>
+            <Content>
+              <Form>
+                {/* <Item>
                 <TouchableOpacity onPress={this._pickImage}>
                   <Thumbnail
                     large
@@ -81,112 +104,117 @@ class Profile extends Component {
                   />
                 </TouchableOpacity>
               </Item> */}
-              <Item regular>
-                <Icon active name="person" />
-                <Input
-                  placeholder="ชื่อผู้ใช้"
-                  value={this.state.input.name}
-                  onChangeText={text => this.onTextChangeHandler(text, "name")}
-                />
-              </Item>
-              <Item regular>
-                <Icon active name="person" />
-                <Input
-                  placeholder="นามสกุล"
-                  value={this.state.input.lastname}
-                  onChangeText={text =>
-                    this.onTextChangeHandler(text, "lastname")
-                  }
-                />
-              </Item>
-              <Item regular>
-                <Icon active name="mail" />
-                <Input
-                  placeholder="อีเมลล์"
-                  keyboardType="email-address"
-                  value={this.state.input.email}
-                  onChangeText={text => this.onTextChangeHandler(text, "email")}
-                />
-              </Item>
-              <Item regular>
-                <Icon active name="lock" />
-                <Input
-                  placeholder="รหัสผ่าน"
-                  value={this.state.input.password}
-                  onChangeText={text =>
-                    this.onTextChangeHandler(text, "password")
-                  }
-                />
-              </Item>
-              <Item regular>
-                <Icon active name="call" />
-                <Input
-                  placeholder="โทรศัพท์"
-                  value={this.state.input.tel}
-                  onChangeText={text => this.onTextChangeHandler(text, "tel")}
-                />
-              </Item>
-              <Item regular>
-                <Icon active name="pin" />
-                <Input
-                  placeholder="ที่อยู่"
-                  value={this.state.input.address}
-                  onChangeText={text =>
-                    this.onTextChangeHandler(text, "address")
-                  }
-                />
-              </Item>
-              <Item regular>
-                <Icon active name="pin" />
-                <Input
-                  placeholder="อำเภอ"
-                  value={this.state.input.district}
-                  onChangeText={text =>
-                    this.onTextChangeHandler(text, "district")
-                  }
-                />
-                <Icon active name="pin" />
-                <Input
-                  placeholder="จังหวัด"
-                  value={this.state.input.province}
-                  onChangeText={text =>
-                    this.onTextChangeHandler(text, "province")
-                  }
-                />
-              </Item>
-              <Item>
+                <Item regular>
+                  <Icon active name="person" />
+                  <Input
+                    placeholder="ชื่อผู้ใช้"
+                    value={this.state.input.name}
+                    onChangeText={text =>
+                      this.onTextChangeHandler(text, "name")
+                    }
+                  />
+                </Item>
+                <Item regular>
+                  <Icon active name="person" />
+                  <Input
+                    placeholder="นามสกุล"
+                    value={this.state.input.lastname}
+                    onChangeText={text =>
+                      this.onTextChangeHandler(text, "lastname")
+                    }
+                  />
+                </Item>
+                <Item regular>
+                  <Icon active name="mail" />
+                  <Input
+                    disabled
+                    placeholder="อีเมลล์"
+                    keyboardType="email-address"
+                    value={this.state.input.email}
+                    onChangeText={text =>
+                      this.onTextChangeHandler(text, "email")
+                    }
+                  />
+                </Item>
+                <Item regular>
+                  <Icon active name="lock" />
+                  <Input
+                    placeholder="รหัสผ่าน"
+                    value={this.state.input.password}
+                    onChangeText={text =>
+                      this.onTextChangeHandler(text, "password")
+                    }
+                  />
+                </Item>
+                <Item regular>
+                  <Icon active name="call" />
+                  <Input
+                    placeholder="โทรศัพท์"
+                    value={this.state.input.tel}
+                    onChangeText={text => this.onTextChangeHandler(text, "tel")}
+                  />
+                </Item>
+                <Item regular>
+                  <Icon active name="pin" />
+                  <Input
+                    placeholder="ที่อยู่"
+                    value={this.state.input.address}
+                    onChangeText={text =>
+                      this.onTextChangeHandler(text, "address")
+                    }
+                  />
+                </Item>
+                <Item regular>
+                  <Icon active name="pin" />
+                  <Input
+                    placeholder="อำเภอ"
+                    value={this.state.input.district}
+                    onChangeText={text =>
+                      this.onTextChangeHandler(text, "district")
+                    }
+                  />
+                  <Icon active name="pin" />
+                  <Input
+                    placeholder="จังหวัด"
+                    value={this.state.input.province}
+                    onChangeText={text =>
+                      this.onTextChangeHandler(text, "province")
+                    }
+                  />
+                </Item>
                 <Button
                   block
-                  info
+                  success
                   onPress={() => {
                     this.props.update(this.state.input);
                     this.setState({ showModal: false });
                   }}
+                  style={{ marginTop: 20 }}
                 >
-                  <Text> แก้ไขข้อมูล </Text>
+                  <Text style={{ color: "#FFF" }}> บันทึก </Text>
                 </Button>
-                <Button
-                  block
-                  info
-                  onPress={() => {
-                    this.setState({ showModal: false });
-                  }}
-                >
-                  <Text> ยกเลิก </Text>
-                </Button>
-              </Item>
-              {this.props.hasError ? (
-                <Text style={{ color: "red" }}>{this.props.hasError}</Text>
-              ) : null}
-            </Form>
-          </Content>
+                {/* <Button
+                    full
+                    info
+                    onPress={() => {
+                      this.setState({ showModal: false });
+                    }}
+                  >
+                    <Text> ยกเลิก </Text>
+                  </Button> */}
+                {this.props.hasError ? (
+                  <Text style={{ color: "red" }}>{this.props.hasError}</Text>
+                ) : null}
+              </Form>
+            </Content>
+          </Container>
         </Modal>
         <Content padder>
           <Card>
             <CardItem header bordered style={{ justifyContent: "center" }}>
               <Text>ข้อมูลส่วนตัว</Text>
             </CardItem>
-            <CardItem bordered >
+            <CardItem bordered>
               <Body>
                 <List style={{ justifyContent: "center" }}>
                   {/* <ListItem>
@@ -198,28 +226,34 @@ class Profile extends Component {
                     />
                   </ListItem> */}
                   <ListItem>
+                    <Icon active name="person" />
                     <Text>ชื่อ </Text>
                     <Text>{this.props.user.name} </Text>
                     <Text> นามสกุล </Text>
                     <Text>{this.props.user.lastname} </Text>
                   </ListItem>
                   <ListItem>
+                    <Icon active name="mail" />
                     <Text>อีเมลล์ </Text>
                     <Text>{this.props.user.email} </Text>
                   </ListItem>
                   <ListItem>
+                    <Icon active name="lock" />
                     <Text>รหัสผ่าน </Text>
                     <Text>{this.props.user.password} </Text>
                   </ListItem>
                   <ListItem>
+                    <Icon active name="call" />
                     <Text>เบอร์โทร </Text>
                     <Text>{this.props.user.tel} </Text>
                   </ListItem>
                   <ListItem>
+                    <Icon active name="pin" />
                     <Text>ที่อยู่ </Text>
                     <Text>{this.props.user.address} </Text>
                   </ListItem>
                   <ListItem>
+                    <Icon active name="pin" />
                     <Text>อำเภอ </Text>
                     <Text>{this.props.user.district} </Text>
                     <Text> จังหวัด </Text>

@@ -50,7 +50,6 @@ class Article extends Component {
         </Item>
         <List>
           {this.props.articles.map((article,index) => (
-            console.log(article),
             <ListItem thumbnail key={index}>
               <Left>
                 <Thumbnail

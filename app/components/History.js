@@ -15,7 +15,11 @@ import {
 import Master from "./layouts/Master";
 import { connect } from "react-redux";
 import { getAllHistory } from "../store/actions/history";
+import PropTypes from "prop-types";
 class History extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
   constructor(props) {
     super(props);
     this.state = {};
