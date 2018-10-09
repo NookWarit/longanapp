@@ -17,6 +17,8 @@ import Master from "./layouts/Master";
 import { connect } from "react-redux";
 import { getAllHistory } from "../store/actions/history";
 import PropTypes from "prop-types";
+import config from "../config";
+import { setWebview } from "../store/actions/app";
 class History extends Component {
   static contextTypes = {
     router: PropTypes.object
@@ -30,41 +32,41 @@ class History extends Component {
   }
   render() {
     return (
-      <Master title="ประวัติการใช้งาน">
+      <Master title="ประวัติการคำนวณ">
         <Content padder>
           <Card>
             <CardItem header>
               <Text>History</Text>
             </CardItem>
             <CardItem>
+              <Content>
               <List>
-              {this.props.historys.map((history, index) => (
-                console.log(this.props.history),
-                <ListItem thumbnail key={index}>
-                <Left>
-                  {/* <Thumbnail
-                    square
-                    source={{ uri: `${config.server.api}/api/article/image/${article.image}`}}
-                    //style={{ width: 64, height: 64, resizeMode:'contain'}}
-                  /> */}
-                </Left>
-                <Body>
-                  <Text>สถานที่ : {history.place}</Text>
-                  
-                </Body>
-                <Right>
-                  {/* <Button transparent onPress={() => {
+                {this.props.historys.map(
+                  (his, index) => (
+                    (
+                      <ListItem thumbnail key={index}>
+                        <Left>
+                        
+                        </Left>
+                        <Body>
+                        <Text>สถานที่ : {his.place}</Text>
+                        </Body>
+                        <Right>
+                          <Button transparent onPress={() => {
                     this.props.setWebview({
-                      url:`${config.server.api}/info/article/${article.article_id}`
+                      url:`${config.server.api}/info/history/${his.history_id}`
                     })
-                    this.context.router.history.push("/detailarticle");
+                    this.context.router.history.push("/detailhistory");
                 }}>
-                    <Text>View</Text>
-                  </Button> */}
-                </Right>
-              </ListItem>
-              ))}
+                    <Text>ดูเพิ่มเติม</Text>
+                  </Button>
+                        </Right>
+                      </ListItem>
+                    )
+                  )
+                )}
               </List>
+              </Content>
             </CardItem>
           </Card>
         </Content>
@@ -76,7 +78,8 @@ const mapStateToProps = state => ({
   historys: state.history.history
 });
 const mapDispatchToProps = dispatch => ({
-  getAllHistory: data => dispatch(getAllHistory(data))
+  getAllHistory: data => dispatch(getAllHistory(data)),
+  setWebview: data => dispatch(setWebview(data))
 });
 export default connect(
   mapStateToProps,

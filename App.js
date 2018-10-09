@@ -25,6 +25,7 @@ import calculate from "./app/components/Calculate";
 import soil from "./app/components/Soil";
 import { getAllMedia } from "./app/store/actions/media";
 import { getAllNotification } from "./app/store/actions/notification";
+import DetailHistory from "./app/components/DetailHistory";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -74,6 +75,7 @@ export default class App extends React.Component {
             <Route path="/detailarticle" component={DetailArticle} />
             <Route path="/detailnews" component={DetailNews} />
             <Route path="/detailmedia" component={DetailMedia} />
+            <Route path="/detailhistory" component={DetailHistory} />
             <Route path="/calculate" component={calculate} />
             <Route path="/soil" component={soil} />
           </Switch>

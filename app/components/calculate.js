@@ -2,31 +2,37 @@ import React, { Component } from "react";
 import { Form, Item, Icon, Input, Text, Picker, Button } from "native-base";
 import Master from "./layouts/Master";
 import DatePicker from "react-native-datepicker";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { sentHistory, getAllHistory } from "../store/actions/history";
+import PropTypes from "prop-types";
+import { Alert } from "react-native";
 
 class calculate extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
   constructor(props) {
     super(props);
     this.state = {
-      //selected1: undefined,
-      date: "",
       input: {
+        user_id: "",
         place: "",
         harvestday: "",
-        size: "",
+        size: "1",
         expected: ""
       }
     };
-    //this.state = {chosenDate: new Date()};
-    //this.setDate = this.setDate.bind(this);
+    this.onValueChange = this.onValueChange.bind(this);
   }
-  //   setDate(newDate) {
-  //     this.setState({ chosenDate: newDate });
-  //   }
-  onValueChange1(value) {
-    this.setState({
-      selected1: value
-    });
+  componentDidMount() {
+    let oldInput = this.state.input;
+    oldInput["user_id"] = this.props.user.user_id;
+    this.setState({ input: oldInput });
+  }
+  onValueChange(field, value) {
+    let oldInput = this.state.input;
+    oldInput[field] = value;
+    this.setState({ input: oldInput });
   }
   render() {
     return (
@@ -38,17 +44,18 @@ class calculate extends Component {
             <Input
               placeholder="สถานที่"
               value={this.state.input.place}
-              //   onChangeText={text => this.onTextChangeHandler(text, "name")}
+              onChangeText={text => this.onValueChange("place", text)}
             />
           </Item>
           <Item>
             <Text> ระยะเวลาที่จะเก็บเกี่ยว :</Text>
             <DatePicker
               style={{ width: 200 }}
-              date={this.state.date}
+              date={this.state.input.harvestday}
               mode="date"
               placeholder="เลือกวันที่"
               format="YYYY-MM-DD"
+              minDate={new Date()}
               confirmBtnText="ยืนยัน"
               cancelBtnText="ยกเลิก"
               customStyles={{
@@ -63,9 +70,7 @@ class calculate extends Component {
                 }
                 // ... You can check the source to find the other keys.
               }}
-              onDateChange={date => {
-                this.setState({ date: harvestday });
-              }}
+              onDateChange={date => this.onValueChange("harvestday", date)}
             />
           </Item>
           <Item>
@@ -77,16 +82,16 @@ class calculate extends Component {
               //placeholder="เดือน"
               placeholderStyle={{ color: "#bfc6ea" }}
               placeholderIconColor="#007aff"
-              selectedValue={this.state.size}
-              onValueChange={this.onValueChange1.bind(this)}
+              selectedValue={this.state.input.size}
+              onValueChange={value => this.onValueChange("size", value)}
             >
-              <Picker.Item label="1" value="key1" />
-              <Picker.Item label="2" value="key2" />
-              <Picker.Item label="3" value="key3" />
-              <Picker.Item label="4" value="key4" />
-              <Picker.Item label="5" value="key5" />
-              <Picker.Item label="6" value="key6" />
-              <Picker.Item label="7" value="key7" />
+              <Picker.Item label="1" value="1" />
+              <Picker.Item label="2" value="2" />
+              <Picker.Item label="3" value="3" />
+              <Picker.Item label="4" value="4" />
+              <Picker.Item label="5" value="5" />
+              <Picker.Item label="6" value="6" />
+              <Picker.Item label="7" value="7" />
             </Picker>
           </Item>
           <Item>
@@ -94,13 +99,39 @@ class calculate extends Component {
             <Text> ผลผลิตโดยเฉลี่ยปีก่อน :</Text>
             <Input
               placeholder="กิโลกรัมต่อต้น"
+              keyboardType="number-pad"
               value={this.state.input.expected}
-              //   onChangeText={text => this.onTextChangeHandler(text, "name")}
+              onChangeText={text => this.onValueChange("expected", text)}
             />
           </Item>
           <Button
             style={{ alignSelf: "center", padding: 5, margin: 10 }}
-            onPress={() => alert("รอแปร้บบบบบ")}
+            onPress={() => {
+              if (
+                (this.state.input.place,
+                this.state.input.size,
+                this.state.input.harvestday,
+                this.state.input.expected == "")
+              ) {
+                alert("กรุณากรอกข้อมูลให้ครบ");
+              } else {
+                this.props.sentHistory(this.state.input);
+                Alert.alert(
+                  "คำนวณเรียบร้อย",
+                  "ไปดูได้ที่หน้าประวัติการคำนวณ",
+                  [
+                    {
+                      text: "ตกลง",
+                      onPress: async () => {
+                        await this.props.getAllHistory();
+                        this.context.router.history.push("/history");
+                      }
+                    }
+                  ],
+                  { cancelable: false }
+                );
+              }
+            }}
           >
             <Text>คำนวณ</Text>
           </Button>
@@ -110,7 +141,8 @@ class calculate extends Component {
   }
 }
 const mapStateToProps = state => ({
-  historys: state.history.history
+  historys: state.history.history,
+  user: state.user.user
 });
 const mapDispatchToProps = dispatch => ({
   getAllHistory: data => dispatch(getAllHistory(data)),

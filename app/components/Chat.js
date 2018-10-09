@@ -10,7 +10,8 @@ import {
   ScrollView,
   TextInput,
   FlatList,
-  Platform
+  Platform,
+  KeyboardAvoidingView
 } from "react-native";
 import {
   Footer,
@@ -101,6 +102,7 @@ class Chat extends Component {
           <FlatList
             style={styles.list}
             data={this.props.chat}
+            ref={el => (this.flatlistRef = el)}
             keyExtractor={item => {
               return item.msg_id;
             }}
@@ -124,44 +126,50 @@ class Chat extends Component {
             }}
           />
         </Content>
-        <Footer style={{ padding: 7 }}>
-          <View style={styles.inputContainer}>
-            <TextInput
-              style={styles.inputs}
-              placeholder="Write a message..."
-              underlineColorAndroid="transparent"
-              onChangeText={text => this.onChangeTextHandler(text)}
-              value={this.state.input.message}
-              // onSubmitEditing={() => {
-              //   this.props.sentchat(this.state.input);
-              //   this.setState({
-              //     input: {
-              //       message: ""
-              //     }
-              //   });
-              // }}
-            />
-          </View>
+        <KeyboardAvoidingView
+          //style={styles.container}
+          behavior="padding"
+          enabled
+        >
+          <Footer style={{ padding: 7 }}>
+            <View style={styles.inputContainer}>
+              <TextInput
+                style={styles.inputs}
+                placeholder="Write a message..."
+                underlineColorAndroid="transparent"
+                onChangeText={text => this.onChangeTextHandler(text)}
+                value={this.state.input.message}
+                // onSubmitEditing={() => {
+                //   this.props.sentchat(this.state.input);
+                //   this.setState({
+                //     input: {
+                //       message: ""
+                //     }
+                //   });
+                // }}
+              />
+            </View>
 
-          <TouchableOpacity
-            style={styles.btnSend}
-            onPress={() => {
-              this.props.sentchat(this.state.input);
-              this.setState({
-                input: {
-                  message: ""
-                }
-              });
-            }}
-          >
-            <Image
-              source={{
-                uri: "https://png.icons8.com/small/75/ffffff/filled-sent.png"
+            <TouchableOpacity
+              style={styles.btnSend}
+              onPress={() => {
+                this.props.sentchat(this.state.input);
+                this.setState({
+                  input: {
+                    message: ""
+                  }
+                });
               }}
-              style={styles.iconSend}
-            />
-          </TouchableOpacity>
-        </Footer>
+            >
+              <Image
+                source={{
+                  uri: "https://png.icons8.com/small/75/ffffff/filled-sent.png"
+                }}
+                style={styles.iconSend}
+              />
+            </TouchableOpacity>
+          </Footer>
+        </KeyboardAvoidingView>
       </Container>
     );
   }
@@ -176,8 +184,7 @@ const styles = StyleSheet.create({
       android: {
         paddingTop: 25
       }
-
-    }),
+    })
   },
   list: {
     paddingHorizontal: 17

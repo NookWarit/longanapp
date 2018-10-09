@@ -30,10 +30,10 @@ export const sentHistory = data => async dispatch => {
     expected: data.expected
   });
 
-  let history = await Axios.get(
-    `${config.server.api}/api/history`
-  );
-  dispatch(setAllHistory(history.data));
+  // let history = await Axios.get(
+  //   `${config.server.api}/api/history/${data.user_id}`
+  // );
+  dispatch(setAllHistory(senthistory.data));
 };
 
 const setAllHistory = data => ({

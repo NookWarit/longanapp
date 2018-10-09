@@ -13,13 +13,11 @@ export const getAllChat = () => async dispatch => {
       `${config.server.api}/api/messenger/${user.user_id}`
     );
     //console.log(chat);
-    if(chat.data){
+    if (chat.data) {
       dispatch(setAllChat(chat.data));
-    }else{
-
-    dispatch(setAllChat([]));
+    } else {
+      dispatch(setAllChat([]));
     }
-    
   } catch (error) {
     let message = "มีไหน";
     dispatch(hasError(message));
@@ -29,7 +27,7 @@ export const getAllChat = () => async dispatch => {
   }
 };
 export const sentChat = data => async dispatch => {
-  let sentchat = await Axios.post(`${config.server.api}/api/messenger`, {
+  await Axios.post(`${config.server.api}/api/messenger`, {
     room_id: data.room_id,
     message: data.message,
     username: data.username,

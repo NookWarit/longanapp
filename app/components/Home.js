@@ -65,8 +65,7 @@ class Home extends Component {
               <Text>แบบตัวอย่าง</Text>
             </CardItem>
             <CardItem bordered>
-              <Grid>
-                <Row>
+            <Content>
                   <List>
                     {this.props.media.map(
                       (media, index) => (
@@ -97,8 +96,7 @@ class Home extends Component {
                       )
                     )}
                   </List>
-                </Row>
-              </Grid>
+                  </Content>
             </CardItem>
           </Card>
         </Content>
