@@ -72,14 +72,14 @@ class soil extends Component {
                     >
                       <Text>วิเคราะห์</Text>
                     </Button>
-                    {console.log(soil)}
+                    {console.log(this.state.value)}
                   </Item>
                 </Form>
               </CardItem>
               <CardItem>
                 <Text>คำแนะนำสำหรับจัดการดิน</Text>
 
-                <Text>{soil.description}</Text>
+                {/* <Text>{soil.description}</Text> */}
               </CardItem>
             </Card>
           </Row>
@@ -89,7 +89,7 @@ class soil extends Component {
   }
 }
 const mapStateToProps = state => ({
-  soil: state.soil.soil
+  soil: state.soil
 });
 const mapDispatchToProps = dispatch => ({
   getsoil: data => dispatch(getSoil(data))

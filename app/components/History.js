@@ -10,7 +10,8 @@ import {
   Button,
   ListItem,
   Right,
-  Left
+  Left,
+  List
 } from "native-base";
 import Master from "./layouts/Master";
 import { connect } from "react-redux";
@@ -36,8 +37,8 @@ class History extends Component {
               <Text>History</Text>
             </CardItem>
             <CardItem>
-              <Body>
-              {this.props.historys.map((history,index) => (
+              <List>
+              {this.props.historys.map((history, index) => (
                 console.log(this.props.history),
                 <ListItem thumbnail key={index}>
                 <Left>
@@ -63,7 +64,7 @@ class History extends Component {
                 </Right>
               </ListItem>
               ))}
-              </Body>
+              </List>
             </CardItem>
           </Card>
         </Content>

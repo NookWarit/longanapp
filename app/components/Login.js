@@ -98,8 +98,10 @@ class Login extends Component {
             </Col>
           </ListItem>
 
-          {this.props.hasError ? (
-            <Text style={{ color: "red" }}>{this.props.hasError}</Text>
+          {this.props.hasError ? alert(
+            <Text style={{ color: "red" }}>
+            {this.props.hasError}
+            </Text>
           ) : null}
         </Content>
         </Row>

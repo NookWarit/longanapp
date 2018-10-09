@@ -8,23 +8,22 @@ class Info extends Component {
   }
   render() {
     return (
-      <Master title="เกี่ยวกับโปรแกรม">
+      <Master title="เกี่ยวกับโปรแกรม" isBack>
         <Card>
-          <CardItem header bordered >
+          <CardItem header bordered style={{alignSelf:"center"}}>
           <Thumbnail
               square
-              large
               source={require("../assets/images/logo_longan.png")}
-             style={{resizeMode:'contain'}}/>
+             style={{resizeMode:'contain',height:200,width:200}}/>
             
             </CardItem>
             <CardItem bordered>
             <Body>
-            <Text>โปรแกรมแอปพลิเคชันสำหรับเกษตรกรผู้ผลิตลำไย</Text>
-            <Text>เวอร์ชั่น 1.0</Text>
-            <Text>โดย</Text>
-            <Text>นายภูบดี  รินแก้ว [Backend Programmer]</Text>
-            <Text>นางสาววริษฐา  วังธิยอง [Mobile Programmer]</Text>
+            <Text style={{alignSelf:"center"}}>โปรแกรมแอปพลิเคชันสำหรับเกษตรกรผู้ผลิตลำไย</Text>
+            <Text style={{alignSelf:"center"}}>version 1.0</Text>
+            <Text style={{alignSelf:"center" ,padding:10}}>create by</Text>
+            <Text style={{alignSelf:"center"}}>Phubadee  Rinkaew [Backend Programmer]</Text>
+            <Text style={{alignSelf:"center"}}>Warittha  Wangthiyong [Frontend Programmer]</Text>
             </Body>
           </CardItem>
         </Card>

@@ -13,9 +13,7 @@ export const getAllNotification = () => async dispatch => {
     );
     dispatch(setAllNotification(history.data));
   } catch (error) {
-    let message = "มีไหน";
-    dispatch(hasError(message));
-    //console.log(error);
+    
   }
 };
 

@@ -10,9 +10,9 @@ class Contact extends Component {
     }
     render() {
         return (
-            <Master title="ติดต่อเรา">
+            <Master title="ติดต่อเรา" isBack>
             <Card>
-              <CardItem header bordered >
+              <CardItem header bordered style={{alignSelf:"center"}} >
               <Image source={require("../assets/images/rmutl.jpg")}
                  style={{resizeMode:'contain', width:300 ,height:300}}/>
                 </CardItem>

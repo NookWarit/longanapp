@@ -10,20 +10,22 @@ import {
   Text,
   Left,
   Form,
-  Thumbnail
+  Thumbnail,
+  Body,
+  Right
 } from "native-base";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Expo, { ImagePicker } from "expo";
+//import Expo, { ImagePicker } from "expo";
 import { TouchableOpacity } from "react-native";
 import { signup } from "../store/actions/user";
+import {Platform, StyleSheet} from 'react-native';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       input: {
-        image: "https://via.placeholder.com/400x400",
         name: "",
         lastname: "",
         email: "",
@@ -34,11 +36,17 @@ class Signup extends Component {
         province: ""
       }
     };
-    this._pickImage = this._pickImage.bind(this);
+    //this._pickImage = this._pickImage.bind(this);
   }
 
   componentDidMount() {
-    this.alertIfCameraIsNotGrant();
+    //this.alertIfCameraIsNotGrant();
+    // if(Platform.OS === 'ios') {
+    //   marginTop: 64
+    //   console.log(" ios") 
+    //  } else {
+    //        console.log("android") 
+    // } 
   }
 
   onTextChangeHandler(text, field){
@@ -47,37 +55,52 @@ class Signup extends Component {
     this.setState({ input:oldInput });
   }
 
-  async alertIfCameraIsNotGrant() {
-    const { Permissions } = Expo;
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    if (status !== "granted") {
-      alert("มึงต้องเปิดกล้องอิหอกหัก.");
+  // async alertIfCameraIsNotGrant() {
+  //   const { Permissions } = Expo;
+  //   const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+  //   if (status !== "granted") {
+  //     alert("มึงต้องเปิดกล้องอิหอกหัก.");
+  //   }
+  // }
+
+  // _pickImage = async () => {
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     allowsEditing: true,
+  //     aspect: [4, 3]
+  //   });
+
+  //   console.log(result);
+
+  //   if (!result.cancelled) {
+  //     let oldInput = this.state.input;
+  //     oldInput["image"] = result.uri;
+  //     this.setState({ input: oldInput });
+  //   }
+  // };
+  validate = (text) => {
+    console.log(text);
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+    if(reg.test(text) === false)
+    {
+    console.log("Email is Not Correct");
+    this.setState({email:text})
+    return false;
+      }
+    else {
+      this.setState({email:text})
+      console.log("Email is Correct");
     }
   }
-
-  _pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3]
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      let oldInput = this.state.input;
-      oldInput["image"] = result.uri;
-      this.setState({ input: oldInput });
-    }
-  };
   render() {
     return (
-      <Container>
-        <Header>
+      <Container style={styles.container}>
+        <Header style={styles.background}>
           <Left>
             <Button transparent onPress={() => this.props.history.goBack()}>
-              <Icon name="arrow-round-back" />
+              <Icon name="arrow-round-back" style={{color:"#000000"}}/>
             </Button>
           </Left>
+          <Body></Body><Right></Right>
         </Header>
         <Content>
           <Form>
@@ -143,6 +166,23 @@ class Signup extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    ...Platform.select({
+      ios: {
+        //marginTop: 64
+      },
+      android: {
+        paddingTop: 25
+      }
+
+    }),
+  },
+  background:{
+    backgroundColor: "#FFF"
+  }
+})
 const mapStateToProps = state => ({
   hasError: state.app.hasError.message
 });

@@ -37,7 +37,6 @@ export const signup = data => async dispatch => {
     lastname,
     email,
     password,
-    image,
     tel,
     address,
     district,
@@ -48,7 +47,6 @@ export const signup = data => async dispatch => {
     !lastname ||
     !email ||
     !password ||
-    !image ||
     !tel ||
     !address ||
     !district ||
@@ -61,6 +59,7 @@ export const signup = data => async dispatch => {
     }, 3000);
     return false;
   }
+
   try {
     let user = await Axios.post(`${config.server.api}/api/user/signup`, data);
     //console.log(user.data.id)

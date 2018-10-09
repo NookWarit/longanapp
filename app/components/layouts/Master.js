@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet ,Platform} from "react-native";
 import {
   Container,
   Header,
@@ -91,7 +91,7 @@ class Master extends Component {
           main: { opacity: (2 - ratio) / 2 }
         })}
       >
-        <Container>
+        <Container style={styles.container}>
           <Header style={styles.Background}>
             <Left>
               {this.props.isBack ? (
@@ -141,6 +141,18 @@ Master.defaultProps = {
   title: "Longan"
 };
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    ...Platform.select({
+      ios: {
+        //marginTop: 64
+      },
+      android: {
+        paddingTop: 25
+      }
+
+    }),
+  },
   Background: {
     backgroundColor: "#00e6b0"
   },

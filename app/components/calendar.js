@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Dimensions } from "react-native";
+//import { Calendar } from "react-native-calendar";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import Master from "./layouts/Master";
 const { height, width } = Dimensions.get("window");
@@ -21,7 +22,7 @@ class Calendars extends Component {
     const notification = this.props.notification.map(item => ({
       [item.date]: { selected: true, marked: true, selectedColor: "blue" }
     }));
-    
+
     return (
       <Master title="การแจ้งเตือน">
         <CalendarList
@@ -67,6 +68,7 @@ class Calendars extends Component {
           //markedDates={}
           horizontal={true}
         />
+        
       </Master>
     );
   }

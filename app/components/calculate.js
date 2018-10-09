@@ -23,7 +23,7 @@ class calculate extends Component {
   //   setDate(newDate) {
   //     this.setState({ chosenDate: newDate });
   //   }
-  onValueChange1(value: string) {
+  onValueChange1(value) {
     this.setState({
       selected1: value
     });
@@ -109,8 +109,13 @@ class calculate extends Component {
     );
   }
 }
-const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapStateToProps = state => ({
+  historys: state.history.history
+});
+const mapDispatchToProps = dispatch => ({
+  getAllHistory: data => dispatch(getAllHistory(data)),
+  sentHistory: data => dispatch(sentHistory(data))
+});
 export default connect(
   mapStateToProps,
   mapDispatchToProps

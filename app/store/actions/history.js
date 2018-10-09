@@ -21,6 +21,20 @@ export const getAllHistory = () => async dispatch => {
     //console.log(error);
   }
 };
+export const sentHistory = data => async dispatch => {
+  let senthistory = await Axios.post(`${config.server.api}/api/history`, {
+    user_id: data.user_id,
+    place: data.place,
+    harvestday: data.harvestday,
+    size: data.size,
+    expected: data.expected
+  });
+
+  let history = await Axios.get(
+    `${config.server.api}/api/history`
+  );
+  dispatch(setAllHistory(history.data));
+};
 
 const setAllHistory = data => ({
   type: SET_ALL_HISTORY,

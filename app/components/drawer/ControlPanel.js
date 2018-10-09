@@ -39,6 +39,7 @@ class ControlPanel extends Component {
       <Content style={styles.drawerBackground}>
         <View style={styles.drawerProfile}>
           {/* <Icon active name="contact" /> */}
+          {/* <Text>คุณ{this.props.user.name}  {this.props.user.lastname}</Text> */}
           <Button
             style={styles.drawerButtonSignout}
             onPress={() => {

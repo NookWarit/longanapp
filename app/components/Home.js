@@ -61,7 +61,7 @@ class Home extends Component {
           </Card>
           <Card>
             <CardItem header bordered style={styles.background}>
-              <Icon name="videocam" />
+              <Icon name="film" />
               <Text>แบบตัวอย่าง</Text>
             </CardItem>
             <CardItem bordered>
@@ -71,10 +71,9 @@ class Home extends Component {
                     {this.props.media.map(
                       (media, index) => (
                         (
-                          console.log(media),
                           <ListItem avatar key={index} >
                             <Left>
-                              <Icon name="film" />
+                              <Icon name="videocam" />
                             </Left>
                             <Right>
                               <TouchableOpacity

@@ -9,7 +9,8 @@ import {
   Alert,
   ScrollView,
   TextInput,
-  FlatList
+  FlatList,
+  Platform
 } from "react-native";
 import {
   Footer,
@@ -81,7 +82,7 @@ class Chat extends Component {
   };
   render() {
     return (
-      <Container>
+      <Container style={styles.container}>
         <Header>
           <Left>
             <Button
@@ -167,7 +168,16 @@ class Chat extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    ...Platform.select({
+      ios: {
+        //marginTop: 64
+      },
+      android: {
+        paddingTop: 25
+      }
+
+    }),
   },
   list: {
     paddingHorizontal: 17

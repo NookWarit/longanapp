@@ -4,7 +4,7 @@ export const SET_SOIl = "SET_SOIl";
 
 export const getSoil = data => async dispatch => {
    let soilvalue = await Axios.post(`${config.server.api}/api/soil`, {
-     value: value
+     value: data.value
    });
    dispatch(setSoil(soilvalue.data));
  };
