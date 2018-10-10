@@ -107,7 +107,8 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: "#00cf9e"
+    height:50,
+    padding:10
   },
   block: {
     flexDirection: "column",

@@ -12,12 +12,10 @@ import {
   Button,
   List,
   Content,
-  Header,
-  H1,
   H3,
-  Right
+  Right,
+  Left
 } from "native-base";
-import { Grid, Row } from "react-native-easy-grid";
 import { connect } from "react-redux";
 import { getSoil } from "../store/actions/soil";
 import { Dimensions } from "react-native";
@@ -37,21 +35,17 @@ class soil extends Component {
   render() {
     return (
       <Master title="วิเคราะห์ดิน" isBack>
-            <Card style={{ width: width, margin: 5 }}>
+            <Card style={{ width: width, padding: 15 }}>
               <CardItem>
-                <Form>
-                <CardItem>
+                <Left>
                   <H3>ค่าของดิน</H3>
-                  </CardItem>
+                  </Left>
+                  <Body>
                   <Picker
                     mode="dropdown"
                     iosIcon={<Icon name="ios-arrow-down-outline" />}
                     style={{ width: undefined }}
-                    placeholder="เลือก"
-                    placeholderStyle={{ color: "#bfc6ea" }}
-                    placeholderIconColor="#007aff"
                     itemStyle={{
-                      backgroundColor: "#d3d3d3",
                       marginLeft: 0,
                       paddingLeft: 10
                     }}
@@ -62,24 +56,25 @@ class soil extends Component {
                     <Picker.Item label="ปานกลาง" value="ปานกลาง" />
                     <Picker.Item label="ต่ำ" value="ต่ำ" />
                   </Picker>
+                  </Body>
                   <Right>
                   <Button
                     onPress={() =>
                       this.props.getsoil({ value: this.state.value })
                     }
                     bordered
+                    style={{margin:5}}
                   >
                     <Text>วิเคราะห์</Text>
                   </Button>
                   </Right>
-                </Form>
               </CardItem>
               <CardItem>
                 <Content>
-                  <CardItem>
+                  <CardItem style={{paddingTop:30}}>
                   <H3>คำแนะนำสำหรับจัดการดิน</H3>
                   </CardItem>
-                  <Text>{this.props.soil.description}</Text>
+                  <Text style={{paddingTop:15}}>{this.props.soil.description}</Text>
                 </Content>
               </CardItem>
             </Card>

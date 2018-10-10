@@ -35,9 +35,6 @@ class History extends Component {
       <Master title="ประวัติการคำนวณ">
         <Content padder>
           <Card>
-            <CardItem header>
-              <Text>History</Text>
-            </CardItem>
             <CardItem>
               <Content>
               <List>
@@ -46,10 +43,10 @@ class History extends Component {
                     (
                       <ListItem thumbnail key={index}>
                         <Left>
-                        
+                        <Text>สถานที่ : {his.place}</Text>
                         </Left>
                         <Body>
-                        <Text>สถานที่ : {his.place}</Text>
+                        <Text>คาดว่าจะเก็บ : {his.harvestday}</Text>
                         </Body>
                         <Right>
                           <Button transparent onPress={() => {

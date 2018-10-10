@@ -11,7 +11,8 @@ import {
   Body,
   Right,
   Switch,
-  Button
+  Button,
+  Thumbnail
 } from "native-base";
 import { StyleSheet, View, TouchableOpacity, AsyncStorage } from "react-native";
 import PropTypes from "prop-types";
@@ -38,8 +39,12 @@ class ControlPanel extends Component {
     return (
       <Content style={styles.drawerBackground}>
         <View style={styles.drawerProfile}>
-          {/* <Icon active name="contact" /> */}
-          {/* <Text>คุณ{this.props.user.name}  {this.props.user.lastname}</Text> */}
+          <Thumbnail
+            square
+            large
+            source={require("../../assets/images/logo_longan.png")}
+            style={{resizeMode:'contain'}}
+          />
           <Button
             style={styles.drawerButtonSignout}
             onPress={() => {
@@ -61,7 +66,7 @@ class ControlPanel extends Component {
             }}
           >
             <Left>
-              <Button style={styles.drawerButton}>
+              <Button>
                 <Icon active name="home" />
               </Button>
             </Left>
@@ -78,7 +83,7 @@ class ControlPanel extends Component {
             }}
           >
             <Left>
-              <Button style={styles.drawerButton}>
+              <Button>
                 <Icon active name="contact" />
               </Button>
             </Left>
@@ -94,7 +99,7 @@ class ControlPanel extends Component {
             }}
           >
             <Left>
-              <Button style={styles.drawerButton}>
+              <Button>
                 <Icon active name="document" />
               </Button>
             </Left>
@@ -110,7 +115,7 @@ class ControlPanel extends Component {
             }}
           >
             <Left>
-              <Button style={styles.drawerButton}>
+              <Button>
                 <Icon active name="chatboxes" />
               </Button>
             </Left>
@@ -126,7 +131,7 @@ class ControlPanel extends Component {
             }}
           >
             <Left>
-              <Button style={styles.drawerButton}>
+              <Button>
                 <Icon active name="settings" />
               </Button>
             </Left>
@@ -142,20 +147,15 @@ class ControlPanel extends Component {
 
 const styles = StyleSheet.create({
   drawerBackground: {
-    backgroundColor: "#e6fff5"
+    backgroundColor: "#FFF"
   },
   drawerProfile: {
-    backgroundColor: "#99ffd6",
     height: 170,
     alignContent: "center",
     alignItems: "center",
     justifyContent: "center"
   },
-  drawerButton: {
-    backgroundColor: "#00cc99"
-  },
   drawerButtonSignout: {
-    backgroundColor: "#001a14",
     borderRadius: 50,
     alignSelf: "center"
   }

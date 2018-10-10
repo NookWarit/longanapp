@@ -1,5 +1,21 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "name": "Longan",
+    "icon": "./src/assets/images/icon-1024.png",
+    "version": "1.0.0",
+    "splash": {
+      "image": "./src/assets/images/splashscreen-hd.png",
+      "resizeMode": "cover"
+    },
+    "orientation": "portrait",
+    "ios": {
+      "buildNumber": "1",
+      "bundleIdentifier": "com.devded.longan"
+    },
+    "android": {
+      "versionCode": 1,
+      "package": "com.devded.longan"
+    }
   }
 }

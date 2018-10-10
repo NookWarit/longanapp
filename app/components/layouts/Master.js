@@ -154,10 +154,10 @@ const styles = StyleSheet.create({
     }),
   },
   Background: {
-    backgroundColor: "#00e6b0"
+    //backgroundColor: "#00e6b0"
   },
   Button: {
-    color: "#000"
+    //color: "#000"
   }
 });
 const mapStateToProps = state => ({

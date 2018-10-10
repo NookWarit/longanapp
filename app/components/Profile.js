@@ -68,7 +68,7 @@ class Profile extends Component {
 
   render() {
     return (
-      <Master title="โปรไฟล์">
+      <Master title="โปรไฟล์" isBack>
         <Modal
           animationType="slide"
           transparent={false}
@@ -87,7 +87,7 @@ class Profile extends Component {
                 </Button>
               </Left>
               <Body>
-                <Text style={{fontStyle : "normal" }}>
+                <Text>
                   แก้ไขข้อมูลส่วนตัว
                 </Text>
               </Body>
@@ -193,15 +193,6 @@ class Profile extends Component {
                 >
                   <Text style={{ color: "#FFF" }}> บันทึก </Text>
                 </Button>
-                {/* <Button
-                    full
-                    info
-                    onPress={() => {
-                      this.setState({ showModal: false });
-                    }}
-                  >
-                    <Text> ยกเลิก </Text>
-                  </Button> */}
                 {this.props.hasError ? (
                   <Text style={{ color: "red" }}>{this.props.hasError}</Text>
                 ) : null}
@@ -209,13 +200,12 @@ class Profile extends Component {
             </Content>
           </Container>
         </Modal>
-        <Content padder>
           <Card>
-            <CardItem header bordered style={{ justifyContent: "center" }}>
+            <CardItem header bordered style={{ justifyContent: "center",height:50 }}>
               <Text>ข้อมูลส่วนตัว</Text>
             </CardItem>
             <CardItem bordered>
-              <Body>
+              <Content>
                 <List style={{ justifyContent: "center" }}>
                   {/* <ListItem>
                     <Thumbnail
@@ -225,54 +215,47 @@ class Profile extends Component {
                       //style={{ width: 64, height: 64, resizeMode:'contain'}}
                     />
                   </ListItem> */}
-                  <ListItem>
-                    <Icon active name="person" />
-                    <Text>ชื่อ </Text>
-                    <Text>{this.props.user.name} </Text>
-                    <Text> นามสกุล </Text>
-                    <Text>{this.props.user.lastname} </Text>
+                  <ListItem icon>
+                  <Left>
+                    <Icon name="person" style={{paddingRight:10}}/></Left>
+                    <Body>
+                    <Text>ชื่อ : {this.props.user.name}  นามสกุล : {this.props.user.lastname} </Text></Body>
                   </ListItem>
-                  <ListItem>
-                    <Icon active name="mail" />
-                    <Text>อีเมลล์ </Text>
-                    <Text>{this.props.user.email} </Text>
+                  <ListItem icon>
+                  <Left>
+                    <Icon active name="mail" style={{paddingRight:10}}/></Left>
+                    <Body>
+                    <Text>อีเมลล์ : {this.props.user.email} </Text></Body>
                   </ListItem>
-                  <ListItem>
-                    <Icon active name="lock" />
-                    <Text>รหัสผ่าน </Text>
-                    <Text>{this.props.user.password} </Text>
+                  <ListItem icon>
+                    <Left><Icon active name="lock" style={{paddingRight:10}}/></Left>
+                    <Body><Text>รหัสผ่าน : {this.props.user.password} </Text></Body>
                   </ListItem>
-                  <ListItem>
-                    <Icon active name="call" />
-                    <Text>เบอร์โทร </Text>
-                    <Text>{this.props.user.tel} </Text>
+                  <ListItem icon>
+                  <Left><Icon active name="call" style={{paddingRight:10}}/></Left>
+                    <Body><Text>เบอร์โทร : {this.props.user.tel} </Text></Body>
                   </ListItem>
-                  <ListItem>
-                    <Icon active name="pin" />
-                    <Text>ที่อยู่ </Text>
-                    <Text>{this.props.user.address} </Text>
+                  <ListItem icon>
+                  <Left><Icon active name="pin" style={{paddingRight:10}}/></Left>
+                    <Body><Text> ที่อยู่ : {this.props.user.address} </Text></Body>
                   </ListItem>
-                  <ListItem>
-                    <Icon active name="pin" />
-                    <Text>อำเภอ </Text>
-                    <Text>{this.props.user.district} </Text>
-                    <Text> จังหวัด </Text>
-                    <Text>{this.props.user.province} </Text>
+                  <ListItem icon>
+                  <Left><Icon active name="pin" style={{paddingRight:10}}/></Left>
+                    <Body> <Text> อำเภอ : {this.props.user.district}   จังหวัด :{this.props.user.province}</Text></Body>
                   </ListItem>
                   <Button
                     bordered
-                    full
+                    block
                     dark
-                    style={{ marginTop: 10 }}
+                    style={{ margin: 10 }}
                     onPress={() => this.onEditBtnPress()}
                   >
                     <Text>แก้ไข</Text>
                   </Button>
                 </List>
-              </Body>
+              </Content>
             </CardItem>
           </Card>
-        </Content>
       </Master>
     );
   }

@@ -17,7 +17,7 @@ import {
 import Master from "./layouts/Master";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { toggleWater } from "../store/actions/app";
+import { toggleWater ,toggleTheme} from "../store/actions/app";
 import { setUser } from "../store/actions/user";
 class Settings extends Component {
   static contextTypes = {
@@ -32,7 +32,7 @@ class Settings extends Component {
       <Master title="การตั้งค่า">
         <ListItem icon>
           <Left>
-            <Button style={{ backgroundColor: "#007AFF" }}>
+            <Button>
               <Icon active name="phone-portrait" />
             </Button>
           </Left>
@@ -40,9 +40,17 @@ class Settings extends Component {
             <Text>เปลี่ยนธีม</Text>
           </Body>
           <Right>
-            <Text>เขียว</Text>
-            <Icon active name="arrow-forward" />
+          <Switch
+              value={this.props.theme}
+              
+              onValueChange={() =>
+                this.props.toggleTheme({
+                  theme: !this.props.theme
+                })
+              }
+            />
           </Right>
+          {console.log(this.props.theme)}
         </ListItem>
         <ListItem icon>
           <Left>
@@ -100,12 +108,14 @@ class Settings extends Component {
   }
 }
 const mapStateToProps = state => ({
+  theme: state.app.theme,
   user: state.user.user,
   water: state.app.water
 });
 const mapDispatchToProps = dispatch => ({
   toggleWater: data => dispatch(toggleWater(data)),
-  setUser: data => dispatch(setUser(data))
+  setUser: data => dispatch(setUser(data)),
+  toggleTheme: data => dispatch(toggleTheme(data))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Settings);

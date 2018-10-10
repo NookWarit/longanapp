@@ -5,6 +5,7 @@ export const SET_WEBVIEW = "SET_WEBVIEW";
 export const TOGGLE_WATER = "TOGGLE_WATER";
 export const HAS_ERROR = "HAS_ERROR";
 export const SET_ACTIVE_TAB = "SET_ACTIVE_TAB";
+export const TOGGLE_THEME = "TOGGLE_THEME";
 
 export const toggleDrawer = data => ({
   type: TOGGLE_DRAWER,
@@ -21,6 +22,10 @@ export const toggleWater = data => async dispatch => {
   });
   dispatch(setWaterStatus({ status: JSON.parse(waterStatus.data.status) }));
 };
+export const toggleTheme = data => ({
+  type: TOGGLE_THEME,
+  payload: data
+});
 
 export const hasError = data => ({
   type: HAS_ERROR,
@@ -35,4 +40,3 @@ export const setWaterStatus = data => ({
   type: TOGGLE_WATER,
   payload: data
 });
-

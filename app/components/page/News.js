@@ -44,7 +44,11 @@ class News extends Component {
             placeholder="กรอกคำค้น..."
             value={this.state.keyword}
           />
-          <Button onPress={() => this.props.findNewsByKeyword(this.state.keyword)} transparent>
+          <Button transparent onPress={() =>  {
+            if (this.props.findNewsByKeyword(this.state.keyword) == false) {
+                  alert("ไม่มีรายการที่ค้นหา");
+                }else{
+                  this.props.findNewsByKeyword(this.state.keyword)}}}>
             <Icon name="search" />
           </Button>
         </Item>

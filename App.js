@@ -26,12 +26,16 @@ import soil from "./app/components/Soil";
 import { getAllMedia } from "./app/store/actions/media";
 import { getAllNotification } from "./app/store/actions/notification";
 import DetailHistory from "./app/components/DetailHistory";
-
+import {StyleProvider} from  'native-base';
+import getTheme from "./native-base-theme/components";
+import gray from './native-base-theme/variables/gray'
+import green from './native-base-theme/variables/green'
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: true,
+      theme : true
     };
   }
 
@@ -41,6 +45,7 @@ export default class App extends React.Component {
       Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
     });
     this.setState({ isLoading: false });
+    
   }
 
   async componentDidMount() {
@@ -53,11 +58,15 @@ export default class App extends React.Component {
     Store.dispatch(getAllNews())
     Store.dispatch(getAllMedia())
     Store.dispatch(getAllNotification())
+    let theme = await Store.getState().app.theme;
+    this.setState({theme: theme});
   }
   render() {
+    const theme = this.state.theme === false ? getTheme(green) : getTheme(gray);
     return this.state.isLoading ? (
       <PacmanIndicator />
     ) : (
+      <StyleProvider style={theme}>
       <Provider store={Store}>
         <Router>
           <Switch>
@@ -81,6 +90,7 @@ export default class App extends React.Component {
           </Switch>
         </Router>
       </Provider>
+      </StyleProvider>
     );
   }
 }

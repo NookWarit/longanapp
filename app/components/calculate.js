@@ -68,7 +68,6 @@ class calculate extends Component {
                 dateInput: {
                   marginLeft: 36
                 }
-                // ... You can check the source to find the other keys.
               }}
               onDateChange={date => this.onValueChange("harvestday", date)}
             />
@@ -79,7 +78,6 @@ class calculate extends Component {
               mode="dropdown"
               iosIcon={<Icon name="ios-arrow-down-outline" />}
               style={{ width: undefined }}
-              //placeholder="เดือน"
               placeholderStyle={{ color: "#bfc6ea" }}
               placeholderIconColor="#007aff"
               selectedValue={this.state.input.size}
@@ -95,7 +93,6 @@ class calculate extends Component {
             </Picker>
           </Item>
           <Item>
-            {/* <Icon active name="person" /> */}
             <Text> ผลผลิตโดยเฉลี่ยปีก่อน :</Text>
             <Input
               placeholder="กิโลกรัมต่อต้น"

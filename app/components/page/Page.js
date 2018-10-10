@@ -21,7 +21,7 @@ class Page extends Component {
   }
   render() {
     return (
-      <Master>
+      <Master >
         <Tabs>
           <Tab
             heading={
@@ -50,10 +50,10 @@ class Page extends Component {
 }
 const styles = StyleSheet.create({
   tabBackground: {
-    backgroundColor: "#e6fff9"
+    //backgroundColor: "#e6fff9"
   },
   Button: {
-    color: "#000"
+    //color: "#000"
   }
 });
 

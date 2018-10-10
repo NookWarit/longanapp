@@ -191,17 +191,12 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: "row",
-    //height:60,
     backgroundColor: "#eeeeee",
     paddingHorizontal: 10,
     padding: 5
-    // position:"absolute",
-    // bottom:0,
-    // right:0,
-    // left:0
   },
   btnSend: {
-    backgroundColor: "#00BFFF",
+    backgroundColor: "#000",
     width: 40,
     height: 40,
     borderRadius: 360,

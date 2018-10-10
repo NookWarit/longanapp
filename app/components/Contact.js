@@ -17,7 +17,7 @@ class Contact extends Component {
                  style={{resizeMode:'contain', width:300 ,height:300}}/>
                 </CardItem>
                 <CardItem bordered>
-                <Body>
+                <Body style={{padding:5}}>
                 <Text>สถาบันถ่ายทอดเทคโนโลยีเพื่อชุมชน</Text>
                 <Text>มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</Text>
                 <Text>ที่อยู่ : 98 หมู่ 8 ตำบลป่าป้อง อำเภอดอยสะเก็ด จังหวัดเชียงใหม่ 50220</Text>
@@ -28,7 +28,6 @@ class Contact extends Component {
               </CardItem>
             </Card>
           </Master>
-            
         );
     }
 }
