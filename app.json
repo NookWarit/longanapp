@@ -2,10 +2,10 @@
   "expo": {
     "sdkVersion": "27.0.0",
     "name": "Longan",
-    "icon": "./src/assets/images/logo_longan.png",
+    "icon": "./app/assets/images/logo_longan.png",
     "version": "1.0.0",
     "splash": {
-      "image": "./src/assets/images/pro.png",
+      "image": "./app/assets/images/pro.png",
       "resizeMode": "cover"
     },
     "orientation": "portrait",
