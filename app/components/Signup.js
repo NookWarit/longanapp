@@ -12,7 +12,8 @@ import {
   Form,
   Thumbnail,
   Body,
-  Right
+  Right,
+  Title
 } from "native-base";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -88,7 +89,7 @@ class Signup extends Component {
               <Icon name="arrow-round-back" style={{ color: "#000000" }} />
             </Button>
           </Left>
-          <Body />
+          <Body><Title>สมัครสมาชิก</Title></Body>
           <Right />
         </Header>
         <Content>
@@ -197,6 +198,7 @@ class Signup extends Component {
                   this.props.signup(this.state.input);
                 }
               }}
+              style={{marginTop:10}}
             >
               <Text> สร้างบัญชี </Text>
             </Button>

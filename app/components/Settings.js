@@ -14,19 +14,36 @@ import {
   Button,
   styles
 } from "native-base";
+import RNRestart from 'react-native-restart';
+import {AsyncStorage} from 'react-native'
 import Master from "./layouts/Master";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { toggleWater ,toggleTheme} from "../store/actions/app";
 import { setUser } from "../store/actions/user";
+import {Util} from 'expo'
 class Settings extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      theme: false
+    };
   }
+
+  async componentDidMount() {
+    try{
+      let theme =  JSON.parse(await AsyncStorage.getItem('theme')) || '';
+      if(theme){
+        this.setState({theme: theme})
+      }
+    }catch(e){
+      alert(e.message);
+    }
+  }
+
   render() {
     return (
       <Master title="การตั้งค่า">
@@ -41,16 +58,18 @@ class Settings extends Component {
           </Body>
           <Right>
           <Switch
-              value={this.props.theme}
-              
-              onValueChange={() =>
-                this.props.toggleTheme({
-                  theme: !this.props.theme
-                })
+              value={this.state.theme}
+              onValueChange={async  () => {
+                try{
+                  await AsyncStorage.setItem('theme', JSON.stringify(!this.state.theme))
+                  this.setState({theme: !this.state.theme})
+                  Util.reload()
+                }catch(e){
+                  alert(e.message)
+                }}
               }
             />
           </Right>
-          {console.log(this.props.theme)}
         </ListItem>
         <ListItem icon>
           <Left>

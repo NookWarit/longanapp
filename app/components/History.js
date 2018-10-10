@@ -11,7 +11,8 @@ import {
   ListItem,
   Right,
   Left,
-  List
+  List,
+  Icon
 } from "native-base";
 import Master from "./layouts/Master";
 import { connect } from "react-redux";
@@ -43,10 +44,11 @@ class History extends Component {
                     (
                       <ListItem thumbnail key={index}>
                         <Left>
-                        <Text>สถานที่ : {his.place}</Text>
+                        <Icon active name="home" />
                         </Left>
                         <Body>
-                        <Text>คาดว่าจะเก็บ : {his.harvestday}</Text>
+                        <Text>สถานที่ : {his.place} </Text> 
+                        <Text note>คาดว่าจะเก็บ : {his.harvestday}</Text>
                         </Body>
                         <Right>
                           <Button transparent onPress={() => {

@@ -2,20 +2,20 @@
   "expo": {
     "sdkVersion": "27.0.0",
     "name": "Longan",
-    "icon": "./src/assets/images/icon-1024.png",
+    "icon": "./src/assets/images/logo_longan.png",
     "version": "1.0.0",
     "splash": {
-      "image": "./src/assets/images/splashscreen-hd.png",
+      "image": "./src/assets/images/pro.png",
       "resizeMode": "cover"
     },
     "orientation": "portrait",
     "ios": {
       "buildNumber": "1",
-      "bundleIdentifier": "com.devded.longan"
+      "bundleIdentifier": "com.cis-training.nwrt.longanapp"
     },
     "android": {
       "versionCode": 1,
-      "package": "com.devded.longan"
+      "package": "com.cis-training.nwrt.longanapp"
     }
   }
 }

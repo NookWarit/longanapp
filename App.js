@@ -58,11 +58,16 @@ export default class App extends React.Component {
     Store.dispatch(getAllNews())
     Store.dispatch(getAllMedia())
     Store.dispatch(getAllNotification())
-    let theme = await Store.getState().app.theme;
-    this.setState({theme: theme});
+    let theme =  JSON.parse(await AsyncStorage.getItem('theme')) || '';
+    if(theme){
+      this.setState({theme: true})
+    }else{
+      this.setState({theme: false})
+    }
+    
   }
   render() {
-    const theme = this.state.theme === false ? getTheme(green) : getTheme(gray);
+    const theme = this.state.theme ? getTheme(green) : getTheme(gray);
     return this.state.isLoading ? (
       <PacmanIndicator />
     ) : (

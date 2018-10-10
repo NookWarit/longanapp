@@ -45,10 +45,11 @@ class News extends Component {
             value={this.state.keyword}
           />
           <Button transparent onPress={() =>  {
-            if (this.props.findNewsByKeyword(this.state.keyword) == false) {
-                  alert("ไม่มีรายการที่ค้นหา");
-                }else{
-                  this.props.findNewsByKeyword(this.state.keyword)}}}>
+            // if (this.props.findNewsByKeyword(this.state.keyword) == false) {
+            //       alert("ไม่มีรายการที่ค้นหา");
+            //     }else{
+                  this.props.findNewsByKeyword(this.state.keyword)}
+                  }>
             <Icon name="search" />
           </Button>
         </Item>

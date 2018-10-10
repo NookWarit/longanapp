@@ -1,74 +1,95 @@
 import React, { Component } from "react";
-import { Dimensions } from "react-native";
-//import { Calendar } from "react-native-calendar";
+import { Dimensions, View, StyleSheet } from "react-native";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import Master from "./layouts/Master";
 const { height, width } = Dimensions.get("window");
 import { connect } from "react-redux";
 import { getAllNotification } from "../store/actions/notification";
+import { Card, CardItem, Text, Content } from "native-base";
 
-const arrayToObject = array =>
-  array.reduce((obj, item) => {
-    obj[item.date] = item;
-    return obj;
-  }, {});
+const styles = StyleSheet.create({
+  item: {
+    backgroundColor: "white",
+    flex: 1,
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17
+  },
+  emptyDate: {
+    height: 15,
+    flex: 1,
+    paddingTop: 30
+  }
+});
 
 class Calendars extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      notifications: {}
+    };
+  }
+
+  renderItem(item) {
+    return (
+      <View style={[styles.item, { height: item.height }]}>
+        <Text>{item.text}</Text>
+      </View>
+    );
+  }
+  
+
+  renderEmptyDate() {
+    return (
+      <View style={styles.emptyDate}>
+        <Text>This is empty date!</Text>
+      </View>
+    );
+  }
+
+  rowHasChanged(r1, r2) {
+    return r1.name !== r2.name;
+  }
+
+  timeToString(time) {
+    const date = new Date(time);
+    return date.toISOString().split("T")[0];
+  }
+
+  componentDidMount() {
+    //console.log();
+    // let notifications = this.props.notification.map(noti => noti.date)
+    let newDaysObject = {};
+
+    this.props.notification.forEach(obj => {
+      newDaysObject = {
+        ...newDaysObject,
+        [obj.date]: [
+          {
+            text: `สถานที่: ${obj.place} \n\r ระยะ: ${obj.phase} \n\r ควรใส่ปุ๋ยปริมาณ: ${obj.fertilizer}`
+          }
+        ]
+      };
+    });
+    //console.log(newDaysObject)
+    this.setState({ notifications: newDaysObject });
   }
   render() {
-    const notification = this.props.notification.map(item => ({
-      [item.date]: { selected: true, marked: true, selectedColor: "blue" }
-    }));
-
     return (
       <Master title="การแจ้งเตือน">
-        <CalendarList
-          // Initially visible month. Default = Date()
-          //current={}
-          // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-          //minDate={"2012-05-10"}
-          // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-          //maxDate={"2012-05-30"}
-          // Handler which gets executed on day press. Default = undefined
-          onDayPress={day => {
-            console.log("selected day", day);
-          }}
-          // Handler which gets executed on day long press. Default = undefined
-          onDayLongPress={day => {
-            console.log("selected day", day);
-          }}
-          // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-          //monthFormat={""}
-          // Handler which gets executed when visible month changes in calendar. Default = undefined
-          onMonthChange={month => {
-            console.log("month changed", month);
-          }}
-          // Hide month navigation arrows. Default = false
-          hideArrows={true}
-          // Replace default arrows with custom ones (direction can be 'left' or 'right')
-          renderArrow={direction => <Arrow />}
-          // Do not show days of other months in month page. Default = false
-          hideExtraDays={true}
-          // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
-          // day from another month that is visible in calendar page. Default = false
-          disableMonthChange={false}
-          // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
-          firstDay={1}
-          // Hide day names. Default = false
-          //hideDayNames={true}
-          // Show week numbers to the left. Default = false
-          //showWeekNumbers={true}
-          // Handler which gets executed when press arrow icon left. It receive a callback can go back month
-          onPressArrowLeft={substractMonth => substractMonth()}
-          // Handler which gets executed when press arrow icon left. It receive a callback can go next month
-          onPressArrowRight={addMonth => addMonth()}
-          //markedDates={}
-          horizontal={true}
+        <Agenda
+          items={this.state.notifications}
+          //loadItemsForMonth={(month) => this.state.notifications}
+          renderItem={this.renderItem.bind(this)}
+          renderEmptyDate={this.renderEmptyDate.bind(this)}
+          renderKnob={() => {return (<View />);}}
+  // specify what should be rendered instead of ActivityIndicator
+  renderEmptyData = {() => {return (<View style={{padding:10}}><Text> ไม่มีข้อมูลสำหรับวันนี้</Text></View>);}}
+          rowHasChanged={this.rowHasChanged.bind(this)}
+
+          style={{ height: height }}
         />
-        
       </Master>
     );
   }
