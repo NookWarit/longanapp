@@ -52,10 +52,8 @@ class Profile extends Component {
   onEditBtnPress() {
     let user = {
       id: this.props.user.user_id,
-      image: this.props.user.image,
       name: this.props.user.name,
       lastname: this.props.user.lastname,
-      email: this.props.user.email,
       password: this.props.user.password,
       tel: this.props.user.tel,
       address: this.props.user.address,
@@ -261,7 +259,6 @@ class Profile extends Component {
   }
 }
 const mapStateToProps = state => ({
-  // articles: state.article.articles
   user: state.user.user
 });
 const mapDispatchToProps = dispatch => ({

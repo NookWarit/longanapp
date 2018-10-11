@@ -80,7 +80,11 @@ class Login extends Component {
             <Button
               bordered 
               onPress={() => {
+                if (this.state.input === "") {
+                  alert("กรุณากรอกข้อมูลให้ครบ");
+                }else{
                 this.props.login(this.state.input);
+              }
               }}
             >
               <Text> ล็อคอิน </Text>
@@ -98,11 +102,11 @@ class Login extends Component {
             </Col>
           </ListItem>
 
-          {this.props.hasError ? alert(
+          {this.props.hasError ? 
             <Text style={{ color: "red" }}>
             {this.props.hasError}
             </Text>
-          ) : null}
+           : null}
         </Content>
         </Row>
         </Grid>

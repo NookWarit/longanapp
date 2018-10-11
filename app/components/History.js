@@ -28,8 +28,8 @@ class History extends Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() {
-    this.props.getAllHistory();
+  async componentDidMount() {
+    await this.props.getAllHistory();
   }
   render() {
     return (

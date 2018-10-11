@@ -48,6 +48,7 @@ class Article extends Component {
             <Icon name="search" />
           </Button>
         </Item>
+        <Content>
         <List>
           {this.props.articles.map((article,index) => (
             <ListItem thumbnail key={index}>
@@ -75,6 +76,7 @@ class Article extends Component {
             </ListItem>
           ))}
         </List>
+        </Content>
       </Content>
     );
   }

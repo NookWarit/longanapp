@@ -50,7 +50,6 @@ class Signup extends Component {
     //        console.log("android")
     // }
   }
-
   onTextChangeHandler(text, field) {
     let oldInput = this.state.input;
     oldInput[field] = text;
@@ -134,6 +133,7 @@ class Signup extends Component {
               <Icon active name="lock" />
               <Input
                 placeholder="รหัสผ่าน"
+                secureTextEntry={true}
                 value={this.state.input.password}
                 onChangeText={text =>
                   this.onTextChangeHandler(text, "password")
@@ -144,6 +144,7 @@ class Signup extends Component {
               <Icon active name="lock" />
               <Input
                 placeholder="ยืนยันรหัสผ่าน"
+                secureTextEntry={true}
                 value={this.state.input.confirmPassword}
                 onChangeText={text =>
                   this.onTextChangeHandler(text, "confirmPassword")
@@ -154,6 +155,7 @@ class Signup extends Component {
               <Icon active name="call" />
               <Input
                 placeholder="โทรศัพท์"
+                keyboardType="number-pad"
                 value={this.state.input.tel}
                 onChangeText={text => this.onTextChangeHandler(text, "tel")}
               />

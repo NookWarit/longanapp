@@ -57,12 +57,13 @@ class Calendars extends Component {
     return date.toISOString().split("T")[0];
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.getAllNotification();
     //console.log();
     // let notifications = this.props.notification.map(noti => noti.date)
     let newDaysObject = {};
 
-    this.props.notification.forEach(obj => {
+    await this.props.notification.forEach(obj => {
       newDaysObject = {
         ...newDaysObject,
         [obj.date]: [

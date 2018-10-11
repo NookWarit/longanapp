@@ -19,7 +19,7 @@ export const getAllChat = () => async dispatch => {
       dispatch(setAllChat([]));
     }
   } catch (error) {
-    let message = "มีไหน";
+    //let message = "มีไหน";
     dispatch(hasError(message));
     setTimeout(() => {
       dispatch(hasError(""));

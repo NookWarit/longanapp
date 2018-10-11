@@ -37,6 +37,7 @@ export const signup = data => async dispatch => {
     lastname,
     email,
     password,
+    confirmPassword,
     tel,
     address,
     district,
@@ -47,6 +48,7 @@ export const signup = data => async dispatch => {
     !lastname ||
     !email ||
     !password ||
+    !confirmPassword ||
     !tel ||
     !address ||
     !district ||
@@ -62,10 +64,10 @@ export const signup = data => async dispatch => {
 
   try {
     let user = await Axios.post(`${config.server.api}/api/user/signup`, data);
-    //console.log(user.data.id)
+    console.log(user.data.id)
     if (user.data.id) {
       await AsyncStorage.setItem("user", JSON.stringify(user.data));
-      //dispatch(setUser(user.data));
+      dispatch(setUser(user.data));
     } else {
       let message = "สมัครเรียบร้อยแล้ว";
       dispatch(hasError(message));
@@ -88,9 +90,7 @@ export const update = data => async dispatch => {
     id,
     name,
     lastname,
-    email,
     password,
-    image,
     tel,
     address,
     district,
@@ -100,9 +100,7 @@ export const update = data => async dispatch => {
     !id ||
     !name ||
     !lastname ||
-    !email ||
     !password ||
-    !image ||
     !tel ||
     !address ||
     !district ||
@@ -120,9 +118,7 @@ export const update = data => async dispatch => {
       user_id: id,
       name: name,
       lastname: lastname,
-      email: email,
       password: password,
-      image: image,
       tel: tel,
       address: address,
       district: district,
