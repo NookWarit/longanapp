@@ -6,15 +6,6 @@ import { hasError } from "./app";
 //server (axios)
 
 export const login = data => async dispatch => {
-  let { email, password } = data;
-  if (!email || !password) {
-    let message = "กรุณากรอกข้อมูลให้ครบ !";
-    dispatch(hasError(message));
-    setTimeout(() => {
-      dispatch(hasError(""));
-    }, 3000);
-    return false;
-  }
   try {
     let user = await Axios.post(`${config.server.api}/api/user/login`, {
       email: data.email,

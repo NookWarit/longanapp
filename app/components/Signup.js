@@ -20,7 +20,7 @@ import PropTypes from "prop-types";
 //import Expo, { ImagePicker } from "expo";
 import { TouchableOpacity } from "react-native";
 import { signup } from "../store/actions/user";
-import { Platform, StyleSheet } from "react-native";
+import { Platform, StyleSheet ,KeyboardAvoidingView} from "react-native";
 
 class Signup extends Component {
   constructor(props) {
@@ -87,11 +87,15 @@ class Signup extends Component {
             <Button transparent onPress={() => this.props.history.goBack()}>
               <Icon name="arrow-round-back" style={{ color: "#000000" }} />
             </Button>
-          </Left>
-          <Body><Title>สมัครสมาชิก</Title></Body>
+          </Left><Body><Title style={{color:"#000"}}>สมัครสมาชิก</Title></Body>
           <Right />
         </Header>
         <Content>
+        <KeyboardAvoidingView
+          //style={styles.container}
+          behavior="padding"
+          enabled
+        >
           <Form>
             {/* <Item style={{alignSelf:'center'}}>
               <TouchableOpacity onPress={this._pickImage}>
@@ -208,6 +212,7 @@ class Signup extends Component {
               <Text style={{ color: "red" }}>{this.props.hasError}</Text>
             ) : null}
           </Form>
+          </KeyboardAvoidingView>
         </Content>
       </Container>
     );

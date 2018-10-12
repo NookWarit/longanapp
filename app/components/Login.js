@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { TouchableOpacity } from "react-native";
 import {
   Container,
   Header,
@@ -7,9 +8,9 @@ import {
   Input,
   Icon,
   Button,
-  Text,
   ListItem,
-  Thumbnail
+  Thumbnail,
+  Text
 } from "native-base";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -50,65 +51,71 @@ class Login extends Component {
     return (
       <Container>
         <Grid>
-          <Row style={{alignSelf:"center"}}>
-        <Thumbnail
+          <Row style={{ alignSelf: "center" }}>
+            <Thumbnail
               source={require("../assets/images/logo_longan.png")}
-             style={{alignSelf:"center",width:200,height:300,resizeMode:"contain"}}/>
-        </Row>
-        <Row>
-        <Content style={{paddingTop:10,}}>
-          <Item regular>
-            <Icon active name="person" />
-            <Input
-              placeholder="ชื่อผู้ใช้ หรือ อีเมลล์"
-              keyboardType="email-address"
-              onChangeText={text => this.onChangeTextHandler(text, "email")}
-              value={this.state.input.email}
-            />
-          </Item>
-          <Item regular>
-            <Icon active name="lock" />
-            <Input
-              placeholder="รหัสผ่าน"
-              secureTextEntry={true}
-              onChangeText={text => this.onChangeTextHandler(text, "password")}
-              value={this.state.input.password}
-            />
-          </Item>
-          <ListItem last style={{alignSelf:"center"}}>
-           <Col>
-            <Button
-              bordered 
-              onPress={() => {
-                if (this.state.input === "") {
-                  alert("กรุณากรอกข้อมูลให้ครบ");
-                }else{
-                this.props.login(this.state.input);
-              }
+              style={{
+                alignSelf: "center",
+                width: 180,
+                height: 250,
+                resizeMode: "contain"
               }}
-            >
-              <Text> ล็อคอิน </Text>
-            </Button>
-            </Col>
-            <Col>
-            <Button
-              info
-              onPress={() => {
-                this.context.router.history.push("/signup");
-              }}
-            >
-              <Text> ลงทะเบียนสมาชิก </Text>
-            </Button>
-            </Col>
-          </ListItem>
+            />
+          </Row>
+          <Row>
+            <Content style={{ paddingTop: 10 }}>
+              <Item regular>
+                <Icon active name="person" />
+                <Input
+                  placeholder="ชื่อผู้ใช้ หรือ อีเมลล์"
+                  keyboardType="email-address"
+                  onChangeText={text => this.onChangeTextHandler(text, "email")}
+                  value={this.state.input.email}
+                />
+              </Item>
+              <Item regular>
+                <Icon active name="lock" />
+                <Input
+                  placeholder="รหัสผ่าน"
+                  secureTextEntry={true}
+                  onChangeText={text =>
+                    this.onChangeTextHandler(text, "password")
+                  }
+                  value={this.state.input.password}
+                />
+              </Item>
+              <ListItem last style={{ alignSelf: "center" }}>
+                <Button
+                  //bordered
+                  onPress={() => {
+                    let reg = (this.props.hasError = true);
+                    if (this.state.input.email === "" || this.state.input.password === "") {
+                      alert("กรุณากรอกข้อมูลให้ครบ");
+                    } else if (this.state.input.email = reg || this.state.input.password === reg){
+                      alert("อีเมลล์หรือรหัสผ่านไม่ถูกต้อง");
+                    } else{
+                      this.props.login(this.state.input);
+                    }
+                  }}
+                >
+                  <Text> ล็อคอิน </Text>
+                </Button>
 
-          {this.props.hasError ? 
-            <Text style={{ color: "red" }}>
-            {this.props.hasError}
-            </Text>
-           : null}
-        </Content>
-        </Row>
+                <Button
+                  info
+                  onPress={() => {
+                    this.context.router.history.push("/signup");
+                  }}
+                  style={{ marginLeft: 50 }}
+                >
+                  <Text> ลงทะเบียนสมาชิก </Text>
+                </Button>
+              </ListItem>
+              <TouchableOpacity>
+                <Text style={{ marginLeft: 5 }}>ลืมรหัสผ่าน?</Text>
+              </TouchableOpacity>
+            </Content>
+          </Row>
         </Grid>
       </Container>
     );

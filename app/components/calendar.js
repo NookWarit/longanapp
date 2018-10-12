@@ -66,9 +66,9 @@ class Calendars extends Component {
     await this.props.notification.forEach(obj => {
       newDaysObject = {
         ...newDaysObject,
-        [obj.date]: [
+        [obj.date]: [ console.log([obj]),
           {
-            text: `สถานที่: ${obj.place} \n\r ระยะ: ${obj.phase} \n\r ควรใส่ปุ๋ยปริมาณ: ${obj.fertilizer}`
+            text: `สถานที่: ${obj.place} \nระยะ: ${obj.phase} \nคำแนะนำการใส่ปุ๋ย: ไนโตรเจน${obj.fertilizer.N} ฟอสฟอรัส${obj.fertilizer.P}กรัม/ต้น โพแทสเซียม${obj.fertilizer.K}\n คำแนะนำการให้น้ำ: ${obj.description}`
           }
         ]
       };

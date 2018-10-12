@@ -53,6 +53,7 @@ class News extends Component {
             <Icon name="search" />
           </Button>
         </Item>
+        <Content>
         <List>
           {this.props.news.map((n,index) => (
             <ListItem thumbnail key={index}>
@@ -80,6 +81,7 @@ class News extends Component {
             </ListItem>
           ))}
         </List>
+        </Content>
       </Content>
     );
   }
