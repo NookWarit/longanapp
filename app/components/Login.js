@@ -51,18 +51,18 @@ class Login extends Component {
     return (
       <Container>
         <Grid>
-          <Row style={{ alignSelf: "center" }}>
+          <Row size={40} style={{ alignSelf: "center" }}>
             <Thumbnail
               source={require("../assets/images/logo_longan.png")}
               style={{
                 alignSelf: "center",
-                width: 180,
-                height: 250,
+                width: 150,
+                height: 200,
                 resizeMode: "contain"
               }}
             />
           </Row>
-          <Row>
+          <Row size={60}>
             <Content style={{ paddingTop: 10 }}>
               <Item regular>
                 <Icon active name="person" />
@@ -102,7 +102,7 @@ class Login extends Component {
                 </Button>
 
                 <Button
-                  info
+                  dark
                   onPress={() => {
                     this.context.router.history.push("/signup");
                   }}
@@ -111,7 +111,18 @@ class Login extends Component {
                   <Text> ลงทะเบียนสมาชิก </Text>
                 </Button>
               </ListItem>
-              <TouchableOpacity>
+              <TouchableOpacity
+              onPress={() => {
+                // this.props.setWebview({
+                //   url: `${config.server.api}/info/media/${
+                //     media.media_id
+                //   }`
+                // });
+                this.context.router.history.push(
+                  "/forgotpass"
+                );
+              }}
+              >
                 <Text style={{ marginLeft: 5 }}>ลืมรหัสผ่าน?</Text>
               </TouchableOpacity>
             </Content>

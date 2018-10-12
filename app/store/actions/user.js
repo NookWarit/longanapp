@@ -16,8 +16,6 @@ export const login = data => async dispatch => {
   } catch (error) {
     //AsyncStorage.removeItem("user");
     let message = "อีเมล์ หรือ รหัสผ่านไม่ถูกต้อง";
-
-    
     dispatch(hasError(message));
     setTimeout(() => {
       dispatch(hasError(""));
@@ -25,49 +23,10 @@ export const login = data => async dispatch => {
   }
 };
 export const signup = data => async dispatch => {
-  let {
-    name,
-    lastname,
-    email,
-    password,
-    confirmPassword,
-    tel,
-    address,
-    district,
-    province
-  } = data;
-  if (
-    !name ||
-    !lastname ||
-    !email ||
-    !password ||
-    !confirmPassword ||
-    !tel ||
-    !address ||
-    !district ||
-    !province
-  ) {
-    let message = "กรุณากรอกข้อมูลให้ครบ !";
-    dispatch(hasError(message));
-    setTimeout(() => {
-      dispatch(hasError(""));
-    }, 3000);
-    return false;
-  }
-
   try {
     let user = await Axios.post(`${config.server.api}/api/user/signup`, data);
-    console.log(user.data.id)
-    if (user.data.id) {
-      await AsyncStorage.setItem("user", JSON.stringify(user.data));
+    await AsyncStorage.setItem("user", JSON.stringify(user.data));
       dispatch(setUser(user.data));
-    } else {
-      let message = "สมัครเรียบร้อยแล้ว";
-      dispatch(hasError(message));
-      setTimeout(() => {
-        dispatch(hasError(""));
-      }, 3000);
-    }
   } catch (error) {
     let message = "ข้อมูลไม่ถูกต้อง";
     dispatch(hasError(message));
@@ -136,6 +95,22 @@ export const update = data => async dispatch => {
       dispatch(hasError(""));
     }, 3000);
     console.log(error);
+  }
+};
+export const forgot = data => async dispatch => {
+  try {
+    let mail = await Axios.post(`${config.server.api}/api/user/forgot`, {
+      email: data.email
+    });
+    // await AsyncStorage.setItem("user", JSON.stringify(user.data));
+     //dispatch(setUser(mail.data));
+  } catch (error) {
+    //AsyncStorage.removeItem("user");
+    let message = "อีเมล์ไม่ถูกต้อง";
+    dispatch(hasError(message));
+    setTimeout(() => {
+      dispatch(hasError(""));
+    }, 3000);
   }
 };
 export const setUser = data => ({

@@ -30,6 +30,7 @@ import {StyleProvider} from  'native-base';
 import getTheme from "./native-base-theme/components";
 import gray from './native-base-theme/variables/gray'
 import green from './native-base-theme/variables/green'
+import ForgotPass from "./app/components/ForgotPass";
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -92,6 +93,7 @@ export default class App extends React.Component {
             <Route path="/detailhistory" component={DetailHistory} />
             <Route path="/calculate" component={calculate} />
             <Route path="/soil" component={soil} />
+            <Route path="/forgotpass" component={ForgotPass} />
           </Switch>
         </Router>
       </Provider>
