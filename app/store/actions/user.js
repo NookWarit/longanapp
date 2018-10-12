@@ -16,6 +16,8 @@ export const login = data => async dispatch => {
   } catch (error) {
     //AsyncStorage.removeItem("user");
     let message = "อีเมล์ หรือ รหัสผ่านไม่ถูกต้อง";
+
+    
     dispatch(hasError(message));
     setTimeout(() => {
       dispatch(hasError(""));
