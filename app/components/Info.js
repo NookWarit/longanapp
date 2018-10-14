@@ -13,7 +13,7 @@ class Info extends Component {
           <CardItem header bordered style={{alignSelf:"center"}}>
           <Thumbnail
               square
-              source={require("../assets/images/logo_longan.png")}
+              source={require("../assets/images/logo.png")}
              style={{resizeMode:'contain',height:200,width:200}}/>
             
             </CardItem>

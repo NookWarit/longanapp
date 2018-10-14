@@ -70,7 +70,7 @@ class Home extends Component {
                     {this.props.media.map(
                       (media, index) => (
                         (
-                          <ListItem avatar key={index} >
+                          <ListItem avatar last key={index} >
                             <Left>
                               <Icon name="videocam" />
                             </Left>

@@ -63,11 +63,11 @@ class ForgotPass extends Component {
         <Grid>
           <Row size={30} style={{ alignSelf: "center" }}>
           <Thumbnail
-              source={require("../assets/images/logo_longan.png")}
+              source={require("../assets/images/logo.png")}
               style={{
                 alignSelf: "center",
-                width: 100,
-                height: 150,
+                width: 150,
+                height: 200,
                 resizeMode: "contain"
               }}
             />

@@ -17,9 +17,6 @@ export const login = data => async dispatch => {
     //AsyncStorage.removeItem("user");
     let message = "อีเมล์ หรือ รหัสผ่านไม่ถูกต้อง";
     dispatch(hasError(message));
-    setTimeout(() => {
-      dispatch(hasError(""));
-    }, 3000);
   }
 };
 export const signup = data => async dispatch => {
@@ -30,9 +27,6 @@ export const signup = data => async dispatch => {
   } catch (error) {
     let message = "ข้อมูลไม่ถูกต้อง";
     dispatch(hasError(message));
-    setTimeout(() => {
-      dispatch(hasError(""));
-    }, 3000);
     console.log(error);
   }
 };

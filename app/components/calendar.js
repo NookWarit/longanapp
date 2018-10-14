@@ -38,7 +38,6 @@ class Calendars extends Component {
       </View>
     );
   }
-  
 
   renderEmptyDate() {
     return (
@@ -66,9 +65,16 @@ class Calendars extends Component {
     await this.props.notification.forEach(obj => {
       newDaysObject = {
         ...newDaysObject,
-        [obj.date]: [ console.log([obj]),
+        [obj.date]: [
+          console.log([obj]),
           {
-            text: `สถานที่: ${obj.place} \nระยะ: ${obj.phase} \nคำแนะนำการใส่ปุ๋ย: ไนโตรเจน${obj.fertilizer.N} ฟอสฟอรัส${obj.fertilizer.P}กรัม/ต้น โพแทสเซียม${obj.fertilizer.K}\n คำแนะนำการให้น้ำ: ${obj.description}`
+            text: `สถานที่: ${obj.place} \nระยะ: ${
+              obj.phase
+            } \nคำแนะนำการใส่ปุ๋ย: ไนโตรเจน${obj.fertilizer.N} ฟอสฟอรัส${
+              obj.fertilizer.P
+            }กรัม/ต้น โพแทสเซียม${obj.fertilizer.K}\n คำแนะนำการให้น้ำ: ${
+              obj.description
+            }`
           }
         ]
       };
@@ -84,11 +90,19 @@ class Calendars extends Component {
           //loadItemsForMonth={(month) => this.state.notifications}
           renderItem={this.renderItem.bind(this)}
           renderEmptyDate={this.renderEmptyDate.bind(this)}
-          renderKnob={() => {return (<View />);}}
-  // specify what should be rendered instead of ActivityIndicator
-  renderEmptyData = {() => {return (<View style={{padding:10}}><Text> ไม่มีข้อมูลสำหรับวันนี้</Text></View>);}}
+          renderKnob={() => {
+            return <View />;
+          }}
+          // specify what should be rendered instead of ActivityIndicator
+          renderEmptyData={() => {
+            return (
+              <View style={{ padding: 10 }}>
+                <Text> ไม่มีข้อมูลสำหรับวันนี้</Text>
+              </View>
+            );
+          }}
+          onCalendarToggled={(calendarOpened) => {console.log(calendarOpened)}}
           rowHasChanged={this.rowHasChanged.bind(this)}
-
           style={{ height: height }}
         />
       </Master>

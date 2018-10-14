@@ -54,6 +54,7 @@ class Profile extends Component {
       id: this.props.user.user_id,
       name: this.props.user.name,
       lastname: this.props.user.lastname,
+      email: this.props.user.email,
       password: this.props.user.password,
       tel: this.props.user.tel,
       address: this.props.user.address,

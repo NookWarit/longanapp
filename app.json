@@ -5,7 +5,7 @@
     "icon": "./app/assets/images/icon-1024.png",
     "version": "1.0.0",
     "splash": {
-      "image": "./app/assets/images/pro.png",
+      "image": "./app/assets/images/splashscreen.png",
       "resizeMode": "cover"
     },
     "orientation": "portrait",

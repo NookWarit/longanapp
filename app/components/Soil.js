@@ -35,12 +35,11 @@ class soil extends Component {
   render() {
     return (
       <Master title="วิเคราะห์ดิน" isBack>
-            <Card style={{ width: width, padding: 15 }}>
-              <CardItem>
+            <Card style={{ width: width, padding:5}}>
+              <CardItem >
                 <Left>
-                  <H3>ค่าของดิน</H3>
+                  <Text>ค่าของดิน</Text>
                   </Left>
-                  <Body>
                   <Picker
                     mode="dropdown"
                     iosIcon={<Icon name="ios-arrow-down-outline" />}
@@ -56,14 +55,12 @@ class soil extends Component {
                     <Picker.Item label="ปานกลาง" value="ปานกลาง" />
                     <Picker.Item label="ต่ำ" value="ต่ำ" />
                   </Picker>
-                  </Body>
                   <Right>
                   <Button
                     onPress={() =>
                       this.props.getsoil({ value: this.state.value })
                     }
                     bordered
-                    style={{margin:5}}
                   >
                     <Text>วิเคราะห์</Text>
                   </Button>
@@ -72,7 +69,7 @@ class soil extends Component {
               <CardItem>
                 <Content>
                   <CardItem style={{paddingTop:30}}>
-                  <H3>คำแนะนำสำหรับจัดการดิน</H3>
+                  <Text>คำแนะนำสำหรับจัดการดิน</Text>
                   </CardItem>
                   <Text style={{paddingTop:15}}>{this.props.soil.description}</Text>
                 </Content>

@@ -51,9 +51,9 @@ class Login extends Component {
     return (
       <Container>
         <Grid>
-          <Row size={40} style={{ alignSelf: "center" }}>
+          <Row size={35} style={{ alignSelf: "center" }}>
             <Thumbnail
-              source={require("../assets/images/logo_longan.png")}
+              source={require("../assets/images/logo.png")}
               style={{
                 alignSelf: "center",
                 width: 150,
@@ -62,7 +62,7 @@ class Login extends Component {
               }}
             />
           </Row>
-          <Row size={60}>
+          <Row size={65}>
             <Content style={{ paddingTop: 10 }}>
               <Item regular>
                 <Icon active name="person" />
@@ -88,10 +88,10 @@ class Login extends Component {
                 <Button
                   //bordered
                   onPress={() => {
-                    let reg = (this.props.hasError = true);
                     if (this.state.input.email === "" || this.state.input.password === "") {
                       alert("กรุณากรอกข้อมูลให้ครบ");
-                    } else if (this.state.input.email = reg || this.state.input.password === reg){
+                    } else if (this.props.hasError != ""){
+                      console.log(this.props.hasError);
                       alert("อีเมลล์หรือรหัสผ่านไม่ถูกต้อง");
                     } else{
                       this.props.login(this.state.input);
@@ -102,7 +102,7 @@ class Login extends Component {
                 </Button>
 
                 <Button
-                  dark
+                  info
                   onPress={() => {
                     this.context.router.history.push("/signup");
                   }}
@@ -113,17 +113,12 @@ class Login extends Component {
               </ListItem>
               <TouchableOpacity
               onPress={() => {
-                // this.props.setWebview({
-                //   url: `${config.server.api}/info/media/${
-                //     media.media_id
-                //   }`
-                // });
                 this.context.router.history.push(
                   "/forgotpass"
                 );
               }}
               >
-                <Text style={{ marginLeft: 5 }}>ลืมรหัสผ่าน?</Text>
+                <Text style={{ marginLeft: 10}}>ลืมรหัสผ่าน?</Text>
               </TouchableOpacity>
             </Content>
           </Row>

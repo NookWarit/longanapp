@@ -20,7 +20,12 @@ import PropTypes from "prop-types";
 //import Expo, { ImagePicker } from "expo";
 import { TouchableOpacity } from "react-native";
 import { signup } from "../store/actions/user";
-import { Platform, StyleSheet, KeyboardAvoidingView ,Alert} from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Alert
+} from "react-native";
 
 class Signup extends Component {
   static contextTypes = {
@@ -201,7 +206,7 @@ class Signup extends Component {
 
               <Button
                 block
-                dark
+                info
                 onPress={() => {
                   let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
                   if (
@@ -213,7 +218,7 @@ class Signup extends Component {
                     this.state.input.tel === "" ||
                     this.state.input.address === "" ||
                     this.state.input.district === "" ||
-                    this.state.input.province === "" 
+                    this.state.input.province === ""
                   ) {
                     alert("กรุณากรอกข้อมูลให้ครบ!");
                   } else if (reg.test(this.state.input.email) === false) {
@@ -223,6 +228,10 @@ class Signup extends Component {
                     this.state.input.confirmPassword
                   ) {
                     alert("รหัสผ่านไม่ตรงกัน");
+                  } else if (
+                    this.props.hasError != ""
+                  ) {
+                    alert("ข้อมูลไม่ถูกต้อง");
                   } else {
                     this.props.signup(this.state.input);
                     Alert.alert(
@@ -244,9 +253,9 @@ class Signup extends Component {
               >
                 <Text> สร้างบัญชี </Text>
               </Button>
-              {this.props.hasError ? (
+              {/* {this.props.hasError ? (
                 <Text style={{ color: "red" }}>{this.props.hasError}</Text>
-              ) : null}
+              ) : null} */}
             </Form>
           </KeyboardAvoidingView>
         </Content>
