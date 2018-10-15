@@ -5,7 +5,8 @@ import DatePicker from "react-native-datepicker";
 import { connect } from "react-redux";
 import { sentHistory, getAllHistory } from "../store/actions/history";
 import PropTypes from "prop-types";
-import { Alert } from "react-native";
+import { Alert , Dimensions} from "react-native";
+const {width,height} =Dimensions.get("window");
 
 class calculate extends Component {
   static contextTypes = {
@@ -37,7 +38,7 @@ class calculate extends Component {
   render() {
     return (
       <Master title="คำนวณปุ๋ย" isBack>
-        <Form>
+        <Form style={{width:width}}>
           <Item>
             {/* <Icon active name="person" /> */}
             <Text> สถานที่ :</Text>

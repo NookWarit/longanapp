@@ -7,21 +7,23 @@ import {
   Tabs,
   TabHeading,
   Icon,
-  Text
+  Text,
+  Content
 } from "native-base";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import News from "./News";
 import Article from "./Article";
 import { connect } from "react-redux";
 import { setActiveTabs } from "../../store/actions/app";
 
+const { width, height } = Dimensions.get("window");
 class Page extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     return (
-      <Master >
+      <Master>
         <Tabs>
           <Tab
             heading={
@@ -31,17 +33,17 @@ class Page extends Component {
               </TabHeading>
             }
           >
-            <News />
+              <News />
           </Tab>
           <Tab
             heading={
               <TabHeading style={styles.tabBackground}>
-                <Icon name="folder" style={styles.Button}/>
+                <Icon name="folder" style={styles.Button} />
                 <Text style={styles.Button}>บทความ</Text>
               </TabHeading>
             }
           >
-            <Article />
+              <Article />
           </Tab>
         </Tabs>
       </Master>

@@ -154,11 +154,9 @@ class Chat extends Component {
               style={styles.btnSend}
               onPress={() => {
                 this.props.sentchat(this.state.input);
-                this.setState({
-                  input: {
-                    message: ""
-                  }
-                });
+                let oldInput = this.state.input;
+                oldInput['message'] = ""
+                this.setState({input: oldInput});
               }}
             >
               <Image

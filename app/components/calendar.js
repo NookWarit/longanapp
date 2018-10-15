@@ -42,7 +42,7 @@ class Calendars extends Component {
   renderEmptyDate() {
     return (
       <View style={styles.emptyDate}>
-        <Text>This is empty date!</Text>
+        <Text> </Text>
       </View>
     );
   }
@@ -66,20 +66,16 @@ class Calendars extends Component {
       newDaysObject = {
         ...newDaysObject,
         [obj.date]: [
-          console.log([obj]),
           {
             text: `สถานที่: ${obj.place} \nระยะ: ${
               obj.phase
-            } \nคำแนะนำการใส่ปุ๋ย: ไนโตรเจน${obj.fertilizer.N} ฟอสฟอรัส${
-              obj.fertilizer.P
-            }กรัม/ต้น โพแทสเซียม${obj.fertilizer.K}\n คำแนะนำการให้น้ำ: ${
+            } \nคำแนะนำการใส่ปุ๋ย: ${obj.fertilizer} \nคำแนะนำการให้น้ำ: ${
               obj.description
             }`
           }
         ]
       };
     });
-    //console.log(newDaysObject)
     this.setState({ notifications: newDaysObject });
   }
   render() {
@@ -87,7 +83,6 @@ class Calendars extends Component {
       <Master title="การแจ้งเตือน">
         <Agenda
           items={this.state.notifications}
-          //loadItemsForMonth={(month) => this.state.notifications}
           renderItem={this.renderItem.bind(this)}
           renderEmptyDate={this.renderEmptyDate.bind(this)}
           renderKnob={() => {
@@ -97,12 +92,29 @@ class Calendars extends Component {
           renderEmptyData={() => {
             return (
               <View style={{ padding: 10 }}>
-                <Text> ไม่มีข้อมูลสำหรับวันนี้</Text>
+                <Text> ไม่มีข้อมูลสำหรับวันนี้ </Text>
               </View>
             );
           }}
-          onCalendarToggled={(calendarOpened) => {console.log(calendarOpened)}}
+          onCalendarToggled={calendarOpened => {
+            console.log(calendarOpened);
+          }}
           rowHasChanged={this.rowHasChanged.bind(this)}
+          pastScrollRange={50}
+          futureScrollRange={50}
+          hideKnob={false}
+          theme={{
+            textMonthFontWeight: "bold",
+            textDayFontSize: 16,
+            textMonthFontSize: 16,
+            textDayHeaderFontSize: 16,
+            dotColor: "red",
+            selectedDotColor: "#000",
+            agendaDayTextColor: "green",
+            agendaDayNumColor: "green",
+            agendaTodayColor: "red",
+            agendaKnobColor: "black"
+          }}
           style={{ height: height }}
         />
       </Master>

@@ -34,10 +34,11 @@ export const sentChat = data => async dispatch => {
     type: data.type
   });
 
-  let chat = await Axios.get(
-    `${config.server.api}/api/messenger/${data.room_id}`
-  );
-  dispatch(setAllChat(chat.data));
+  dispatch(getAllChat());
+  // let chat = await Axios.get(
+  //   `${config.server.api}/api/messenger/${data.room_id}`
+  // );
+  // dispatch(setAllChat(chat.data));
 };
 const setAllChat = data => ({
   type: SET_ALL_CHAT,

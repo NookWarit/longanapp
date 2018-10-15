@@ -15,16 +15,16 @@ class Contact extends Component {
             <Master title="ติดต่อเรา" isBack>
             <Grid>
             <Card>
-                <Row size={1}>
+                <Row size={30}>
               <Image source={require("../assets/images/rmutl.jpg")}
                  style={{resizeMode:'contain', width:width ,height:250 ,alignSelf:"center"}}/>
                 </Row>
-                <Row size={3}>
+                <Row size={70}>
                 <CardItem bordered style={{padding:5 , width:width}}>
                 <Body >
                 <Text style={{alignSelf:"center"}}>สถาบันถ่ายทอดเทคโนโลยีเพื่อชุมชน</Text>
                 <Text style={{alignSelf:"center"}}>มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</Text>
-                <Text>ที่อยู่ : 98 หมู่ 8 ตำบลป่าป้อง อำเภอดอยสะเก็ด จังหวัดเชียงใหม่ 50220</Text>
+                <Text style={{paddingTop:15}}>ที่อยู่ : 98 หมู่ 8 ตำบลป่าป้อง อำเภอดอยสะเก็ด จังหวัดเชียงใหม่ 50220</Text>
                 <Text>โทรศัพท์ : 0 5326 6516 #1032 </Text>
                 <Text>โทรสาร : 0 5326 6522</Text>
                 <Text>เว็บไซต์ : https://cttc.rmutl.ac.th/</Text>

@@ -11,13 +11,16 @@ import {
   Item,
   Input,
   List,
-  ListItem
+  ListItem,
+  Container
 } from "native-base";
 import { connect } from "react-redux";
 import config from "../../config";
 import { setWebview } from "../../store/actions/app";
 import PropTypes from "prop-types";
 import { findArticleByKeyword } from "../../store/actions/article";
+import { Dimensions, ScrollView, Platform } from "react-native";
+const { width, height } = Dimensions.get("window");
 
 class Article extends Component {
   static contextTypes = {
@@ -26,7 +29,7 @@ class Article extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      keyword:''
+      keyword: ""
     };
   }
   onChangeTextHandler(text) {
@@ -34,50 +37,64 @@ class Article extends Component {
   }
   render() {
     return (
-      <Content>
+      <React.Fragment>
         <Item>
           <Icon name="ios-people" style={{ marginLeft: 5 }} />
           <Input
             returnKeyType="search"
-            onSubmitEditing={()=>this.props.findArticleByKeyword(this.state.keyword)}
-            onChangeText={(text)=> this.onChangeTextHandler(text)}
+            onSubmitEditing={() =>
+              this.props.findArticleByKeyword(this.state.keyword)
+            }
+            onChangeText={text => this.onChangeTextHandler(text)}
             placeholder="กรอกคำค้น..."
             value={this.state.keyword}
           />
-          <Button onPress={() => this.props.findArticleByKeyword(this.state.keyword)} transparent>
+          <Button
+            onPress={() => this.props.findArticleByKeyword(this.state.keyword)}
+            transparent
+          >
             <Icon name="search" />
           </Button>
         </Item>
-        <Content>
-        <List>
-          {this.props.articles.map((article,index) => (
-            <ListItem thumbnail key={index}>
-              <Left>
-                <Thumbnail
-                  square
-                  source={{ uri: `${config.server.api}/api/article/image/${article.image}`}}
-                  //style={{ width: 64, height: 64, resizeMode:'contain'}}
-                />
-              </Left>
-              <Body>
-                <Text>{article.title}</Text>
-                
-              </Body>
-              <Right>
-                <Button transparent onPress={() => {
-                  this.props.setWebview({
-                    url:`${config.server.api}/info/article/${article.article_id}`
-                  })
-                  this.context.router.history.push("/detailarticle");
-              }}>
-                  <Text>View</Text>
-                </Button>
-              </Right>
-            </ListItem>
-          ))}
-        </List>
-        </Content>
-      </Content>
+          <Content  style={{ height: height - (height * 30 /100) }}>
+            <List
+              dataArray={this.props.articles}
+              renderRow={article => (
+                <ListItem thumbnail>
+                  <Left>
+                    <Thumbnail
+                      square
+                      source={{
+                        uri: `${config.server.api}/api/article/image/${
+                          article.image
+                        }`
+                      }}
+                      //style={{ width: 64, height: 64, resizeMode:'contain'}}
+                    />
+                  </Left>
+                  <Body>
+                    <Text>{article.title}</Text>
+                  </Body>
+                  <Right>
+                    <Button
+                      transparent
+                      onPress={() => {
+                        this.props.setWebview({
+                          url: `${config.server.api}/info/article/${
+                            article.article_id
+                          }`
+                        });
+                        this.context.router.history.push("/detailarticle");
+                      }}
+                    >
+                      <Text>View</Text>
+                    </Button>
+                  </Right>
+                </ListItem>
+              )}
+            />
+          </Content>
+      </React.Fragment>
     );
   }
 }

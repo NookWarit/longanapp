@@ -18,6 +18,8 @@ import config from "../../config";
 import { setWebview } from "../../store/actions/app";
 import PropTypes from "prop-types";
 import { findNewsByKeyword } from "../../store/actions/news";
+import { Dimensions, ScrollView, Platform } from "react-native";
+const { width, height } = Dimensions.get("window");
 
 class News extends Component {
   static contextTypes = {
@@ -34,7 +36,7 @@ class News extends Component {
   }
   render() {
     return (
-      <Content>
+      <React.Fragment>
         <Item>
           <Icon name="ios-people" style={{ marginLeft: 5 }} />
           <Input
@@ -53,10 +55,10 @@ class News extends Component {
             <Icon name="search" />
           </Button>
         </Item>
-        <Content>
-        <List>
-          {this.props.news.map((n,index) => (
-            <ListItem thumbnail key={index}>
+        <Content style={{ height: height - (height * 30 /100) }}>
+        <List dataArray={this.props.news}
+              renderRow={n => (
+            <ListItem thumbnail >
               <Left>
                 <Thumbnail
                   square
@@ -79,10 +81,10 @@ class News extends Component {
                 </Button>
               </Right>
             </ListItem>
-          ))}
-        </List>
+          )}
+        />
         </Content>
-      </Content>
+      </React.Fragment>
     );
   }
 }
