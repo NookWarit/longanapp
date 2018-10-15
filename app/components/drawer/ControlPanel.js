@@ -42,7 +42,7 @@ class ControlPanel extends Component {
           <Thumbnail
             square
             large
-            source={require("../../assets/images/logo_longan.png")}
+            source={require("../../assets/images/logo.png")}
             style={{resizeMode:'contain'}}
           />
           <Button
