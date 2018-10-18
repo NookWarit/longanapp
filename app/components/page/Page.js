@@ -15,6 +15,7 @@ import News from "./News";
 import Article from "./Article";
 import { connect } from "react-redux";
 import { setActiveTabs } from "../../store/actions/app";
+import Media from "./Media";
 
 const { width, height } = Dimensions.get("window");
 class Page extends Component {
@@ -23,7 +24,7 @@ class Page extends Component {
   }
   render() {
     return (
-      <Master>
+      <Master title="การจัดการความรู้">
         <Tabs>
           <Tab
             heading={
@@ -44,6 +45,16 @@ class Page extends Component {
             }
           >
               <Article />
+          </Tab>
+          <Tab
+            heading={
+              <TabHeading style={styles.tabBackground}>
+                <Icon name="videocam" style={styles.Button} />
+                <Text style={styles.Button}>วิดีโอ</Text>
+              </TabHeading>
+            }
+          >
+              <Media />
           </Tab>
         </Tabs>
       </Master>

@@ -7,6 +7,10 @@ export const getAllNews = () => async dispatch => {
   let news = await Axios.get(`${config.server.api}/api/news`);
   dispatch(setAllNews(news.data));
 };
+export const getLastNews = () => async dispatch => {
+  let lastnews = await Axios.get(`${config.server.api}/api/news/lastnews`);
+  dispatch(setLastNews(lastnews.data));
+};
 export const findNewsByKeyword = keyword => async dispatch => {
   let findnews = await Axios.post(`${config.server.api}/api/news`,{
     title: keyword
@@ -16,5 +20,9 @@ export const findNewsByKeyword = keyword => async dispatch => {
 
 const setAllNews = data => ({
   type: SET_ALL_NEWS,
+  payload: data
+})
+const setLastNews = data => ({
+  type: SET_NEWS,
   payload: data
 })

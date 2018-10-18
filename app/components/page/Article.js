@@ -19,7 +19,7 @@ import config from "../../config";
 import { setWebview } from "../../store/actions/app";
 import PropTypes from "prop-types";
 import { findArticleByKeyword } from "../../store/actions/article";
-import { Dimensions, ScrollView, Platform } from "react-native";
+import { Dimensions, ScrollView, Platform, TouchableOpacity } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 class Article extends Component {
@@ -61,6 +61,7 @@ class Article extends Component {
               dataArray={this.props.articles}
               renderRow={article => (
                 <ListItem thumbnail>
+                
                   <Left>
                     <Thumbnail
                       square
@@ -73,10 +74,7 @@ class Article extends Component {
                     />
                   </Left>
                   <Body>
-                    <Text>{article.title}</Text>
-                  </Body>
-                  <Right>
-                    <Button
+                    <TouchableOpacity
                       transparent
                       onPress={() => {
                         this.props.setWebview({
@@ -87,9 +85,9 @@ class Article extends Component {
                         this.context.router.history.push("/detailarticle");
                       }}
                     >
-                      <Text>View</Text>
-                    </Button>
-                  </Right>
+                      <Text>{article.title}</Text>
+                    </TouchableOpacity>
+                  </Body><Right></Right>
                 </ListItem>
               )}
             />

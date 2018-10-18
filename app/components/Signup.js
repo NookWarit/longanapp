@@ -149,6 +149,7 @@ class Signup extends Component {
                 <Input
                   placeholder="รหัสผ่าน"
                   secureTextEntry={true}
+                  maxLength={10}
                   value={this.state.input.password}
                   onChangeText={text =>
                     this.onTextChangeHandler(text, "password")
@@ -160,6 +161,7 @@ class Signup extends Component {
                 <Input
                   placeholder="ยืนยันรหัสผ่าน"
                   secureTextEntry={true}
+                  maxLength={10}
                   value={this.state.input.confirmPassword}
                   onChangeText={text =>
                     this.onTextChangeHandler(text, "confirmPassword")
@@ -171,6 +173,7 @@ class Signup extends Component {
                 <Input
                   placeholder="โทรศัพท์"
                   keyboardType="number-pad"
+                  maxLength={10}
                   value={this.state.input.tel}
                   onChangeText={text => this.onTextChangeHandler(text, "tel")}
                 />
@@ -229,11 +232,16 @@ class Signup extends Component {
                   ) {
                     alert("รหัสผ่านไม่ตรงกัน");
                   } else if (
-                    this.props.hasError != ""
+                    this.props.hasError = ""
                   ) {
                     alert("ข้อมูลไม่ถูกต้อง");
                   } else {
                     this.props.signup(this.state.input);
+                    if (
+                      this.props.hasError != ""
+                    ) {
+                      alert("อีเมลล์ซ้ำหรืออิเมลล์ถูกใช้ไปแล้ว");
+                    } else {
                     Alert.alert(
                       "Alert",
                       "สมัครเรียบร้อยแล้ว",
@@ -248,14 +256,15 @@ class Signup extends Component {
                       { cancelable: false }
                     );
                   }
+                  }
                 }}
                 style={{ marginTop: 10 }}
               >
                 <Text> สร้างบัญชี </Text>
               </Button>
-              {/* {this.props.hasError ? (
+              {this.props.hasError ? (
                 <Text style={{ color: "red" }}>{this.props.hasError}</Text>
-              ) : null} */}
+              ) : null}
             </Form>
           </KeyboardAvoidingView>
         </Content>

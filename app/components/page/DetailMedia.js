@@ -1,7 +1,7 @@
 import React from "react";
 import { WebView } from "react-native";
 import { connect } from "react-redux";
-import Master from "./layouts/Master"
+import Master from "../layouts/Master";
 
 class DetailMedia extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class DetailMedia extends React.Component {
     postMessage(document.documentElement.scrollHeight);
   `;
     return (
-      <Master isBack>
+      <Master title="วิดีโอ" isBack>
         <WebView
           source={{
             uri: this.props.webView.url

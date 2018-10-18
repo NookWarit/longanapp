@@ -2,7 +2,7 @@ import update from "immutability-helper";
 import { SET_NEWS, SET_ALL_NEWS } from "../actions/news";
 
 const initialState = {
-  newsDetail: {},
+  lastnews: [],
   news: []
 };
 const NewsReducer = (state = initialState, action) => {
@@ -10,7 +10,7 @@ const NewsReducer = (state = initialState, action) => {
     case SET_ALL_NEWS:
       return update(state, { news: { $set: action.payload } });
     case SET_NEWS:
-      return update(state, { newss: { $set: action.payload } });
+      return update(state, { lastnews: { $set: action.payload } });
       break;
 
     default:

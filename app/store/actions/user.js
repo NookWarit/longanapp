@@ -22,26 +22,16 @@ export const login = data => async dispatch => {
 export const signup = data => async dispatch => {
   try {
     let user = await Axios.post(`${config.server.api}/api/user/signup`, data);
-    await AsyncStorage.setItem("user", JSON.stringify(user.data));
+      await AsyncStorage.setItem("user", JSON.stringify(user.data));
       dispatch(setUser(user.data));
   } catch (error) {
-    let message = "ข้อมูลไม่ถูกต้อง";
+    let message = "อีเมลล์ซ้ำหรือข้อมูลไม่ถูกต้อง";
     dispatch(hasError(message));
-    console.log(error);
   }
 };
 
 export const update = data => async dispatch => {
-  let {
-    id,
-    name,
-    lastname,
-    password,
-    tel,
-    address,
-    district,
-    province
-  } = data;
+  let { id, name, lastname, password, tel, address, district, province } = data;
   if (
     !id ||
     !name ||
@@ -96,10 +86,7 @@ export const forgot = data => async dispatch => {
     let mail = await Axios.post(`${config.server.api}/api/user/forgot`, {
       email: data.email
     });
-    // await AsyncStorage.setItem("user", JSON.stringify(user.data));
-     //dispatch(setUser(mail.data));
   } catch (error) {
-    //AsyncStorage.removeItem("user");
     let message = "อีเมล์ไม่ถูกต้อง";
     dispatch(hasError(message));
     setTimeout(() => {

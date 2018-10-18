@@ -5,9 +5,9 @@ import { PacmanIndicator } from "react-native-indicators";
 import Page from "./app/components/page/Page";
 import { Provider } from "react-redux";
 import Store from "./app/store";
-import { getAllArticles } from "./app/store/actions/article";
+import { getAllArticles, getLastArticles } from "./app/store/actions/article";
 import Profile from "./app/components/Profile";
-import { getAllNews } from "./app/store/actions/news";
+import { getAllNews, getLastNews } from "./app/store/actions/news";
 import Calendars from "./app/components/Calendar";
 import Settings from "./app/components/Settings";
 import Chat from "./app/components/Chat";
@@ -20,7 +20,7 @@ import DetailArticle from "./app/components/page/DetailArticle";
 import DetailNews from "./app/components/page/DetailNews";
 import { setUser } from "./app/store/actions/user";
 import { AsyncStorage } from "react-native";
-import DetailMedia from "./app/components/DetailMedia";
+import DetailMedia from "./app/components/page/DetailMedia";
 import calculate from "./app/components/Calculate";
 import soil from "./app/components/Soil";
 import { getAllMedia } from "./app/store/actions/media";
@@ -36,7 +36,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
-      theme : true
+      theme : false
     };
   }
 
@@ -56,19 +56,21 @@ export default class App extends React.Component {
       Store.dispatch(setUser(user));
     }
     Store.dispatch(getAllArticles())
+    //Store.dispatch(getLastArticles())
+    Store.dispatch(getLastNews())
     Store.dispatch(getAllNews())
     Store.dispatch(getAllMedia())
     Store.dispatch(getAllNotification())
     let theme =  JSON.parse(await AsyncStorage.getItem('theme')) || '';
     if(theme){
-      this.setState({theme: true})
-    }else{
       this.setState({theme: false})
+    }else{
+      this.setState({theme: true})
     }
     
   }
   render() {
-    const theme = this.state.theme ? getTheme(green) : getTheme(gray);
+    const theme = this.state.theme ? getTheme(gray) : getTheme(green);
     return this.state.isLoading ? (
       <PacmanIndicator />
     ) : (
