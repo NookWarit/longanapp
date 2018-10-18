@@ -14,7 +14,7 @@
       "bundleIdentifier": "com.cistraining.nwrt.longanapp"
     },
     "android": {
-      "versionCode": 2,
+      "versionCode": 3,
       "package": "com.cistraining.nwrt.longanapp"
     }
   }
