@@ -25,8 +25,11 @@ export const signup = data => async dispatch => {
       await AsyncStorage.setItem("user", JSON.stringify(user.data));
       dispatch(setUser(user.data));
   } catch (error) {
-    let message = "อีเมลล์ซ้ำหรือข้อมูลไม่ถูกต้อง";
+    let message = "DUPLICATED_EMAIL";
     dispatch(hasError(message));
+    await setTimeout(() => {
+      dispatch(hasError({message: ""}))
+    }, 1000)
   }
 };
 

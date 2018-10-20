@@ -85,10 +85,6 @@ class Calendars extends Component {
           items={this.state.notifications}
           renderItem={this.renderItem.bind(this)}
           renderEmptyDate={this.renderEmptyDate.bind(this)}
-          renderKnob={() => {
-            return <View />;
-          }}
-          // specify what should be rendered instead of ActivityIndicator
           renderEmptyData={() => {
             return (
               <View style={{ padding: 10 }}>
@@ -96,13 +92,9 @@ class Calendars extends Component {
               </View>
             );
           }}
-          onCalendarToggled={calendarOpened => {
-            console.log(calendarOpened);
-          }}
           rowHasChanged={this.rowHasChanged.bind(this)}
           pastScrollRange={50}
           futureScrollRange={50}
-          hideKnob={false}
           theme={{
             textMonthFontWeight: "bold",
             textDayFontSize: 16,

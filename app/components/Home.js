@@ -22,7 +22,7 @@ import Master from "./layouts/Master";
 import { Dimensions } from "react-native";
 import { getLastArticles } from "../store/actions/article";
 import { getLastNews } from "../store/actions/news";
-const { height, width } = Dimensions.get("window");
+const { height, width } = Dimensions.get("screen");
 
 class Home extends Component {
   static contextTypes = {
@@ -116,7 +116,6 @@ class Home extends Component {
                                 news.image
                               }`
                             }}
-                            //style={{ width: 64, height: 64, resizeMode:'contain'}}
                           />
                         </Left>
                         <Body>
@@ -125,7 +124,7 @@ class Home extends Component {
                             onPress={() => {
                               this.props.setWebview({
                                 url: `${config.server.api}/info/news/${
-                                  news.article_id
+                                  news.news_id
                                 }`
                               });
                               this.context.router.history.push("/detailnews");

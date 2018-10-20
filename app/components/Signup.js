@@ -26,6 +26,7 @@ import {
   KeyboardAvoidingView,
   Alert
 } from "react-native";
+import { hasError } from "../store/actions/app";
 
 class Signup extends Component {
   static contextTypes = {
@@ -210,7 +211,7 @@ class Signup extends Component {
               <Button
                 block
                 info
-                onPress={() => {
+                onPress={async () => {
                   let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
                   if (
                     this.state.input.name === "" ||
@@ -231,31 +232,14 @@ class Signup extends Component {
                     this.state.input.confirmPassword
                   ) {
                     alert("รหัสผ่านไม่ตรงกัน");
-                  } else if (
-                    this.props.hasError = ""
-                  ) {
-                    alert("ข้อมูลไม่ถูกต้อง");
                   } else {
-                    this.props.signup(this.state.input);
-                    if (
-                      this.props.hasError != ""
-                    ) {
-                      alert("อีเมลล์ซ้ำหรืออิเมลล์ถูกใช้ไปแล้ว");
-                    } else {
-                    Alert.alert(
-                      "Alert",
-                      "สมัครเรียบร้อยแล้ว",
-                      [
-                        {
-                          text: "ตกลง",
-                          onPress: async () => {
-                            await this.context.router.history.push("/");
-                          }
-                        }
-                      ],
-                      { cancelable: false }
-                    );
-                  }
+                  await  this.props.signup(this.state.input);
+                  if (this.props.errorMessage === "DUPLICATED_EMAIL"){
+                    alert('อีเมลล์ซ้ำ!');
+                    
+                  }else{
+                  await this.context.router.history.push("/");
+                }
                   }
                 }}
                 style={{ marginTop: 10 }}
@@ -289,7 +273,7 @@ const styles = StyleSheet.create({
   }
 });
 const mapStateToProps = state => ({
-  hasError: state.app.hasError.message
+  errorMessage: state.app.hasError.message
 });
 const mapDispatchToProps = dispatch => ({
   signup: data => dispatch(signup(data))
