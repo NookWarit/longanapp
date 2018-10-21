@@ -74,7 +74,7 @@ class History extends Component {
                                   onPress: async () => {
                                     await this.props.deleteHistory({
                                       history_id: his.history_id});
-                                      console.log(his);
+                                      //console.log(his);
                                       if (this.props.errorMessage === "DATA_NULL" || this.props.errorMessage === ""){
                                         alert("ไม่มีข้อมูลประวัติการคำนวณแล้ว");
                                       await this.context.router.history.push("/");
