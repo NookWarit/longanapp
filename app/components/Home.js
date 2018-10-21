@@ -99,7 +99,7 @@ class Home extends Component {
           <Row size={3}>
             <Card style={{ width: width }}>
               <CardItem header bordered style={styles.background}>
-                <Icon name="film" />
+                <Icon name="paper" />
                 <Text>ข่าวสารล่าสุด</Text>
               </CardItem>
               <CardItem bordered>

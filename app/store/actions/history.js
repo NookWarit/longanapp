@@ -47,6 +47,7 @@ export const deleteHistory = data => async dispatch => {
   } catch (error) {
     let message = "DATA_NULL";
     dispatch(hasError(message));
+    dispatch(setAllHistory([]));
   }
 };
 

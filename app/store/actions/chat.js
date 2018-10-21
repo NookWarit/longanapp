@@ -20,10 +20,7 @@ export const getAllChat = () => async dispatch => {
     }
   } catch (error) {
     //let message = "มีไหน";
-    dispatch(hasError(message));
-    setTimeout(() => {
-      dispatch(hasError(""));
-    }, 3000);
+    dispatch(setAllChat([]));
   }
 };
 export const sentChat = data => async dispatch => {

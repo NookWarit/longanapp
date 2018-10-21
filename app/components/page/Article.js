@@ -35,6 +35,12 @@ class Article extends Component {
   onChangeTextHandler(text) {
     this.setState({ keyword: text });
   }
+  shouldComponentUpdate(nextProps, nextState){
+    if(nextState.keyword.length == 0){
+      this.props.findArticleByKeyword(this.state.keyword);
+    }
+    return true
+  }
   render() {
     return (
       <React.Fragment>
