@@ -7,7 +7,6 @@ import { hasError } from "./app";
 export const getAllHistory = () => async dispatch => {
   try {
     let user = JSON.parse(await AsyncStorage.getItem("user"));
-    //console.log(user);
     let history = await Axios.get(
       `${config.server.api}/api/history/${user.user_id}`
     );
@@ -18,7 +17,6 @@ export const getAllHistory = () => async dispatch => {
     setTimeout(() => {
       dispatch(hasError(""));
     }, 3000);
-    //console.log(error);
   }
 };
 export const sentHistory = data => async dispatch => {
@@ -29,11 +27,27 @@ export const sentHistory = data => async dispatch => {
     size: data.size,
     expected: data.expected
   });
-
-  // let history = await Axios.get(
-  //   `${config.server.api}/api/history/${data.user_id}`
-  // );
   dispatch(setAllHistory(senthistory.data));
+};
+
+export const deleteHistory = data => async dispatch => {
+  try {
+     let del = await Axios.post(`${config.server.api}/api/history/delete`, {
+      history_id: data.history_id
+    });
+    let user = JSON.parse(await AsyncStorage.getItem("user"));
+    let history = await Axios.get(
+      `${config.server.api}/api/history/${user.user_id}`
+    );
+    if (history.data) {
+      dispatch(setAllHistory(history.data));
+    } else {
+      dispatch(setAllHistory([]));
+    }
+  } catch (error) {
+    let message = "DATA_NULL";
+    dispatch(hasError(message));
+  }
 };
 
 const setAllHistory = data => ({

@@ -236,7 +236,6 @@ class Signup extends Component {
                   await  this.props.signup(this.state.input);
                   if (this.props.errorMessage === "DUPLICATED_EMAIL"){
                     alert('อีเมลล์ซ้ำ!');
-                    
                   }else{
                   await this.context.router.history.push("/");
                 }

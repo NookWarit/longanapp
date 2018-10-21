@@ -22,7 +22,7 @@ const initialState = {
     user_id: {}
   },
   activeTab: 0,
-  theme: false
+  theme: ''
 };
 const AppReducer = (state = initialState, action) => {
   switch (action.type) {

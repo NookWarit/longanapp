@@ -56,7 +56,6 @@ export default class App extends React.Component {
       Store.dispatch(setUser(user));
     }
     Store.dispatch(getAllArticles())
-    //Store.dispatch(getLastArticles())
     Store.dispatch(getLastNews())
     Store.dispatch(getAllNews())
     Store.dispatch(getAllMedia())
