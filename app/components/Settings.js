@@ -47,7 +47,7 @@ class Settings extends Component {
   render() {
     return (
       <Master title="การตั้งค่า">
-        <ListItem icon>
+        {/* <ListItem icon>
           <Left>
             <Button>
               <Icon active name="phone-portrait" />
@@ -70,8 +70,8 @@ class Settings extends Component {
               }
             />
           </Right>
-        </ListItem>
-        <ListItem icon>
+        </ListItem> */}
+        {/* <ListItem icon>
           <Left>
             <Button>
               <Icon active name="switch" />
@@ -91,7 +91,7 @@ class Settings extends Component {
               }
             />
           </Right>
-        </ListItem>
+        </ListItem> */}
         <ListItem
           icon
           onPress={() => {

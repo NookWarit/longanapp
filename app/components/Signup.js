@@ -139,7 +139,7 @@ class Signup extends Component {
               <Item regular>
                 <Icon active name="mail" />
                 <Input
-                  placeholder="อีเมลล์"
+                  placeholder="อีเมล"
                   keyboardType="email-address"
                   value={this.state.input.email}
                   onChangeText={text => this.onTextChangeHandler(text, "email")}

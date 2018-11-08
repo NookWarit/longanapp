@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, Alert} from "react-native";
+import { TouchableOpacity, Alert ,StyleSheet , Platform} from "react-native";
 import {
   Container,
   Header,
@@ -32,17 +32,6 @@ class ForgotPass extends Component {
       }
     };
   }
-//   componentDidMount() {
-//     if (this.props.user) {
-//       this.context.router.history.push("/");
-//     }
-//   }
-//   shouldComponentUpdate(nextProps, nextState) {
-//     if (this.props.user != nextProps.user) {
-//       this.context.router.history.push("/");
-//     }
-//     return true;
-//   }
   onChangeTextHandler(text, param) {
     let oldInput = this.state.input;
     oldInput[param] = text;
@@ -51,7 +40,7 @@ class ForgotPass extends Component {
 
   render() {
     return (
-      <Container>
+      <Container style={styles.container}>
           <Header >
           <Left>
             <Button transparent onPress={() => this.props.history.goBack()}>
@@ -74,11 +63,11 @@ class ForgotPass extends Component {
           </Row>
           <Row size={70}>
             <Content style={{ paddingTop: 10 }}>
-            <Text style={{ alignSelf:"center", margin:5}}>กรุณากรอกอีเมลล์ที่ใช้สมัคร</Text>
+            <Text style={{ alignSelf:"center", margin:5}}>กรุณากรอกอีเมลที่ใช้สมัคร</Text>
               <Item regular>
                 <Icon active name="person" />
                 <Input
-                  placeholder="อีเมลล์ผู้ใช้"
+                  placeholder="อีเมลผู้ใช้"
                   keyboardType="email-address"
                   onChangeText={text => this.onChangeTextHandler(text, "email")}
                   value={this.state.input.email}
@@ -121,6 +110,22 @@ class ForgotPass extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    ...Platform.select({
+      ios: {
+        //marginTop: 64
+      },
+      android: {
+        paddingTop: 25
+      }
+    })
+  },
+  background: {
+    backgroundColor: "#FFF"
+  }
+});
 const mapStateToProps = state => ({
   user: state.user.user,
   hasError: state.app.hasError.message

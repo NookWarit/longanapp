@@ -69,7 +69,7 @@ export default class App extends React.Component {
     
   }
   render() {
-    const theme = this.state.theme ? getTheme(gray) : getTheme(green);
+    const theme = this.state.theme ? getTheme(green) : getTheme(green);
     return this.state.isLoading ? (
       <PacmanIndicator />
     ) : (

@@ -67,7 +67,7 @@ class Login extends Component {
               <Item regular>
                 <Icon active name="person" />
                 <Input
-                  placeholder="ชื่อผู้ใช้ หรือ อีเมลล์"
+                  placeholder="อีเมล"
                   keyboardType="email-address"
                   onChangeText={text => this.onChangeTextHandler(text, "email")}
                   value={this.state.input.email}

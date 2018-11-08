@@ -126,7 +126,7 @@ class Profile extends Component {
                   <Icon active name="mail" />
                   <Input
                     disabled
-                    placeholder="อีเมลล์"
+                    placeholder="อีเมล"
                     keyboardType="email-address"
                     value={this.state.input.email}
                     onChangeText={text =>
@@ -233,7 +233,7 @@ class Profile extends Component {
                     <Icon active name="mail" style={{ paddingRight: 10 }} />
                   </Left>
                   <Body>
-                    <Text>อีเมลล์ : {this.props.user.email} </Text>
+                    <Text>อีเมล : {this.props.user.email} </Text>
                   </Body>
                 </ListItem>
                 <ListItem icon>

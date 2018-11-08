@@ -1,4 +1,4 @@
 const config =  {
-  server: { api: "http://nwrt.cis-training.com/longanapp" }
+  server: { api: "http://kasetsiam.com/longanapp" }
 };
 export default config;
