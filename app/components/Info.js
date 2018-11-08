@@ -31,7 +31,7 @@ class Info extends Component {
                 <Body style={{ alignItems: "center" }}>
                   <Text>โปรแกรมแอปพลิเคชัน</Text>
                   <Text>สำหรับเกษตรกรผู้ผลิตลำไย</Text>
-                  <Text>version 1.1</Text>
+                  <Text>version 1.1.2 [ Beta ]</Text>
                   <Text style={{ paddingTop: 10 ,paddingBottom:5}}>Programmer</Text>
                   <Text>Phubadee Rinkaew</Text>
                   <Text note>[FB: Phubadee Rinkaew || T.0956847399]</Text>

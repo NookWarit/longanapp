@@ -21,9 +21,15 @@ import {
 import { connect } from "react-redux";
 import { getSoil } from "../store/actions/soil";
 import { Dimensions } from "react-native";
+import { setWebview } from "../store/actions/app";
+import config from "../config";
+import PropTypes from "prop-types";
 const { height, width } = Dimensions.get("window");
 
 class soil extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -55,7 +61,7 @@ class soil extends Component {
         <List>
           <ListItem itemHeader first>
             <Left>
-              <Text>ค่า PH</Text>
+              <Text>ค่า PH [ความเป็นกรด - ด่าง]</Text>
             </Left>
             <Right>
               <Picker
@@ -77,7 +83,7 @@ class soil extends Component {
           </ListItem>
           <ListItem itemHeader first>
             <Left>
-              <Text>ค่า OM</Text>
+              <Text>ค่า OM [อินทรียวัตถุ]</Text>
             </Left>
             {/* <Body>
               <Text note>ต่ำคือน้อยกว่า 1.5</Text>
@@ -96,15 +102,15 @@ class soil extends Component {
                 selectedValue={this.state.valueOM}
                 onValueChange={this.onValueChange2}
               >
-                <Picker.Item label="สูง [ > 2.5 ]" value="สูง" />
-                <Picker.Item label="ปานกลาง [1.5 - 2.0]" value="ปานกลาง" />
-                <Picker.Item label="ต่ำ [ < 1.5 ]" value="ต่ำ" />
+                <Picker.Item label="สูง          > 2.5 " value="สูง" />
+                <Picker.Item label="ปานกลาง     1.5 - 2.0" value="ปานกลาง" />
+                <Picker.Item label="ต่ำ          < 1.5 " value="ต่ำ" />
               </Picker>
             </Right>
           </ListItem>
           <ListItem itemHeader first>
             <Left>
-              <Text>ค่า P</Text>
+              <Text>ค่า P [ฟอสฟอรัส]</Text>
             </Left>
             <Right>
               <Picker
@@ -118,15 +124,15 @@ class soil extends Component {
                 selectedValue={this.state.valueP}
                 onValueChange={this.onValueChange3}
               >
-                <Picker.Item label="สูง" value="สูง" />
-                <Picker.Item label="ปานกลาง" value="ปานกลาง" />
-                <Picker.Item label="ต่ำ" value="ต่ำ" />
+                <Picker.Item label="สูง           > 60" value="สูง" />
+                <Picker.Item label="ปานกลาง     30 - 60" value="ปานกลาง" />
+                <Picker.Item label="ต่ำ          < 30" value="ต่ำ" />
               </Picker>
             </Right>
           </ListItem>
           <ListItem itemHeader first>
             <Left>
-              <Text>ค่า K </Text>
+              <Text>ค่า K [โพแทสเซียม]</Text>
             </Left>
             <Right>
               <Picker
@@ -140,14 +146,22 @@ class soil extends Component {
                 selectedValue={this.state.valueK}
                 onValueChange={this.onValueChange4}
               >
-                <Picker.Item label="สูง" value="สูง" />
-                <Picker.Item label="ปานกลาง" value="ปานกลาง" />
-                <Picker.Item label="ต่ำ" value="ต่ำ" />
+                <Picker.Item label="สูง           > 100" value="สูง" />
+                <Picker.Item label="ปานกลาง     60 - 100" value="ปานกลาง" />
+                <Picker.Item label="ต่ำ           < 60" value="ต่ำ" />
               </Picker>
             </Right>
           </ListItem>
           <Button
-            onPress={() => this.props.getsoil({ value: this.state.value })}
+            //onPress={() => this.props.getsoil({ value: this.state.value })}
+            onPress={() => {
+              this.props.setWebview({
+                url: `${config.server.api}/info/soil/${this.state.valuePH}/${
+                  this.state.valueOM
+                }/${this.state.valueP}/${this.state.valueK}`
+              });
+              this.context.router.history.push("/detailhistory");
+            }}
             bordered
             style={{ alignSelf: "center", padding: 10, margin: 10 }}
           >
@@ -172,6 +186,7 @@ const mapStateToProps = state => ({
   soil: state.soil.value
 });
 const mapDispatchToProps = dispatch => ({
+  setWebview: data => dispatch(setWebview(data)),
   getsoil: data => dispatch(getSoil(data))
 });
 export default connect(

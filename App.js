@@ -59,7 +59,7 @@ export default class App extends React.Component {
     Store.dispatch(getLastNews())
     Store.dispatch(getAllNews())
     Store.dispatch(getAllMedia())
-    Store.dispatch(getAllNotification())
+    //Store.dispatch(getAllNotification())
     let theme =  JSON.parse(await AsyncStorage.getItem('theme')) || '';
     if(theme){
       this.setState({theme: false})

@@ -3,19 +3,19 @@
     "sdkVersion": "27.0.0",
     "name": "Longan",
     "icon": "./app/assets/images/icon-1024.png",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "splash": {
       "image": "./app/assets/images/splashscreen.png",
       "resizeMode": "cover"
     },
     "orientation": "portrait",
     "ios": {
-      "buildNumber": "3",
-      "bundleIdentifier": "com.cistraining.nwrt.longanapp"
+      "buildNumber": "4",
+      "bundleIdentifier": "com.kasetsiam.longanapp"
     },
     "android": {
-      "versionCode": 3,
-      "package": "com.cistraining.nwrt.longanapp"
+      "versionCode": 4,
+      "package": "com.kasetsiam.longanapp"
     }
   }
 }

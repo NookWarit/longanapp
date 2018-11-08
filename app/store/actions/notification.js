@@ -13,7 +13,9 @@ export const getAllNotification = () => async dispatch => {
     );
     dispatch(setAllNotification(history.data));
   } catch (error) {
-    
+    let message = "DATA_NULL";
+    dispatch(hasError(message));
+    dispatch(setAllNotification([]));
   }
 };
 

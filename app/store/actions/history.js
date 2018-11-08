@@ -3,6 +3,7 @@ import config from "../../config";
 export const SET_ALL_HISTORY = "SET_ALL_HISTORY";
 import { AsyncStorage } from "react-native";
 import { hasError } from "./app";
+import { getAllNotification } from "./notification";
 //server (axios)
 export const getAllHistory = () => async dispatch => {
   try {
@@ -10,7 +11,7 @@ export const getAllHistory = () => async dispatch => {
     let history = await Axios.get(
       `${config.server.api}/api/history/${user.user_id}`
     );
-    dispatch(setAllHistory(history.data));
+    dispatch(setAllHistory(history.data),getAllNotification(history.data));
   } catch (error) {
     let message = "ประวัติมีไหน";
     dispatch(hasError(message));
@@ -40,9 +41,10 @@ export const deleteHistory = data => async dispatch => {
       `${config.server.api}/api/history/${user.user_id}`
     );
     if (history.data) {
-      dispatch(setAllHistory(history.data));
+      dispatch(setAllHistory(history.data)),getAllNotification(history.data);
     } else {
       dispatch(setAllHistory([]));
+      dispatch(getAllNotification([]));
     }
   } catch (error) {
     let message = "DATA_NULL";
